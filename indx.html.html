@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ottimo HR</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f8f7f4;--sur:#fff;--card:#f2f0ec;--bor:#e5e1d8;
+  --ac:#2c5f2e;--ac2:#3d7a40;--acl:#eaf2ea;
+  --gold:#c8973a;--tx:#1a1a18;--mu:#6b6860;--mu2:#a09d97;
+  --ok:#2c7a4b;--wa:#b87a1a;--er:#b83c3c;
+  --r:12px;--r2:8px;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
+.tb{background:var(--sur);border-bottom:1px solid var(--bor);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+.logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--ac)}
+.nav button{background:none;border:none;padding:7px 14px;border-radius:var(--r2);font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--mu);cursor:pointer;transition:all .2s}
+.nav button.on{color:var(--ac);background:var(--acl)}
+.chip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--bor);border-radius:20px;padding:5px 12px 5px 6px;font-size:13px;font-weight:600;cursor:pointer}
+.av{width:26px;height:26px;border-radius:50%;background:var(--ac);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.main{max-width:960px;margin:0 auto;padding:32px 24px}
+.card{background:var(--sur);border:1px solid var(--bor);border-radius:var(--r);padding:24px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.csm{background:var(--sur);border:1px solid var(--bor);border-radius:var(--r);padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.badge{display:inline-flex;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.bok{background:#e8f5ee;color:#2c7a4b;border:1px solid #b8ddc8}
+.bwa{background:#fdf3e3;color:#b87a1a;border:1px solid #f0d49a}
+.ber{background:#fdf0f0;color:#b83c3c;border:1px solid #f0c4c4}
+.bgr{background:var(--card);color:var(--mu);border:1px solid var(--bor)}
+.btn{display:inline-flex;align-items:center;gap:5px;border:none;border-radius:var(--r2);padding:10px 18px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .18s}
+.bp{background:var(--ac);color:#fff}.bp:hover{background:var(--ac2)}
+.bg2{background:transparent;color:var(--mu);border:1px solid var(--bor)}.bg2:hover{background:var(--card)}
+.bfull{width:100%;justify-content:center}
+.blg{padding:13px 24px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.fl{margin-bottom:14px}
+.fl label{display:block;font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.inp{width:100%;background:var(--bg);border:1.5px solid var(--bor);border-radius:var(--r2);padding:11px 13px;color:var(--tx);font-size:14px;font-family:'Nunito',sans-serif;font-weight:500;outline:none;transition:border .18s}
+.inp:focus{border-color:var(--ac);background:var(--sur)}
+.inp.err{border-color:var(--er)}
+.inp::placeholder{color:var(--mu2)}
+.hint{font-size:11px;color:var(--mu);margin-top:3px}
+.etx{font-size:11px;color:var(--er);font-weight:700;margin-top:3px}
+/* LOGIN */
+.lw{min-height:100vh;display:flex}
+.ll{width:320px;background:linear-gradient(150deg,var(--ac),#1a3d1c);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 32px;color:#fff;flex-shrink:0}
+.ll-lg{font-family:'Playfair Display',serif;font-size:38px;margin-bottom:10px}
+.ll-tg{font-size:13px;color:rgba(255,255,255,.7);text-align:center;line-height:1.6}
+.lr{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 24px;overflow-y:auto}
+.lbox{width:100%;max-width:400px}
+.ltabs{display:flex;gap:3px;background:var(--card);border:1px solid var(--bor);border-radius:var(--r2);padding:3px;margin-bottom:20px}
+.ltab{flex:1;padding:8px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;background:transparent;color:var(--mu);transition:all .2s}
+.ltab.on{background:var(--sur);color:var(--ac)}
+.dots{display:flex;gap:7px;justify-content:center;margin-bottom:20px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--bor);transition:all .3s}
+.dot.on{background:var(--ac);width:22px;border-radius:4px}
+.dot.dn{background:var(--ac2)}
+.pbar{height:4px;background:var(--bor);border-radius:10px;overflow:hidden;margin:12px 0 5px}
+.pfill{height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:10px;transition:width .4s}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}
+.pc{background:var(--sur);border:2px solid var(--bor);border-radius:var(--r);padding:14px 10px;cursor:pointer;text-align:center;transition:all .2s;position:relative}
+.pc:hover{border-color:var(--ac2);background:var(--acl)}
+.pc.sel{border-color:var(--ac);background:var(--acl)}
+.pc .ck{position:absolute;top:6px;right:6px;width:18px;height:18px;background:var(--ac);border-radius:50%;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0}
+.pc.sel .ck{opacity:1}
+.qcat{font-size:11px;color:var(--ac);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.qtxt{font-family:'Playfair Display',serif;font-size:19px;line-height:1.45;margin-bottom:16px}
+.choices{display:flex;flex-direction:column;gap:8px}
+.ch{background:var(--bg);border:1.5px solid var(--bor);border-radius:var(--r2);padding:11px 14px;cursor:pointer;font-size:13px;font-family:'Nunito',sans-serif;font-weight:600;text-align:left;width:100%;transition:all .18s;color:var(--tx)}
+.ch:hover{border-color:var(--ac2);background:var(--acl)}
+.ch.sel{background:var(--acl);border-color:var(--ac);color:var(--ac)}
+.nc{background:var(--sur);border:1px solid var(--bor);border-radius:var(--r);margin-bottom:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.nc-h{padding:16px 18px;cursor:pointer;transition:background .2s}
+.nc-h:hover{background:var(--bg)}
+.nc-b{padding:4px 18px 16px;border-top:1px solid var(--bor)}
+.qa-it{padding:10px 0;border-bottom:1px solid var(--bor)}
+.qa-it:last-child{border-bottom:none}
+.qa-cat{font-size:10px;color:var(--ac);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.qa-q{font-size:13px;font-weight:600;color:var(--tx);margin-bottom:5px}
+.qa-a{background:var(--acl);border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700;color:var(--ac);display:inline-block}
+.sv{font-family:'Playfair Display',serif;font-size:36px;line-height:1;margin-bottom:3px}
+.sl{font-size:11px;color:var(--mu);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.toast{position:fixed;top:16px;right:16px;z-index:999;padding:12px 18px;border-radius:var(--r2);font-size:13px;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.tok{background:var(--ac);color:#fff}
+.ter{background:var(--er);color:#fff}
+@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fu .3s ease}
+
+/* ═══════════════════════════════════════
+   AI YORDAM SAHIFASI
+═══════════════════════════════════════ */
+.ai-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.ai-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--bor);
+  background: var(--sur);
+  flex-shrink: 0;
+}
+
+.ai-avatar {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--ac), var(--ac2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+
+.ai-title { font-size: 15px; font-weight: 700; color: var(--tx); }
+.ai-subtitle { font-size: 12px; color: var(--mu); margin-top: 1px; }
+
+.ai-status {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 700;
+  color: var(--ok);
+  background: #e8f5ee;
+  border: 1px solid #b8ddc8;
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+.ai-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ok);
+  animation: aipulse 2s infinite;
+}
+@keyframes aipulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.ai-lang-btns {
+  display: flex; gap: 4px; margin-left: 10px;
+}
+.ai-lang-btn {
+  background: var(--card); border: 1px solid var(--bor);
+  border-radius: 6px; padding: 4px 8px; font-size: 11px;
+  font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif;
+  color: var(--mu); transition: all .15s;
+}
+.ai-lang-btn.on { background: var(--acl); border-color: var(--ac); color: var(--ac); }
+
+.ai-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--bg);
+}
+.ai-chat::-webkit-scrollbar { width: 4px; }
+.ai-chat::-webkit-scrollbar-thumb { background: var(--bor); border-radius: 4px; }
+
+/* Welcome screen */
+.ai-welcome {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding: 32px 20px;
+  gap: 16px;
+}
+.ai-welcome-icon {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, var(--ac), var(--ac2));
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 8px 24px rgba(44,95,46,.25);
+  animation: aiFloat 3s ease-in-out infinite;
+}
+@keyframes aiFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.ai-welcome-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; color: var(--tx); margin-bottom: 4px;
+}
+.ai-welcome-sub { font-size: 13px; color: var(--mu); line-height: 1.7; max-width: 340px; }
+
+.ai-starters {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  max-width: 480px; width: 100%; margin-top: 4px;
+}
+.ai-starter {
+  background: var(--sur); border: 1px solid var(--bor);
+  border-radius: 10px; padding: 12px 14px;
+  cursor: pointer; text-align: left; transition: all .18s;
+}
+.ai-starter:hover { border-color: var(--ac); background: var(--acl); transform: translateY(-1px); }
+.ai-starter-icon { font-size: 16px; margin-bottom: 4px; }
+.ai-starter-title { font-size: 12px; font-weight: 700; color: var(--tx); margin-bottom: 2px; }
+.ai-starter-sub { font-size: 11px; color: var(--mu); }
+
+/* Messages */
+.ai-msg-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  animation: aiMsgIn .25s ease;
+}
+@keyframes aiMsgIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.ai-msg-row.user { flex-direction: row-reverse; }
+
+.ai-msg-av {
+  width: 28px; height: 28px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+}
+.ai-msg-row.ai .ai-msg-av {
+  background: linear-gradient(135deg, var(--ac), var(--ac2)); color: #fff;
+}
+.ai-msg-row.user .ai-msg-av {
+  background: var(--card); border: 1px solid var(--bor); color: var(--mu);
+}
+
+.ai-bubble {
+  max-width: 72%; font-size: 13.5px; line-height: 1.7;
+}
+.ai-msg-row.user .ai-bubble {
+  background: var(--acl); border: 1px solid #c8e6c9;
+  border-radius: 12px 12px 3px 12px;
+  padding: 9px 13px; color: var(--tx);
+}
+.ai-msg-row.ai .ai-bubble {
+  background: var(--sur); border: 1px solid var(--bor);
+  border-radius: 3px 12px 12px 12px;
+  padding: 9px 13px; color: var(--tx);
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+
+.ai-typing {
+  display: flex; gap: 5px; padding: 10px 13px;
+  background: var(--sur); border: 1px solid var(--bor);
+  border-radius: 3px 12px 12px 12px;
+  width: fit-content; box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.ai-typing span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ac2); animation: aiTyping 1.2s infinite; opacity: .4;
+}
+.ai-typing span:nth-child(2){animation-delay:.2s}
+.ai-typing span:nth-child(3){animation-delay:.4s}
+@keyframes aiTyping { 0%,100%{opacity:.3;transform:scale(.9)} 50%{opacity:1;transform:scale(1.1)} }
+
+/* Input */
+.ai-input-area {
+  padding: 14px 24px 18px;
+  border-top: 1px solid var(--bor);
+  background: var(--sur);
+  flex-shrink: 0;
+}
+.ai-input-box {
+  display: flex; gap: 8px; align-items: flex-end;
+  background: var(--bg); border: 1.5px solid var(--bor);
+  border-radius: 12px; padding: 8px 8px 8px 14px;
+  transition: border-color .18s;
+}
+.ai-input-box:focus-within { border-color: var(--ac); background: var(--sur); }
+.ai-textarea {
+  flex: 1; border: none; background: transparent; outline: none;
+  font-family: 'Nunito', sans-serif; font-size: 13.5px;
+  color: var(--tx); line-height: 1.5; resize: none;
+  min-height: 22px; max-height: 120px; padding: 2px 0;
+}
+.ai-textarea::placeholder { color: var(--mu2); }
+.ai-send {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--ac); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0; transition: all .15s;
+}
+.ai-send:hover { background: var(--ac2); transform: scale(1.05); }
+.ai-send:disabled { background: var(--bor); cursor: not-allowed; transform: none; }
+.ai-send svg { width: 16px; height: 16px; }
+
+.ai-hint {
+  font-size: 11px; color: var(--mu2); text-align: center; margin-top: 8px;
+}
+.ai-hint kbd {
+  background: var(--card); border: 1px solid var(--bor);
+  border-radius: 3px; padding: 1px 5px; font-family: monospace; font-size: 10px;
+}
+
+/* API key notice */
+.api-notice {
+  background: #fdf3e3; border: 1px solid #f0d49a; border-radius: var(--r2);
+  padding: 10px 14px; font-size: 12px; color: #7a5010; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.api-key-row {
+  display: flex; gap: 8px; margin-bottom: 12px;
+}
+.api-key-input {
+  flex: 1; background: var(--bg); border: 1.5px solid var(--bor);
+  border-radius: var(--r2); padding: 8px 12px; font-size: 13px;
+  font-family: 'Nunito', sans-serif; outline: none; color: var(--tx);
+  transition: border .15s;
+}
+.api-key-input:focus { border-color: var(--ac); }
+.api-key-btn {
+  background: var(--ac); border: none; border-radius: var(--r2);
+  color: #fff; padding: 8px 14px; font-size: 12px; font-weight: 700;
+  font-family: 'Nunito', sans-serif; cursor: pointer; white-space: nowrap;
+  transition: background .15s;
+}
+.api-key-btn:hover { background: var(--ac2); }
+
+@media(max-width:640px){
+  .ll{display:none}.lr{padding:20px 14px}
+  .g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}
+  .tb{padding:0 14px}.main{padding:20px 14px}
+  .ai-starters{grid-template-columns:1fr}
+  .ai-page{padding:0}
+  .ai-chat{padding:14px}
+  .ai-input-area{padding:10px 14px 14px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import{getFirestore,collection,addDoc,getDocs,query,orderBy}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const db=getFirestore(initializeApp({
+  apiKey:"AIzaSyBkFbcT--VfrLe2ZMjxhmRAs1V7Svzx2Bg",
+  authDomain:"ottimo-hr.firebaseapp.com",
+  projectId:"ottimo-hr",
+  storageBucket:"ottimo-hr.firebasestorage.app",
+  messagingSenderId:"130893452321",
+  appId:"1:130893452321:web:d70ddfc1fffc57a1c97f60"
+}));
+
+const TG_TOKEN="8173395748:AAFCbwHLLTiEOu0L9mjD2_Yy-a-UZXLKghU";
+const TG_CHAT="206004279";
+const MGR_PASS="688466";
+
+async function tg(txt){
+  try{
+    await fetch("https://api.telegram.org/bot"+TG_TOKEN+"/sendMessage",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({chat_id:TG_CHAT,text:txt,parse_mode:"HTML"})
+    });
+  }catch(e){}
+}
+
+// ═══════════════════ KASBLAR ═══════════════════
+var POS={
+  menejer:{l:"Menejer",i:"👔",q:[
+    {id:"m1",c:"Rahbarlik",t:"Xodim ish rejasini bajarmasa birinchi nima qilasiz?",o:["Sababini aniqlab, yordam beraman","Ogohlantirib, muddatni uzaytiraman","Boshqa xodimga topshiraman","Darhol jazo chorasi ko'raman"]},
+    {id:"m2",c:"Qaror",t:"Ikki muhim ish bir vaqtda tushsa qanday harakat qilasiz?",o:["Muhimligiga qarab ustuvorlik belgilayman","Ikkalasini parallel bajaraman","Jamoaga taqsimlayman","Rahbardan ko'rsatma kutaman"]},
+    {id:"m3",c:"Muloqot",t:"Xodim siz bilan rozi bo'lmasa qanday muloqot qilasiz?",o:["Tinglash va birgalikda yechim topaman","O'z fikrimni to'g'ri deb davom ettiraman","Ovoz berish o'tkazaman","Rahbariyatga hisobot beraman"]},
+    {id:"m4",c:"Motivatsiya",t:"Jamoangiz ish sifati pasayib ketsa nima qilasiz?",o:["Muammoni aniqlab, qo'llab-quvvatlayman","Rag'batlantirish tizimini ko'rib chiqaman","Umumiy yig'ilish o'tkazaman","Eng yaxshilarga bonus beraman"]},
+    {id:"m5",c:"Mijoz",t:"VIP mijoz shikoyat bilan kelsa nima qilasiz?",o:["Zudlik bilan shaxsan muloqot qilaman","Mas'ul xodimni yo'naltiraman","Kechirim so'rab, yechim taklif qilaman","Standart jarayon bo'yicha hal qilaman"]},
+    {id:"m6",c:"Hisobot",t:"Oylik ko'rsatkichlar past bo'lsa rahbariyatga nima deysiz?",o:["Sabablarni tahlil qilib, yechim rejasi taqdim etaman","Faqat natijani aytaman","Jamoani ayblayman","Keyingi oy yaxshilanadi deb va'da qilaman"]},
+    {id:"m7",c:"Yangi xodim",t:"Yangi xodimni jamoaga qo'shishda asosiy ustuvorlik?",o:["Mentor tayinlab, moslashishiga yordam beraman","Qo'llanma va yo'riqnoma tayyorlayman","Jamoaga tanishtirib qo'yaman","Faqat ish vazifalarini tushuntiraman"]},
+    {id:"m8",c:"Ziddiyat",t:"Ikki xodim o'rtasida jiddiy ziddiyat bo'lsa?",o:["Har ikki tomonni alohida tinglash va yechim topaman","Jamoa oldida hal qilamiz","HR ga topshiraman","Ogohlantirish beraman"]},
+    {id:"m9",c:"Innovatsiya",t:"Jamoada yangi g'oya taklif qilinsa qanday yondashasiz?",o:["Baholash mezonlari asosida ko'rib chiqaman","Darhol tatbiq etishga harakat qilaman","Rahbariyat bilan kelishaman","Avvalgi tajribaga asoslanib qaror qilaman"]},
+    {id:"m10",c:"Natija",t:"Kvartaldagi asosiy muvaffaqiyatingiz nimada bo'ldi?",o:["Jamoa samaradorligini oshirdim","Yangi mijozlar jalb qildim","Jarayon va tizimlarni yaxshiladim","Xarajatlarni kamaytirishga erishdim"]},
+  ]},
+  barista:{l:"Barista",i:"☕",q:[
+    {id:"b1",c:"Texnika",t:"Espresso tayyorlashda eng muhim omil nima?",o:["Tortish vaqti (25-30 sek) va hajmi (25-30ml)","Kofe turi va qovurish darajasi","Suv harorati va bosimi","Kofe maydalash darajasi"]},
+    {id:"b2",c:"Sifat",t:"Mijoz qahvasi ta'mini yoqtirmasa nima qilasiz?",o:["Uzr so'rab darhol yangi tayyorlayman","Isitish uchun mikroto'lqin taklif qilaman","Kechirim so'rayman","Menejerni chaqiraman"]},
+    {id:"b3",c:"Bilim",t:"Latte va cappuccino farqi nima?",o:["Latte ko'proq sut, cappuccino ko'proq ko'pik","Ikkalasi bir xil, faqat nomi farq qiladi","Cappuccino kuchliroq, latte yumshoqroq","Latte sovuq, cappuccino issiq servis qilinadi"]},
+    {id:"b4",c:"Tozalik",t:"Espresso mashinasini qachon tozalash kerak?",o:["Har smena boshida, oxirida va zarur bo'lganda","Faqat ko'zga ko'rinadigan kir bo'lganda","Hafta oxirida bir marta","Texnik xizmat vaqtida"]},
+    {id:"b5",c:"Mijoz",t:"Allergiyasi bor mijoz kelsa nima qilasiz?",o:["Ingredientlarni tushuntirib, muqobil taklif qilaman","Doktor maslahatiga yo'naltiraman","Hech narsa demayman","Faqat kutilgan mahsulotni beraman"]},
+    {id:"b6",c:"Tezlik",t:"Navbat uzayib ketsa qanday ish tartibini qo'llaysiz?",o:["Parallel tayyorlash: bir vaqtda bir nechta buyurtma","Tezlik uchun sifatni biroz pasaytiraman","Yordamchi so'rayman","Har bir buyurtmani tartibda bajaraman"]},
+    {id:"b7",c:"O'rganish",t:"Menyuga yangi ichimlik qo'shilsa qanday o'rganasiz?",o:["Retseptni yod olib, o'zim sinab ko'raman","Faqat ko'rsatma bo'lganda o'rganaman","Internet va video darslardan o'rganaman","Hamkasbdan so'rayman"]},
+    {id:"b8",c:"Muammo",t:"Mashina ishlamay qolsa smena o'rtasida nima qilasiz?",o:["Darhol mas'ulni xabardor qilib, mijozlarni ogohlantiraman","O'zim tuzatishga harakat qilaman","Smenani to'xtataman","Muqobil usul bilan davom etaman"]},
+    {id:"b9",c:"Jamoa",t:"Hamkasbingiz xato retsept ishlatayotganini ko'rsangiz?",o:["Xushmuomalalik bilan to'g'ri retseptni ko'rsataman","Menejerni xabardor qilaman","Hech narsa demay davom etaman","Mijoz shikoyat qilganidan keyin aytaman"]},
+    {id:"b10",c:"Mas'uliyat",t:"Smena oxirida ish joyi tartibsiz qolsa nima qilasiz?",o:["O'zim to'liq tozalab, keyingi smenani tayyorlab ketaman","Faqat o'z ish joyimni tozalayman","Keyingi smena o'zi tartibga soladi","Tez-tez tozalab, tartibli ushlab turaman"]},
+  ]},
+  sotuvchi:{l:"Sotuvchi",i:"🛍️",q:[
+    {id:"s1",c:"Sotuv",t:"Mijoz mahsulot narxini qimmat desa qanday javob berasiz?",o:["Mahsulotning qiymatini va foydasini tushuntiraman","Chegirma beraman","Arzonroq variantni taklif qilaman","Narx bozor narxiga mos deb tushuntiraman"]},
+    {id:"s2",c:"Ehtiyoj",t:"Mijozning haqiqiy ehtiyojini aniqlash uchun nima qilasiz?",o:["Ochiq savollar beraman va diqqat bilan tinglayman","Mahsulotlarimizni birin-ketin taqdim etaman","Eng mashhur mahsulotni taklif qilaman","Mijoz o'zi so'raganini beraman"]},
+    {id:"s3",c:"Rad etish",t:"Mijoz 'O'ylab ko'raman' desa qanday harakat qilasiz?",o:["Asosiy savollarni aniqlab, shubhalarni bartaraf etaman","Qayta qo'ng'iroq vaqtini belgilab ruxsat so'rayman","Yangi taklif bilan chiqaman","Xayrlashib, keyingi mijozga o'taman"]},
+    {id:"s4",c:"Bilim",t:"Raqobatchi mahsulotidan afzalligimizni qanday tushuntirасиз?",o:["Aniq faktlar va farqlarni ko'rsataman","Raqobatchilarni tanqid qilaman","Narq jihatiga e'tibor qarataman","Faqat o'z mahsulotimiz haqida gapiraman"]},
+    {id:"s5",c:"Taqdimot",t:"Yangi mijozga mahsulot taqdimotini qanday boshlaysiz?",o:["Avval mijoz ehtiyojini aniqlayman, so'ng mahsulotni ko'rsataman","Mahsulotning barcha xususiyatlarini batafsil aytaman","Demo ko'rsataman","Muvaffaqiyatli mijozlar misolini keltiraman"]},
+    {id:"s6",c:"Munosabat",t:"Mijoz bilan uzoq muddatli munosabat qurish uchun nima qilasiz?",o:["Sotuvdan keyin ham xabardor bo'lib turaman","Har oy yangi takliflar yuboraman","Bayramlarda tabriklayman","Faqat yangi mahsulot chiqqanda muloqot qilaman"]},
+    {id:"s7",c:"Reja",t:"Oylik reja bajarilmayotganini sezsa qanday harakat qilasiz?",o:["Sabablarni tahlil qilib, strategiyani o'zgartiraman","Rahbariyatga aytaman","Qolgan kunlarda ikki barobar harakat qilaman","Keyingi oyga umid qilaman"]},
+    {id:"s8",c:"Guruh",t:"Jamoaviy sotuv loyihasida o'z vazifangiz nima?",o:["Aniq rolimni o'tab, jamoa muvaffaqiyatiga hissa qo'shaman","Eng ko'p sotuv qilishga intilamаn","Loyiha rahbarini qo'llab-quvvatlayman","Jamoadan mustaqil ishlashni afzal ko'raman"]},
+    {id:"s9",c:"Shikoyat",t:"Mijoz mahsulotdan norozi bo'lib qaytib kelsa nima qilasiz?",o:["Muammoni tinglash, kechirim so'rash va yechim taklif qilish","Qaytarish yoki almashtirish tartibini tushuntiraman","Menejerga yo'naltiraman","Sababini aniqlab, imkon qadar hal qilaman"]},
+    {id:"s10",c:"O'rganish",t:"Yangi mahsulot haqida qanday bilim olasiz?",o:["Barcha materiallarni o'qib, o'zim sinab ko'raman","Treninglar va prezentatsiyalarda qatnashaman","Hamkasblardan o'rganaman","Mijoz savollari orqali o'rganaman"]},
+  ]},
+  hr:{l:"HR",i:"🤝",q:[
+    {id:"h1",c:"Yollash",t:"Intervyu o'tkazishda qanday savollardan foydalanasiz?",o:["Vaziyatga asoslangan (STAR) savollar","Standart ish tajribasi savollari","Ko'proq motivatsiya savollari","Texnik bilimni tekshiruvchi savollar"]},
+    {id:"h2",c:"Onboarding",t:"Yangi xodim birinchi haftada nimaga muhtoj?",o:["Aniq rol, mentor va ish muhiti bilan tanishish","Faqat hujjatlarni to'ldirish","Darhol ish boshlash","Jamoa bilan tanishish yig'ilishi"]},
+    {id:"h3",c:"Nizo",t:"Bo'limlar o'rtasida mojaro yuzaga kelsa HR sifatida nima qilasiz?",o:["Betaraf vositachi sifatida ikki tomonni tinglaman","Qoida va tartibga asosan qaror qilaman","Yuqori rahbariyatga topshiraman","Tomonlarni alohida yig'ib, yechim topaman"]},
+    {id:"h4",c:"Bo'shatish",t:"Xodimni bo'shatish zarur bo'lganda qanday harakat qilasiz?",o:["Qonuniy tartib va insoniy munosabat bilan o'tkazaman","Faqat hujjat va rasmiy jarayon","Xodimga oldindan ogohlantirish beraman","Menejer bilan birgalikda hal qilaman"]},
+    {id:"h5",c:"Siyosat",t:"Xodim kompaniya qoidasini buzsa nima qilasiz?",o:["Darajasiga qarab tartib bo'yicha jazo chorasi","Avval suhbat, keyin rasmiy ogohlantirish","Darhol menejerga xabar beraman","Yozma ogohlantirish yuboraman"]},
+    {id:"h6",c:"Motivatsiya",t:"Xodimlar ish qoldirish ko'rsatkichi oshsa nimadan boshlayman?",o:["Exit interview va sabab tahlili","Ish sharoitini ko'rib chiqaman","Maosh va benefitlarni taqqoslayman","Xodimlar so'rovnomasini o'tkazaman"]},
+    {id:"h7",c:"Rivojlanish",t:"Xodim o'sishini qo'llab-quvvatlash uchun nima qilasiz?",o:["Individual rivojlanish rejasi (IDP) tuzaman","Treninglar va kurslar tashkil etaman","Mentorlik dasturini yo'lga qo'yaman","Ichki ko'tarilish imkoniyatlarini taqdim etaman"]},
+    {id:"h8",c:"Madaniyat",t:"Korporativ madaniyatni shakllantirishda HR roli nima?",o:["Qadriyatlarni tatbiq etuvchi tadbirlar","Faqat yangi xodimlarni o'rgatish","Rahbariyat ko'rsatmasini amalga oshirish","Xodimlar fikr-mulohazasini to'plash"]},
+    {id:"h9",c:"Qonun",t:"Xodim mehnat huquqlari haqida savol bersa nima qilasiz?",o:["To'g'ri ma'lumot beraman va kerak bo'lsa yuristga yo'naltiraman","Faqat kompaniya siyosatini tushuntiraman","Rahbariyatga havola qilaman","Standart javob tayyorlagiman"]},
+    {id:"h10",c:"Maxfiylik",t:"Xodimlar ma'lumotlarining maxfiyligi bo'yicha yondashuvingiz?",o:["Qat'iy maxfiylik siyosati va ruxsatga asoslangan kirish","Faqat zarur hollarda maxfiy saqlayman","Umumiy bazada saqlayman","Har bir xodim o'z ma'lumotlarini boshqaradi"]},
+  ]},
+  tozalovchi:{l:"Tozalovchi",i:"🧹",q:[
+    {id:"t1",c:"Tartib",t:"Smena boshida birinchi nimani qilasiz?",o:["Jihozlar va materiallarni tekshirib, rejani tuzaman","Oldingidan qolgan ishlarni davom ettiraman","Mas'uldan ko'rsatma olaman","Darhol tozalashni boshlayman"]},
+    {id:"t2",c:"Vositalar",t:"Turli yuzalar uchun qaysi tozalash vositasini tanlaysiz?",o:["Yuzaga qarab tegishli vositani tanlayman","Umumiy tozalovchi vositani hamma yerda ishlataman","Ishchi bergan narsani ishlataman","Ko'proq bo'lsa yaxshiroq deb ko'p ishlataman"]},
+    {id:"t3",c:"Xavfsizlik",t:"Kimyoviy moddalar bilan ishlashda ehtiyot choralar?",o:["Qo'lqop, niqob va himoya kiyimini kiyaman","Faqat qo'lqop kiyaman","Ko'rsatmalarga qarab harakat qilaman","Himoya vositasisiz ishlashga odatlanganman"]},
+    {id:"t4",c:"Muammo",t:"Kuchli dog' tozalab bo'lmayotgan joy bilan nima qilasiz?",o:["Maxsus vosita yoki texnika qidiraman","Mas'ulni xabardor qilaman","Qayta-qayta urinishni davom ettiraman","Boshqa joyga o'tib, keyinroq qaytaman"]},
+    {id:"t5",c:"Vaqt",t:"Katta maydonni qisqa vaqtda tozalash kerak bo'lsa?",o:["Yuqoridan pastga, ichkaridan tashqariga usulida","Eng ko'zga ko'rinadigan joylarni birinchi","Har bir xonani to'liq yakunlab keyingisiga o'taman","Tez ko'zdan kechirib, muhimlarini birinchi qilaman"]},
+    {id:"t6",c:"Jihoz",t:"Tozalash jihozi ishlamay qolsa nima qilasiz?",o:["Darhol mas'ulni xabardor qilib, muqobil vosita so'rayman","O'zim tuzatishga harakat qilaman","Qo'l bilan davom ettiraman","Jihoz tuzatilguncha kutaman"]},
+    {id:"t7",c:"Sifat",t:"Ishingiz sifatini o'zingiz qanday nazorat qilasiz?",o:["Yakunlashdan oldin har joyni qayta tekshiraman","Cheklistdan foydalanaman","Mijozlar yoki nazoratchi fikriga tayanaman","Ko'zga ko'rinsa yetarli deb hisoblayman"]},
+    {id:"t8",c:"Muloqot",t:"Tozalayotgan paytda biror kishi halaqit bersa?",o:["Xushmuomalalik bilan kutishni so'rayman","Ularni e'tiborsiz qoldirib ishni davom ettiraman","Keyin qilish uchun to'xtataman","Mas'ulni chaqiraman"]},
+    {id:"t9",c:"Mas'uliyat",t:"Ish paytida biror narsani tasodifan sindirsangiz nima qilasiz?",o:["Darhol mas'ulni xabardor qilaman","Yashirishga harakat qilaman","O'zim tuzataman yoki almashtiraman","Kimdir ko'rmasa aytmasam ham bo'ladi"]},
+    {id:"t10",c:"Intizom",t:"Ish tugagandan keyin jihozlar bilan nima qilasiz?",o:["Jihozlarni tozalab, joy-joyiga qo'yaman va sarflarni qayd etaman","Tezda joyiga qo'yib ketaman","Ertangi smena o'zi qiladi deb qoldiraman","Mas'ul ko'rsatgan joyga qo'yaman"]},
+  ]},
+};
+
+// ═══════════════════ AI AGENT ═══════════════════
+const AI_LANGS = {
+  uz: {
+    name: "O'zbek",
+    welcome_title: "Ottimo HR Yordamchisi",
+    welcome_sub: "Ottimo Cafe haqida har qanday savolingizga javob beraman",
+    placeholder: "Savolingizni yozing...",
+    starters: [
+      { icon: "💼", title: "Bo'sh o'rinlar", sub: "Qanday lavozimlar bor?", q: "Ottimo Cafeda qanday bo'sh ish o'rinlari bor?" },
+      { icon: "⏰", title: "Ish vaqti", sub: "Smena jadvali", q: "Ish vaqti va smenalar haqida aytib bering" },
+      { icon: "📍", title: "Filiallar", sub: "Manzillar", q: "Ottimo Cafening filiallari qayerda joylashgan?" },
+      { icon: "💰", title: "Maosh", sub: "To'lov shartlari", q: "Ottimo Cafeda maosh qanday to'lanadi?" }
+    ],
+    system: `Sen Ottimo Cafe uchun HR yordamchisisisan. Faqat o'zbek tilida javob ber. Faqat Ottimo Cafe haqidagi savollarga javob ber. Boshqa savollarga: "Kechirasiz, men faqat Ottimo Cafe haqida javob bera olaman" de.
+
+Ottimo Cafe haqida to'liq ma'lumot:
+- Toshkentda 3 ta filiali bor
+- 1-filial: Nukus kinoteatri yonida, Shifer ko'chasi 71
+- 2-filial: Parus ostida, Katartal ko'chasi 60A/1  
+- 3-filial: Talant International School ro'parasida, Buyuk Ipak Yo'li 31
+- Bo'sh ish o'rinlari: Barista ☕, Kassir 💳, Konditer-sotuvchi 🍰
+- Ish vaqti: Kunduzi 07:30-16:30, Kechki payt 16:00-24:00
+- Yosh talabi: 20-35 yosh
+- Rus tilini bilish shart
+- Chekmaydigan va spirtli ichimlik iste'mol qilmaydigan bo'lishi kerak
+- Probatsiya muddati: 1 oy
+- Maosh har 10 kunda to'lanadi
+- Har smenada bepul ovqat beriladi
+- Rasmiy mehnat shartnomasi tuziladi
+- Karyera o'sishi imkoniyati mavjud
+- Do'stona jamoa (25+ xodim)
+- Telefon: +998 99 060 33 53
+- Telegram: @Ottimo_hr
+- Murojaat: https://t.me/ottimo_uz
+
+Do'stona, qisqa va aniq javob ber. Emoji ishlatib muloqotni jonlantir.`
+  },
+  ru: {
+    name: "Русский",
+    welcome_title: "Ассистент Ottimo HR",
+    welcome_sub: "Отвечу на любые вопросы об Ottimo Cafe",
+    placeholder: "Напишите вопрос...",
+    starters: [
+      { icon: "💼", title: "Вакансии", sub: "Открытые позиции", q: "Какие вакансии есть в Ottimo Cafe?" },
+      { icon: "⏰", title: "График", sub: "Смены и время", q: "Расскажите о рабочем времени и сменах" },
+      { icon: "📍", title: "Филиалы", sub: "Адреса", q: "Где находятся филиалы Ottimo Cafe?" },
+      { icon: "💰", title: "Зарплата", sub: "Условия оплаты", q: "Как выплачивается зарплата в Ottimo Cafe?" }
+    ],
+    system: `Ты HR-ассистент Ottimo Cafe. Отвечай только на русском. Только на вопросы об Ottimo Cafe. На другие: "Извините, я отвечаю только на вопросы об Ottimo Cafe."
+
+Об Ottimo Cafe:
+- 3 филиала в Ташкенте
+- 1-й: у кинотеатра Нукус, ул. Шифернур 71
+- 2-й: под Парусом, ул. Катартал 60А/1
+- 3-й: напротив Talant School, Buyuk Ipak Yoli 31
+- Вакансии: Бариста ☕, Кассир 💳, Кондитер 🍰
+- График: 07:30-16:30 и 16:00-24:00
+- Возраст: 20-35 лет, знание русского обязательно
+- Испытательный срок: 1 месяц
+- Зарплата каждые 10 дней
+- Бесплатное питание в каждую смену
+- Официальный трудовой договор
+- Тел: +998 99 060 33 53, @Ottimo_hr
+
+Отвечай дружелюбно и кратко. Используй эмодзи.`
+  },
+  en: {
+    name: "English",
+    welcome_title: "Ottimo HR Assistant",
+    welcome_sub: "I'll answer any questions about Ottimo Cafe",
+    placeholder: "Type your question...",
+    starters: [
+      { icon: "💼", title: "Vacancies", sub: "Open positions", q: "What job openings are available at Ottimo Cafe?" },
+      { icon: "⏰", title: "Schedule", sub: "Shifts & hours", q: "Tell me about work schedule and shifts" },
+      { icon: "📍", title: "Branches", sub: "Locations", q: "Where are Ottimo Cafe branches located?" },
+      { icon: "💰", title: "Salary", sub: "Payment terms", q: "How is salary paid at Ottimo Cafe?" }
+    ],
+    system: `You are an HR assistant for Ottimo Cafe. Reply only in English. Only answer questions about Ottimo Cafe. For other topics: "Sorry, I can only answer questions about Ottimo Cafe."
+
+About Ottimo Cafe:
+- 3 branches in Tashkent
+- Branch 1: Near Nukus Cinema, Shifernur St. 71
+- Branch 2: Under Parus, Katartal St. 60A/1
+- Branch 3: Opposite Talant School, Buyuk Ipak Yoli 31
+- Open positions: Barista ☕, Cashier 💳, Pastry seller 🍰
+- Hours: 07:30-16:30 and 16:00-24:00
+- Age: 20-35, Russian required
+- Probation: 1 month
+- Salary every 10 days + free meals every shift
+- Phone: +998 99 060 33 53, @Ottimo_hr
+
+Be friendly and concise. Use emojis.`
+  }
+};
+
+// ═══════════════════ AI STATE ═══════════════════
+let aiLang = 'uz';
+let aiHistory = [];
+let aiLoading = false;
+let geminiKey = localStorage.getItem('ottimo_gemini_key') || '';
+
+async function callGemini(userText) {
+  const langCfg = AI_LANGS[aiLang];
+  const historyPart = aiHistory.slice(-6).map(h =>
+    `Foydalanuvchi: ${h.user}\nAgent: ${h.agent}`
+  ).join('\n\n');
+
+  const prompt = langCfg.system +
+    (historyPart ? '\n\nOldingi suhbat:\n' + historyPart : '') +
+    `\n\nFoydalanuvchi: ${userText}\nAgent:`;
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${geminiKey}`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.7, maxOutputTokens: 800 }
+    })
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error?.message || `HTTP ${res.status}`);
+  }
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Javob kelmadi.';
+}
+
+function aiPageHTML() {
+  const langCfg = AI_LANGS[aiLang];
+  return `<div class="ai-page">
+    <!-- Top bar -->
+    <div class="ai-topbar">
+      <div class="ai-avatar">🤖</div>
+      <div>
+        <div class="ai-title">${langCfg.welcome_title}</div>
+        <div class="ai-subtitle">Gemini 1.5 Flash · Ottimo Cafe</div>
+      </div>
+      <div class="ai-status"><div class="ai-dot"></div>Faol</div>
+      <div class="ai-lang-btns">
+        ${['uz','ru','en'].map(l=>`<button class="ai-lang-btn${aiLang===l?' on':''}" onclick="setAiLang('${l}')">${AI_LANGS[l].name}</button>`).join('')}
+      </div>
+    </div>
+
+    <!-- API key area -->
+    ${!geminiKey ? `<div style="padding:14px 24px 0">
+      <div class="api-notice">⚠️ Gemini API kalitini kiriting (bepul: aistudio.google.com)</div>
+      <div class="api-key-row">
+        <input class="api-key-input" type="password" id="geminiKeyInput" placeholder="AIza..." value=""/>
+        <button class="api-key-btn" onclick="saveGeminiKey()">Saqlash</button>
+      </div>
+    </div>` : ''}
+
+    <!-- Chat area -->
+    <div class="ai-chat" id="aiChat">
+      ${aiHistory.length === 0 ? `
+      <div class="ai-welcome">
+        <div class="ai-welcome-icon">🌿</div>
+        <div>
+          <div class="ai-welcome-title">${langCfg.welcome_title}</div>
+          <div class="ai-welcome-sub">${langCfg.welcome_sub}</div>
+        </div>
+        <div class="ai-starters">
+          ${langCfg.starters.map(s=>`
+          <div class="ai-starter" onclick="aiSendStarter('${s.q.replace(/'/g,"\\'")}')">
+            <div class="ai-starter-icon">${s.icon}</div>
+            <div class="ai-starter-title">${s.title}</div>
+            <div class="ai-starter-sub">${s.sub}</div>
+          </div>`).join('')}
+        </div>
+      </div>` : aiHistory.map(m=>`
+        <div class="ai-msg-row user">
+          <div class="ai-msg-av">Siz</div>
+          <div class="ai-bubble">${ex(m.user)}</div>
+        </div>
+        <div class="ai-msg-row ai">
+          <div class="ai-msg-av">AI</div>
+          <div class="ai-bubble">${formatAiText(m.agent)}</div>
+        </div>`).join('')}
+    </div>
+
+    <!-- Input -->
+    <div class="ai-input-area">
+      <div class="ai-input-box">
+        <textarea class="ai-textarea" id="aiInput" placeholder="${langCfg.placeholder}"
+          rows="1" onkeydown="aiKey(event)" oninput="aiResize(this)"></textarea>
+        <button class="ai-send" id="aiSendBtn" onclick="aiSend()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="ai-hint"><kbd>Enter</kbd> yuborish · <kbd>Shift+Enter</kbd> yangi qator</div>
+    </div>
+  </div>`;
+}
+
+function formatAiText(text) {
+  return ex(text).replace(/\n/g,'<br>');
+}
+
+window.setAiLang = function(l) { aiLang = l; R(); };
+window.saveGeminiKey = function() {
+  const v = (document.getElementById('geminiKeyInput')||{}).value||'';
+  if(v.trim()) {
+    geminiKey = v.trim();
+    localStorage.setItem('ottimo_gemini_key', geminiKey);
+    R();
+  }
+};
+window.aiSendStarter = function(q) {
+  const inp = document.getElementById('aiInput');
+  if(inp) inp.value = q;
+  aiSend();
+};
+window.aiKey = function(e) {
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();aiSend();}
+};
+window.aiResize = function(el) {
+  el.style.height='auto';
+  el.style.height=Math.min(el.scrollHeight,120)+'px';
+};
+window.aiSend = async function() {
+  const inp = document.getElementById('aiInput');
+  const text = (inp?.value||'').trim();
+  if(!text||aiLoading) return;
+  if(!geminiKey) { alert("Iltimos, avval Gemini API kalitini kiriting!"); return; }
+
+  inp.value=''; inp.style.height='auto';
+  aiLoading=true;
+  document.getElementById('aiSendBtn').disabled=true;
+
+  // Append user message & typing
+  const chat=document.getElementById('aiChat');
+  const ws=chat.querySelector('.ai-welcome');
+  if(ws) ws.remove();
+
+  const uRow=document.createElement('div');
+  uRow.className='ai-msg-row user';
+  uRow.innerHTML=`<div class="ai-msg-av">Siz</div><div class="ai-bubble">${ex(text)}</div>`;
+  chat.appendChild(uRow);
+
+  const typingRow=document.createElement('div');
+  typingRow.id='aiTyping';
+  typingRow.className='ai-msg-row ai';
+  typingRow.innerHTML=`<div class="ai-msg-av">AI</div>
+    <div class="ai-typing"><span></span><span></span><span></span></div>`;
+  chat.appendChild(typingRow);
+  chat.scrollTop=99999;
+
+  try {
+    const reply=await callGemini(text);
+    typingRow.remove();
+    aiHistory.push({user:text,agent:reply});
+
+    const aiRow=document.createElement('div');
+    aiRow.className='ai-msg-row ai';
+    aiRow.innerHTML=`<div class="ai-msg-av">AI</div><div class="ai-bubble">${formatAiText(reply)}</div>`;
+    chat.appendChild(aiRow);
+    chat.scrollTop=99999;
+  } catch(err) {
+    typingRow.remove();
+    const errRow=document.createElement('div');
+    errRow.className='ai-msg-row ai';
+    errRow.innerHTML=`<div class="ai-msg-av">AI</div>
+      <div class="ai-bubble" style="color:var(--er)">⚠️ Xato: ${ex(err.message)}. API kalitni tekshiring.</div>`;
+    chat.appendChild(errRow);
+    chat.scrollTop=99999;
+  }
+
+  aiLoading=false;
+  document.getElementById('aiSendBtn').disabled=false;
+  inp?.focus();
+};
+
+// ═══════════════════ HR HELPERS ═══════════════════
+function ve(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((e||'').trim())}
+function vp(p){return /^\+?[0-9]{9,13}$/.test((p||'').replace(/[\s\-\(\)]/g,''))}
+function ex(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function sb(s){
+  if(s>=85)return '<span class="badge bok">✓ Qabul</span>';
+  if(s>=65)return '<span class="badge bwa">◎ Monitoring</span>';
+  return '<span class="badge ber">✗ Rad</span>';
+}
+function calcScore(ans,qs){
+  var t=0,c=0;
+  for(var i=0;i<qs.length;i++){
+    var idx=parseInt(ans[qs[i].id]);
+    if(!isNaN(idx)&&idx>=0){t+=((qs[i].o.length-idx)/qs[i].o.length)*100;c++;}
+  }
+  return c?Math.round(t/c):50;
+}
+
+// ═══════════════════ HR STATE ═══════════════════
+var S={
+  tab:'manager',
+  mgr:false,mgrName:'',
+  page:'home',
+  exams:[],
+  openId:null,
+  srch:'',
+  step:1,
+  nm:'',em:'',ph:'',bd:'',ad:'',pos:'',
+  errs:{},
+  ans:{},qi:0,
+  result:null,
+  toast:null,
+};
+
+// ═══════════════════ RENDER ═══════════════════
+function R(){
+  var h='';
+  if(S.toast)h+='<div class="toast '+(S.toast.t==='e'?'ter':'tok')+'">'+S.toast.m+'</div>';
+  if(S.mgr){h+=appHTML();}
+  else{h+=loginHTML();}
+  document.getElementById('app').innerHTML=h;
+}
+
+// LOGIN
+function loginHTML(){
+  return '<div class="lw">'
+    +'<div class="ll"><div class="ll-lg">Ottimo</div>'
+    +'<p class="ll-tg">Xodimlarni sinov muddatida baholash tizimi</p></div>'
+    +'<div class="lr"><div class="lbox fu">'
+    +'<div style="font-family:\'Playfair Display\',serif;font-size:24px;margin-bottom:4px">'
+    +(S.tab==='manager'?'Rahbar kirish':'Sinov imtihoni')+'</div>'
+    +'<div style="font-size:13px;color:var(--mu);margin-bottom:18px">'
+    +(S.tab==='manager'?'Boshqaruv paneliga kirish':'Ma\'lumotlarni to\'ldiring va imtihonni boshlang')+'</div>'
+    +'<div class="ltabs">'
+    +'<button class="ltab '+(S.tab==='manager'?'on':'')+'" onclick="TAB(\'manager\')">Rahbar</button>'
+    +'<button class="ltab '+(S.tab==='employee'?'on':'')+'" onclick="TAB(\'employee\')">Hodim</button>'
+    +'</div>'
+    +(S.tab==='manager'?mgrForm():empFlow())
+    +'</div></div></div>';
+}
+
+function mgrForm(){
+  return '<div class="fl"><label>Ism Familiya</label>'
+    +'<input class="inp" id="mn" type="text" placeholder="Ism Familiya"/></div>'
+    +'<div class="fl"><label>Parol</label>'
+    +'<input class="inp" id="mp" type="password" placeholder="••••••••"/></div>'
+    +(S.errs.mgr?'<div class="etx" style="margin-bottom:10px">⚠ '+S.errs.mgr+'</div>':'')
+    +'<button class="btn bp bfull blg" style="margin-top:8px" onclick="LOGIN()">Kirish →</button>';
+}
+
+function empFlow(){
+  if(S.step===1)return step1();
+  if(S.step===2)return step2();
+  if(S.step===3)return step3();
+  if(S.step===4)return step4();
+  return step1();
+}
+
+function step1(){
+  var e=S.errs;
+  return '<div class="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>'
+    +'<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Shaxsiy ma\'lumotlar</div>'
+    +'<div class="fl"><label>Ism va familiya *</label>'
+    +'<input class="inp'+(e.nm?' err':'')+'" id="f1" type="text" placeholder="To\'liq ismingiz" value="'+ex(S.nm)+'"/>'
+    +(e.nm?'<div class="etx">⚠ '+e.nm+'</div>':'')+'</div>'
+    +'<div class="fl"><label>Email *</label>'
+    +'<input class="inp'+(e.em?' err':'')+'" id="f2" type="email" placeholder="email@gmail.com" value="'+ex(S.em)+'"/>'
+    +(e.em?'<div class="etx">⚠ '+e.em+'</div>':'<div class="hint">To\'g\'ri format: ism@gmail.com</div>')+'</div>'
+    +'<div class="fl"><label>Telefon *</label>'
+    +'<input class="inp'+(e.ph?' err':'')+'" id="f3" type="tel" placeholder="+998901234567" value="'+ex(S.ph)+'"/>'
+    +(e.ph?'<div class="etx">⚠ '+e.ph+'</div>':'<div class="hint">Masalan: +998901234567</div>')+'</div>'
+    +'<div class="fl"><label>Tug\'ilgan sana *</label>'
+    +'<input class="inp'+(e.bd?' err':'')+'" id="f4" type="date" value="'+ex(S.bd)+'"/>'
+    +(e.bd?'<div class="etx">⚠ '+e.bd+'</div>':'')+'</div>'
+    +'<div class="fl"><label>Manzil *</label>'
+    +'<input class="inp'+(e.ad?' err':'')+'" id="f5" type="text" placeholder="Toshkent, Chilonzor" value="'+ex(S.ad)+'"/>'
+    +(e.ad?'<div class="etx">⚠ '+e.ad+'</div>':'')+'</div>'
+    +'<button class="btn bp bfull blg" style="margin-top:8px" onclick="NEXT1()">Davom etish →</button>';
+}
+
+function step2(){
+  var cards='';
+  Object.keys(POS).forEach(function(k){
+    var p=POS[k];
+    cards+='<div class="pc'+(S.pos===k?' sel':'')+'" onclick="SEL(\''+k+'\')">'
+      +'<div class="ck">✓</div>'
+      +'<div style="font-size:26px;margin-bottom:6px">'+p.i+'</div>'
+      +'<div style="font-size:13px;font-weight:700">'+p.l+'</div>'
+      +'</div>';
+  });
+  return '<div class="dots"><div class="dot dn"></div><div class="dot on"></div><div class="dot"></div></div>'
+    +'<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Kasbingizni tanlang</div>'
+    +(S.errs.pos?'<div class="etx" style="margin-bottom:10px">⚠ Iltimos kasbni tanlang</div>':'')
+    +'<div class="pg">'+cards+'</div>'
+    +'<div style="display:flex;gap:8px">'
+    +'<button class="btn bg2" onclick="S.step=1;R()">← Orqaga</button>'
+    +'<button class="btn bp" style="flex:1;justify-content:center" onclick="NEXT2()">Imtihonni boshlash →</button>'
+    +'</div>';
+}
+
+function step3(){
+  var qs=POS[S.pos].q;
+  var q=qs[S.qi];
+  if(!q){SUBMIT();return '<div style="text-align:center;padding:32px"><div style="font-size:28px">⏳</div></div>';}
+  var pct=Math.round((S.qi/qs.length)*100);
+  var opts='';
+  for(var i=0;i<q.o.length;i++){
+    var sel=S.ans[q.id]===String(i);
+    opts+='<button class="ch'+(sel?' sel':'')+'" onclick="ANS(\''+q.id+'\',\''+i+'\')">'+ex(q.o[i])+'</button>';
+  }
+  return '<div class="dots"><div class="dot dn"></div><div class="dot dn"></div><div class="dot on"></div></div>'
+    +'<div class="pbar"><div class="pfill" style="width:'+pct+'%"></div></div>'
+    +'<div style="font-size:11px;color:var(--mu);font-weight:600;margin-bottom:14px">Savol '+(S.qi+1)+' / '+qs.length+'</div>'
+    +'<div class="qcat">'+ex(q.c)+'</div>'
+    +'<div class="qtxt">'+ex(q.t)+'</div>'
+    +'<div class="choices">'+opts+'</div>'
+    +'<div style="display:flex;gap:8px;margin-top:18px">'
+    +'<button class="btn bg2"'+(S.qi===0?' disabled':'')+' onclick="PREV()">← Oldingi</button>'
+    +'<button class="btn bp" style="flex:1;justify-content:center" onclick="NEXQ()">'
+    +(S.qi===qs.length-1?'Yakunlash →':'Keyingi →')+'</button>'
+    +'</div>';
+}
+
+function step4(){
+  if(!S.result)return '<div style="text-align:center;padding:32px"><div style="font-size:28px">⏳</div></div>';
+  var r=S.result;
+  var c=r.sc>=85?'var(--ok)':r.sc>=65?'var(--wa)':'var(--er)';
+  var ic=r.sc>=85?'🏆':r.sc>=65?'📊':'📋';
+  return '<div style="text-align:center;padding:12px 0">'
+    +'<div style="font-size:48px;margin-bottom:10px">'+ic+'</div>'
+    +'<div style="font-family:\'Playfair Display\',serif;font-size:60px;color:'+c+';line-height:1">'+r.sc+'%</div>'
+    +'<div style="margin:10px 0">'+sb(r.sc)+'</div>'
+    +'<p style="font-size:13px;color:var(--mu);margin-top:14px;line-height:1.6">'
+    +(r.sc>=85?'Tabriklaymiz! Natijalaringiz rahbarga yuborildi.'
+      :r.sc>=65?"Yaxshi natija! Rahbar siz bilan bog'lanadi."
+      :'Natijalaringiz rahbarga yuborildi. Rahbar siz bilan bog\'lanadi.')+'</p>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;text-align:left">'
+    +'<div class="csm"><div style="font-size:11px;color:var(--mu);font-weight:700;margin-bottom:3px">BALL</div>'
+    +'<div style="font-size:28px;font-weight:700;color:'+c+'">'+r.sc+'%</div></div>'
+    +'<div class="csm"><div style="font-size:11px;color:var(--mu);font-weight:700;margin-bottom:3px">HOLAT</div>'
+    +'<div style="margin-top:4px">'+sb(r.sc)+'</div></div>'
+    +'</div></div>';
+}
+
+// ═══════════════════ APP (RAHBAR) ═══════════════════
+function appHTML(){
+  var isAI = S.page==='ai';
+  var content = isAI ? aiPageHTML() : (S.page==='results'?resultsHTML():homeHTML());
+  var wrapClass = isAI ? '' : 'class="main fu"';
+  return '<div style="display:flex;flex-direction:column;min-height:100vh">'
+    +'<div class="tb">'
+    +'<div class="logo">Ottimo HR</div>'
+    +'<nav class="nav">'
+    +'<button class="'+(S.page==='home'?'on':'')+'" onclick="PAGE(\'home\')">Bosh sahifa</button>'
+    +'<button class="'+(S.page==='results'?'on':'')+'" onclick="PAGE(\'results\')">Natijalar</button>'
+    +'<button class="'+(S.page==='ai'?'on':'')+'" onclick="PAGE(\'ai\')" style="display:flex;align-items:center;gap:5px">'
+    +'<span style="font-size:14px">🤖</span> AI Yordam</button>'
+    +'</nav>'
+    +'<div class="chip" onclick="LOGOUT()">'
+    +'<div class="av">'+(S.mgrName[0]||'R').toUpperCase()+'</div>'
+    +'<span>'+ex(S.mgrName)+'</span>'
+    +'<span style="font-size:11px;color:var(--mu)">↗ Chiqish</span>'
+    +'</div></div>'
+    +(isAI ? content : '<div '+wrapClass+'>'+content+'</div>')
+    +'</div>';
+}
+
+function homeHTML(){
+  var passed=S.exams.filter(function(e){return e.sc>=85}).length;
+  var mon=S.exams.filter(function(e){return e.sc>=65&&e.sc<85}).length;
+  var avg=S.exams.length?Math.round(S.exams.reduce(function(a,e){return a+e.sc},0)/S.exams.length):0;
+  var rows='';
+  var recent=S.exams.slice(0,6);
+  for(var i=0;i<recent.length;i++){
+    var e=recent[i];
+    var p=POS[e.position];
+    var c=e.sc>=85?'var(--ok)':e.sc>=65?'var(--wa)':'var(--er)';
+    rows+='<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--bor)">'
+      +'<div style="display:flex;align-items:center;gap:10px">'
+      +'<div style="width:34px;height:34px;border-radius:50%;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:15px">'+(p?p.i:'👤')+'</div>'
+      +'<div><div style="font-size:14px;font-weight:600">'+ex(e.nm||'')+'</div>'
+      +'<div style="font-size:12px;color:var(--mu)">'+(p?p.l:e.position||'')+(e.date?' · '+e.date:'')+'</div></div></div>'
+      +'<div style="display:flex;align-items:center;gap:8px">'
+      +'<span style="font-size:17px;font-weight:700;color:'+c+'">'+e.sc+'%</span>'
+      +sb(e.sc)+'</div></div>';
+  }
+  return '<h1 style="font-family:\'Playfair Display\',serif;font-size:28px;margin-bottom:4px">Bosh sahifa</h1>'
+    +'<p style="color:var(--mu);font-size:13px;margin-bottom:22px">Ottimo HR — Sinov muddati tizimi</p>'
+    +'<div class="g4" style="margin-bottom:20px">'
+    +'<div class="csm"><div class="sv" style="color:var(--ac)">'+S.exams.length+'</div><div class="sl">Jami topshirdi</div></div>'
+    +'<div class="csm"><div class="sv" style="color:var(--ok)">'+passed+'</div><div class="sl">Qabul qilindi</div></div>'
+    +'<div class="csm"><div class="sv" style="color:var(--wa)">'+mon+'</div><div class="sl">Monitoring</div></div>'
+    +'<div class="csm"><div class="sv" style="color:#2a5fa8">'+avg+'%</div><div class="sl">O\'rtacha ball</div></div>'
+    +'</div>'
+    +'<div class="card">'
+    +'<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">So\'nggi imtihonlar</div>'
+    +(recent.length?rows:'<p style="color:var(--mu);font-size:13px;text-align:center;padding:20px 0">Hali imtihon yo\'q</p>')
+    +'</div>';
+}
+
+function resultsHTML(){
+  var srch=(S.srch||'').toLowerCase();
+  var list=S.exams.filter(function(e){
+    return !srch||(e.nm||'').toLowerCase().includes(srch)||(e.position||'').toLowerCase().includes(srch);
+  });
+  var passed=S.exams.filter(function(e){return e.sc>=85}).length;
+  var mon=S.exams.filter(function(e){return e.sc>=65&&e.sc<85}).length;
+  var fail=S.exams.filter(function(e){return e.sc<65}).length;
+  var cards='';
+  for(var i=0;i<list.length;i++){cards+=examCard(list[i]);}
+  return '<h1 style="font-family:\'Playfair Display\',serif;font-size:28px;margin-bottom:18px">Natijalar</h1>'
+    +'<div class="g3" style="margin-bottom:18px">'
+    +'<div class="csm"><div class="sv" style="color:var(--ok)">'+passed+'</div><div class="sl">Qabul (≥85%)</div></div>'
+    +'<div class="csm"><div class="sv" style="color:var(--wa)">'+mon+'</div><div class="sl">Monitoring</div></div>'
+    +'<div class="csm"><div class="sv" style="color:var(--er)">'+fail+'</div><div class="sl">Rad (&lt;65%)</div></div>'
+    +'</div>'
+    +'<input class="inp" placeholder="Qidirish…" value="'+ex(S.srch)+'" oninput="S.srch=this.value;R()" style="max-width:320px;margin-bottom:16px"/>'
+    +(list.length?cards:'<div class="card" style="text-align:center;padding:40px"><p style="color:var(--mu)">Natija topilmadi</p></div>');
+}
+
+function examCard(e){
+  var p=POS[e.position];
+  var open=S.openId===e.id;
+  var c=e.sc>=85?'var(--ok)':e.sc>=65?'var(--wa)':'var(--er)';
+  var qa='';
+  if(open){
+    var ans=e.answers||{};
+    var qs=p?p.q:[];
+    for(var i=0;i<qs.length;i++){
+      var q=qs[i];
+      var raw=ans[q.id];
+      var idx=(raw!==undefined&&raw!==null&&raw!=='')?parseInt(raw):-1;
+      var at=(idx>=0&&idx<q.o.length)?q.o[idx]:'Javob berilmagan';
+      qa+='<div class="qa-it">'
+        +'<div class="qa-cat">'+ex(q.c)+'</div>'
+        +'<div class="qa-q">'+(i+1)+'. '+ex(q.t)+'</div>'
+        +'<div class="qa-a">✓ '+ex(at)+'</div>'
+        +'</div>';
+    }
+    if(!qa)qa='<p style="color:var(--mu);font-size:13px;text-align:center;padding:14px 0">Javoblar topilmadi</p>';
+  }
+  return '<div class="nc">'
+    +'<div class="nc-h" onclick="OPEN(\''+e.id+'\')">'
+    +'<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">'
+    +'<div style="display:flex;align-items:center;gap:10px">'
+    +'<div style="width:40px;height:40px;border-radius:50%;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">'+(p?p.i:'👤')+'</div>'
+    +'<div>'
+    +'<div style="font-size:15px;font-weight:700">'+ex(e.nm||'')+'</div>'
+    +'<div style="font-size:12px;color:var(--mu);margin-top:2px">'
+    +'<span class="badge bgr" style="margin-right:5px">'+(p?p.l:e.position||'—')+'</span>'+(e.date||'')+'</div>'
+    +'<div style="font-size:11px;color:var(--mu);margin-top:2px">📞 '+(e.ph||'—')+' · 📧 '+(e.em||'—')+'</div>'
+    +'<div style="font-size:11px;color:var(--mu)">📅 '+(e.bd||'—')+' · 📍 '+(e.ad||'—')+'</div>'
+    +'</div></div>'
+    +'<div style="text-align:right;flex-shrink:0">'
+    +'<div style="font-family:\'Playfair Display\',serif;font-size:32px;font-weight:700;color:'+c+';line-height:1">'+e.sc+'%</div>'
+    +'<div style="margin-top:4px">'+sb(e.sc)+'</div>'
+    +'</div></div>'
+    +'<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--bor);display:flex;align-items:center;justify-content:space-between">'
+    +'<span style="font-size:12px;font-weight:700;color:var(--ac)">'+(open?'▲ Yopish':'👁 Savollar va javoblarni ko\'rish')+'</span>'
+    +'<span style="font-size:11px;color:var(--mu)">'+(p?p.q.length:0)+' ta savol</span>'
+    +'</div></div>'
+    +(open?'<div class="nc-b">'+qa+'</div>':'')
+    +'</div>';
+}
+
+// ═══════════════════ GLOBAL ═══════════════════
+window.TAB=function(t){S.tab=t;S.step=1;S.nm='';S.em='';S.ph='';S.bd='';S.ad='';S.pos='';S.errs={};S.ans={};S.qi=0;S.result=null;R();};
+window.SEL=function(k){S.pos=k;S.errs.pos=null;R();};
+window.ANS=function(id,v){S.ans[id]=v;R();};
+window.OPEN=function(id){S.openId=S.openId===id?null:id;R();};
+window.PAGE=function(p){S.page=p;if(p==='results')loadEx().then(R);else R();};
+
+window.LOGIN=function(){
+  var n=(document.getElementById('mn')||{}).value||'';
+  var p=(document.getElementById('mp')||{}).value||'';
+  n=n.trim();
+  if(!n){S.errs={mgr:'Ism Familiyangizni kiriting'};R();return;}
+  if(p!==MGR_PASS){S.errs={mgr:"Parol noto'g'ri"};R();return;}
+  S.mgr=true;S.mgrName=n;S.errs={};S.page='home';
+  loadEx().then(R);
+};
+
+window.LOGOUT=function(){S.mgr=false;S.mgrName='';S.tab='manager';S.exams=[];aiHistory=[];R();};
+
+window.NEXT1=function(){
+  var nm=(document.getElementById('f1')||{}).value||'';
+  var em=(document.getElementById('f2')||{}).value||'';
+  var ph=(document.getElementById('f3')||{}).value||'';
+  var bd=(document.getElementById('f4')||{}).value||'';
+  var ad=(document.getElementById('f5')||{}).value||'';
+  nm=nm.trim();em=em.trim();ph=ph.trim();bd=bd.trim();ad=ad.trim();
+  S.nm=nm;S.em=em;S.ph=ph;S.bd=bd;S.ad=ad;
+  var er={};
+  if(nm.length<3)er.nm="Ism kamida 3 harfdan iborat bo'lsin";
+  if(!ve(em))er.em="To'g'ri email kiriting";
+  if(!vp(ph))er.ph="To'g'ri telefon kiriting (+998901234567)";
+  if(!bd)er.bd="Tug'ilgan sanani kiriting";
+  if(ad.length<4)er.ad="Manzilni kiriting";
+  S.errs=er;
+  if(Object.keys(er).length>0){R();return;}
+  S.step=2;R();
+};
+
+window.NEXT2=function(){
+  if(!S.pos){S.errs={pos:true};R();return;}
+  S.errs={};S.step=3;S.ans={};S.qi=0;R();
+};
+
+window.PREV=function(){if(S.qi>0){S.qi--;R();}};
+
+window.NEXQ=function(){
+  var qs=POS[S.pos].q;
+  if(S.qi>=qs.length-1){
+    S.step=4;R();
+    SUBMIT();
+  } else {
+    S.qi++;R();
+  }
+};
+
+window.SUBMIT=async function(){
+  var qs=POS[S.pos].q;
+  var sc=calcScore(S.ans,qs);
+  var data={
+    nm:S.nm,em:S.em,ph:S.ph,bd:S.bd,ad:S.ad,
+    position:S.pos,answers:S.ans,sc:sc,
+    date:new Date().toLocaleDateString('uz-UZ'),
+    ts:Date.now(),
+  };
+  try{
+    await addDoc(collection(db,'exams'),data);
+    var pos=POS[S.pos];
+    var msg='<b>🆕 Yangi imtihon natijasi</b>\n\n'
+      +'👤 <b>Ism:</b> '+S.nm+'\n'
+      +'💼 <b>Kasb:</b> '+(pos?pos.l:S.pos)+'\n'
+      +'📧 <b>Email:</b> '+S.em+'\n'
+      +'📞 <b>Telefon:</b> '+S.ph+'\n'
+      +'📊 <b>Ball:</b> '+sc+'%\n'
+      +'✅ <b>Holat:</b> '+(sc>=85?'Qabul':sc>=65?'Monitoring':'Rad');
+    await tg(msg);
+    S.result=data;R();
+  }catch(err){
+    S.result={sc:sc};R();
+  }
+};
+
+async function loadEx(){
+  try{
+    var snap=await getDocs(query(collection(db,'exams'),orderBy('ts','desc')));
+    S.exams=snap.docs.map(function(d){var x=d.data();x.id=d.id;return x;});
+  }catch(e){console.warn(e);}
+}
+
+R();
+</script>
+</body>
+</html>
