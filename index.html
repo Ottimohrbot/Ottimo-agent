@@ -1,1068 +1,948 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ottimo HR</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ottimo — AI Agent</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f8f7f4;--sur:#fff;--card:#f2f0ec;--bor:#e5e1d8;
-  --ac:#2c5f2e;--ac2:#3d7a40;--acl:#eaf2ea;
-  --gold:#c8973a;--tx:#1a1a18;--mu:#6b6860;--mu2:#a09d97;
-  --ok:#2c7a4b;--wa:#b87a1a;--er:#b83c3c;
-  --r:12px;--r2:8px;
+  --bg:#0c0c0f;--bg2:#131318;--bg3:#1a1a22;--bg4:#22222d;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#f0f0f5;--text2:#9090a8;--text3:#5a5a72;
+  --accent:#7c6af7;--accent2:#a89bf9;
+  --accent-bg:rgba(124,106,247,0.12);--accent-border:rgba(124,106,247,0.3);
+  --green:#3ecf8e;--green-bg:rgba(62,207,142,0.1);--red:#f66;
+  --sw:260px;--font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+  /* HR colors */
+  --hbg:#f8f7f4;--hsur:#fff;--hcard:#f2f0ec;--hbor:#e5e1d8;
+  --hac:#2c5f2e;--hac2:#3d7a40;--hacl:#eaf2ea;
+  --htx:#1a1a18;--hmu:#6b6860;--hmu2:#a09d97;
+  --hok:#2c7a4b;--hwa:#b87a1a;--her:#b83c3c;--hr:12px;--hr2:8px;
 }
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
-.tb{background:var(--sur);border-bottom:1px solid var(--bor);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(0,0,0,.06)}
-.logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--ac)}
-.nav button{background:none;border:none;padding:7px 14px;border-radius:var(--r2);font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--mu);cursor:pointer;transition:all .2s}
-.nav button.on{color:var(--ac);background:var(--acl)}
-.chip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--bor);border-radius:20px;padding:5px 12px 5px 6px;font-size:13px;font-weight:600;cursor:pointer}
-.av{width:26px;height:26px;border-radius:50%;background:var(--ac);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.main{max-width:960px;margin:0 auto;padding:32px 24px}
-.card{background:var(--sur);border:1px solid var(--bor);border-radius:var(--r);padding:24px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.csm{background:var(--sur);border:1px solid var(--bor);border-radius:var(--r);padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.05)}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.badge{display:inline-flex;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
-.bok{background:#e8f5ee;color:#2c7a4b;border:1px solid #b8ddc8}
-.bwa{background:#fdf3e3;color:#b87a1a;border:1px solid #f0d49a}
-.ber{background:#fdf0f0;color:#b83c3c;border:1px solid #f0c4c4}
-.bgr{background:var(--card);color:var(--mu);border:1px solid var(--bor)}
-.btn{display:inline-flex;align-items:center;gap:5px;border:none;border-radius:var(--r2);padding:10px 18px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .18s}
-.bp{background:var(--ac);color:#fff}.bp:hover{background:var(--ac2)}
-.bg2{background:transparent;color:var(--mu);border:1px solid var(--bor)}.bg2:hover{background:var(--card)}
-.bfull{width:100%;justify-content:center}
-.blg{padding:13px 24px;font-size:14px}
-.btn:disabled{opacity:.4;cursor:not-allowed}
-.fl{margin-bottom:14px}
-.fl label{display:block;font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
-.inp{width:100%;background:var(--bg);border:1.5px solid var(--bor);border-radius:var(--r2);padding:11px 13px;color:var(--tx);font-size:14px;font-family:'Nunito',sans-serif;font-weight:500;outline:none;transition:border .18s}
-.inp:focus{border-color:var(--ac);background:var(--sur)}
-.inp.err{border-color:var(--er)}
-.inp::placeholder{color:var(--mu2)}
-.hint{font-size:11px;color:var(--mu);margin-top:3px}
-.etx{font-size:11px;color:var(--er);font-weight:700;margin-top:3px}
-/* LOGIN */
-.lw{min-height:100vh;display:flex}
-.ll{width:320px;background:linear-gradient(150deg,var(--ac),#1a3d1c);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 32px;color:#fff;flex-shrink:0}
-.ll-lg{font-family:'Playfair Display',serif;font-size:38px;margin-bottom:10px}
-.ll-tg{font-size:13px;color:rgba(255,255,255,.7);text-align:center;line-height:1.6}
-.lr{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 24px;overflow-y:auto}
-.lbox{width:100%;max-width:400px}
-.ltabs{display:flex;gap:3px;background:var(--card);border:1px solid var(--bor);border-radius:var(--r2);padding:3px;margin-bottom:20px}
-.ltab{flex:1;padding:8px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;background:transparent;color:var(--mu);transition:all .2s}
-.ltab.on{background:var(--sur);color:var(--ac)}
-.dots{display:flex;gap:7px;justify-content:center;margin-bottom:20px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--bor);transition:all .3s}
-.dot.on{background:var(--ac);width:22px;border-radius:4px}
-.dot.dn{background:var(--ac2)}
-.pbar{height:4px;background:var(--bor);border-radius:10px;overflow:hidden;margin:12px 0 5px}
-.pfill{height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:10px;transition:width .4s}
-.pg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}
-.pc{background:var(--sur);border:2px solid var(--bor);border-radius:var(--r);padding:14px 10px;cursor:pointer;text-align:center;transition:all .2s;position:relative}
-.pc:hover{border-color:var(--ac2);background:var(--acl)}
-.pc.sel{border-color:var(--ac);background:var(--acl)}
-.pc .ck{position:absolute;top:6px;right:6px;width:18px;height:18px;background:var(--ac);border-radius:50%;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0}
-.pc.sel .ck{opacity:1}
-.qcat{font-size:11px;color:var(--ac);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
-.qtxt{font-family:'Playfair Display',serif;font-size:19px;line-height:1.45;margin-bottom:16px}
-.choices{display:flex;flex-direction:column;gap:8px}
-.ch{background:var(--bg);border:1.5px solid var(--bor);border-radius:var(--r2);padding:11px 14px;cursor:pointer;font-size:13px;font-family:'Nunito',sans-serif;font-weight:600;text-align:left;width:100%;transition:all .18s;color:var(--tx)}
-.ch:hover{border-color:var(--ac2);background:var(--acl)}
-.ch.sel{background:var(--acl);border-color:var(--ac);color:var(--ac)}
-.nc{background:var(--sur);border:1px solid var(--bor);border-radius:var(--r);margin-bottom:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.nc-h{padding:16px 18px;cursor:pointer;transition:background .2s}
-.nc-h:hover{background:var(--bg)}
-.nc-b{padding:4px 18px 16px;border-top:1px solid var(--bor)}
-.qa-it{padding:10px 0;border-bottom:1px solid var(--bor)}
-.qa-it:last-child{border-bottom:none}
-.qa-cat{font-size:10px;color:var(--ac);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
-.qa-q{font-size:13px;font-weight:600;color:var(--tx);margin-bottom:5px}
-.qa-a{background:var(--acl);border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700;color:var(--ac);display:inline-block}
-.sv{font-family:'Playfair Display',serif;font-size:36px;line-height:1;margin-bottom:3px}
-.sl{font-size:11px;color:var(--mu);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-.toast{position:fixed;top:16px;right:16px;z-index:999;padding:12px 18px;border-radius:var(--r2);font-size:13px;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.15)}
-.tok{background:var(--ac);color:#fff}
-.ter{background:var(--er);color:#fff}
-@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.fu{animation:fu .3s ease}
+html,body{height:100%;overflow:hidden;font-family:var(--font)}
+body{background:var(--bg);color:var(--text);display:flex;font-size:14px}
 
-/* ═══════════════════════════════════════
-   AI YORDAM SAHIFASI
-═══════════════════════════════════════ */
-.ai-page {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 60px);
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0;
-}
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sw);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;height:100vh}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.logo-mark{width:30px;height:30px;background:linear-gradient(135deg,var(--accent),#b06af7);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0}
+.logo-text{font-size:17px;font-weight:600;color:var(--text)}
+.logo-tag{font-size:10px;background:var(--accent-bg);color:var(--accent2);border:1px solid var(--accent-border);border-radius:4px;padding:1px 5px;margin-left:auto;font-weight:500}
+.new-btn{margin:12px;padding:9px 12px;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .15s}
+.new-btn:hover{background:#6a58e8}
 
-.ai-topbar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--bor);
-  background: var(--sur);
-  flex-shrink: 0;
-}
+/* Nav sections */
+.sb-nav{padding:8px}
+.sb-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);padding:8px 8px 4px}
+.nav-btn{width:100%;display:flex;align-items:center;gap:9px;padding:9px 10px;border:none;border-radius:7px;background:transparent;color:var(--text2);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;margin-bottom:1px;text-align:left}
+.nav-btn:hover{background:var(--bg3);color:var(--text)}
+.nav-btn.active{background:var(--accent-bg);color:var(--accent2);border:1px solid var(--accent-border)}
+.nav-btn .nb-icon{font-size:15px;flex-shrink:0}
 
-.ai-avatar {
-  width: 38px; height: 38px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--ac), var(--ac2));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
-}
+.chat-list{flex:1;overflow-y:auto;padding:4px 8px}
+.chat-list::-webkit-scrollbar{width:3px}
+.chat-list::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.chat-item{padding:8px 10px;border-radius:7px;cursor:pointer;display:flex;align-items:center;gap:8px;margin-bottom:1px;transition:background .1s;border:1px solid transparent}
+.chat-item:hover{background:var(--bg3)}
+.chat-item.active{background:var(--accent-bg);border-color:var(--accent-border)}
+.chat-item-icon{width:22px;height:22px;background:var(--bg4);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.chat-item-text{font-size:13px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.chat-item.active .chat-item-text{color:var(--accent2)}
 
-.ai-title { font-size: 15px; font-weight: 700; color: var(--tx); }
-.ai-subtitle { font-size: 12px; color: var(--mu); margin-top: 1px; }
+.sb-footer{padding:12px;border-top:1px solid var(--border)}
+.sb-model-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--text3);margin-bottom:5px}
+.sb-model-select{background:var(--bg3);border:1px solid var(--border2);border-radius:7px;color:var(--text);font-family:var(--font);font-size:12px;padding:7px 10px;width:100%;cursor:pointer;outline:none;appearance:none}
 
-.ai-status {
-  margin-left: auto;
-  display: flex; align-items: center; gap: 5px;
-  font-size: 11px; font-weight: 700;
-  color: var(--ok);
-  background: #e8f5ee;
-  border: 1px solid #b8ddc8;
-  border-radius: 20px;
-  padding: 4px 10px;
-}
-.ai-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--ok);
-  animation: aipulse 2s infinite;
-}
-@keyframes aipulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+.topbar{height:52px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;flex-shrink:0;background:var(--bg)}
+.tb-title{font-size:14px;font-weight:500;color:var(--text)}
+.tb-badge{font-size:11px;color:var(--text3);font-family:var(--mono);background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:3px 8px}
+.tb-status{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--green);background:var(--green-bg);border:1px solid rgba(62,207,142,.2);border-radius:20px;padding:3px 10px}
+.tb-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-.ai-lang-btns {
-  display: flex; gap: 4px; margin-left: 10px;
-}
-.ai-lang-btn {
-  background: var(--card); border: 1px solid var(--bor);
-  border-radius: 6px; padding: 4px 8px; font-size: 11px;
-  font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif;
-  color: var(--mu); transition: all .15s;
-}
-.ai-lang-btn.on { background: var(--acl); border-color: var(--ac); color: var(--ac); }
+/* ── CHAT VIEW ── */
+.chat-view{flex:1;overflow-y:auto;padding:28px 0;scroll-behavior:smooth}
+.chat-view::-webkit-scrollbar{width:4px}
+.chat-view::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 
-.ai-chat {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  background: var(--bg);
-}
-.ai-chat::-webkit-scrollbar { width: 4px; }
-.ai-chat::-webkit-scrollbar-thumb { background: var(--bor); border-radius: 4px; }
-
-/* Welcome screen */
-.ai-welcome {
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; text-align: center; padding: 32px 20px;
-  gap: 16px;
-}
-.ai-welcome-icon {
-  width: 60px; height: 60px;
-  background: linear-gradient(135deg, var(--ac), var(--ac2));
-  border-radius: 16px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px;
-  box-shadow: 0 8px 24px rgba(44,95,46,.25);
-  animation: aiFloat 3s ease-in-out infinite;
-}
-@keyframes aiFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-.ai-welcome-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px; color: var(--tx); margin-bottom: 4px;
-}
-.ai-welcome-sub { font-size: 13px; color: var(--mu); line-height: 1.7; max-width: 340px; }
-
-.ai-starters {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-  max-width: 480px; width: 100%; margin-top: 4px;
-}
-.ai-starter {
-  background: var(--sur); border: 1px solid var(--bor);
-  border-radius: 10px; padding: 12px 14px;
-  cursor: pointer; text-align: left; transition: all .18s;
-}
-.ai-starter:hover { border-color: var(--ac); background: var(--acl); transform: translateY(-1px); }
-.ai-starter-icon { font-size: 16px; margin-bottom: 4px; }
-.ai-starter-title { font-size: 12px; font-weight: 700; color: var(--tx); margin-bottom: 2px; }
-.ai-starter-sub { font-size: 11px; color: var(--mu); }
+.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:20px;padding:40px 20px;text-align:center}
+.welcome-orb{width:64px;height:64px;background:linear-gradient(135deg,var(--accent),#b06af7);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;box-shadow:0 0 40px rgba(124,106,247,.3);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.welcome-title{font-size:26px;font-weight:600;letter-spacing:-.5px}
+.welcome-sub{font-size:14px;color:var(--text2);max-width:360px;line-height:1.7}
+.starter-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:500px;width:100%;margin-top:8px}
+.starter-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .15s;text-align:left}
+.starter-card:hover{border-color:var(--accent-border);background:var(--accent-bg);transform:translateY(-1px)}
+.starter-card-icon{font-size:18px;margin-bottom:6px}
+.starter-card-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
+.starter-card-sub{font-size:11px;color:var(--text3)}
 
 /* Messages */
-.ai-msg-row {
-  display: flex; gap: 10px; align-items: flex-start;
-  animation: aiMsgIn .25s ease;
-}
-@keyframes aiMsgIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-.ai-msg-row.user { flex-direction: row-reverse; }
+.msg-row{display:flex;padding:6px 24px;gap:14px;max-width:820px;margin:0 auto;width:100%;animation:msgIn .25s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg-row.user{flex-direction:row-reverse}
+.msg-av{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;margin-top:2px}
+.msg-row.ai .msg-av{background:linear-gradient(135deg,var(--accent),#b06af7);color:#fff}
+.msg-row.user .msg-av{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);font-size:11px}
+.msg-content{flex:1;max-width:680px}
+.msg-row.user .msg-content{display:flex;justify-content:flex-end}
+.msg-bubble{font-size:14px;line-height:1.75;color:var(--text)}
+.msg-row.user .msg-bubble{background:var(--bg3);border:1px solid var(--border2);border-radius:12px 12px 4px 12px;padding:10px 14px;display:inline-block;max-width:100%}
+.msg-row.ai .msg-bubble{padding:2px 0}
+.msg-meta{font-size:11px;color:var(--text3);margin-top:6px;font-family:var(--mono);display:flex;align-items:center;gap:8px}
+.copy-btn{background:none;border:none;color:var(--text3);cursor:pointer;font-size:11px;font-family:var(--mono);padding:2px 6px;border-radius:4px;transition:all .1s}
+.copy-btn:hover{background:var(--bg3);color:var(--text2)}
 
-.ai-msg-av {
-  width: 28px; height: 28px; border-radius: 7px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
-}
-.ai-msg-row.ai .ai-msg-av {
-  background: linear-gradient(135deg, var(--ac), var(--ac2)); color: #fff;
-}
-.ai-msg-row.user .ai-msg-av {
-  background: var(--card); border: 1px solid var(--bor); color: var(--mu);
-}
-
-.ai-bubble {
-  max-width: 72%; font-size: 13.5px; line-height: 1.7;
-}
-.ai-msg-row.user .ai-bubble {
-  background: var(--acl); border: 1px solid #c8e6c9;
-  border-radius: 12px 12px 3px 12px;
-  padding: 9px 13px; color: var(--tx);
-}
-.ai-msg-row.ai .ai-bubble {
-  background: var(--sur); border: 1px solid var(--bor);
-  border-radius: 3px 12px 12px 12px;
-  padding: 9px 13px; color: var(--tx);
-  box-shadow: 0 1px 4px rgba(0,0,0,.05);
-}
-
-.ai-typing {
-  display: flex; gap: 5px; padding: 10px 13px;
-  background: var(--sur); border: 1px solid var(--bor);
-  border-radius: 3px 12px 12px 12px;
-  width: fit-content; box-shadow: 0 1px 4px rgba(0,0,0,.05);
-}
-.ai-typing span {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--ac2); animation: aiTyping 1.2s infinite; opacity: .4;
-}
-.ai-typing span:nth-child(2){animation-delay:.2s}
-.ai-typing span:nth-child(3){animation-delay:.4s}
-@keyframes aiTyping { 0%,100%{opacity:.3;transform:scale(.9)} 50%{opacity:1;transform:scale(1.1)} }
+.typing-row{display:flex;padding:6px 24px;gap:14px;max-width:820px;margin:0 auto;width:100%}
+.typing-dots{display:flex;align-items:center;gap:5px;height:30px;padding:0 4px}
+.typing-dots span{width:7px;height:7px;border-radius:50%;background:var(--accent2);animation:blink 1.2s infinite;opacity:.4}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.3;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}
 
 /* Input */
-.ai-input-area {
-  padding: 14px 24px 18px;
-  border-top: 1px solid var(--bor);
-  background: var(--sur);
-  flex-shrink: 0;
-}
-.ai-input-box {
-  display: flex; gap: 8px; align-items: flex-end;
-  background: var(--bg); border: 1.5px solid var(--bor);
-  border-radius: 12px; padding: 8px 8px 8px 14px;
-  transition: border-color .18s;
-}
-.ai-input-box:focus-within { border-color: var(--ac); background: var(--sur); }
-.ai-textarea {
-  flex: 1; border: none; background: transparent; outline: none;
-  font-family: 'Nunito', sans-serif; font-size: 13.5px;
-  color: var(--tx); line-height: 1.5; resize: none;
-  min-height: 22px; max-height: 120px; padding: 2px 0;
-}
-.ai-textarea::placeholder { color: var(--mu2); }
-.ai-send {
-  width: 34px; height: 34px; border-radius: 8px;
-  background: var(--ac); border: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; flex-shrink: 0; transition: all .15s;
-}
-.ai-send:hover { background: var(--ac2); transform: scale(1.05); }
-.ai-send:disabled { background: var(--bor); cursor: not-allowed; transform: none; }
-.ai-send svg { width: 16px; height: 16px; }
+.input-zone{padding:14px 20px 18px;border-top:1px solid var(--border);flex-shrink:0;max-width:820px;margin:0 auto;width:100%}
+.input-box{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .15s}
+.input-box:focus-within{border-color:var(--accent-border)}
+.input-ta{background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font);font-size:14px;line-height:1.6;padding:14px 16px 10px;resize:none;min-height:50px;max-height:180px}
+.input-ta::placeholder{color:var(--text3)}
+.input-toolbar{display:flex;align-items:center;padding:8px 12px;gap:8px;border-top:1px solid var(--border)}
+.tb-tool-btn{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text3);font-size:12px;padding:5px 10px;cursor:pointer;font-family:var(--font);transition:all .1s;display:flex;align-items:center;gap:5px}
+.tb-tool-btn:hover{border-color:var(--border2);color:var(--text2);background:var(--bg3)}
+.send-btn{margin-left:auto;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:var(--font);font-size:13px;font-weight:500;padding:7px 16px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
+.send-btn:hover{background:#6a58e8}
+.send-btn:disabled{background:var(--bg4);color:var(--text3);cursor:not-allowed}
+.input-hint{font-size:11px;color:var(--text3);text-align:center;margin-top:8px;font-family:var(--mono)}
+.input-hint kbd{background:var(--bg3);border:1px solid var(--border2);border-radius:3px;padding:1px 5px;font-family:var(--mono);font-size:10px}
 
-.ai-hint {
-  font-size: 11px; color: var(--mu2); text-align: center; margin-top: 8px;
-}
-.ai-hint kbd {
-  background: var(--card); border: 1px solid var(--bor);
-  border-radius: 3px; padding: 1px 5px; font-family: monospace; font-size: 10px;
-}
+/* ══════════════════════════════════════
+   HR TEST SAHIFASI (iframe kabi overlay)
+══════════════════════════════════════ */
+.hr-overlay{position:fixed;inset:0;z-index:200;display:none;background:var(--hbg);overflow-y:auto;font-family:'Nunito',sans-serif}
+.hr-overlay.open{display:block}
+.hr-topbar{background:#fff;border-bottom:1px solid var(--hbor);height:56px;display:flex;align-items:center;padding:0 24px;gap:12px;position:sticky;top:0;z-index:10;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.hr-logo{font-family:'Playfair Display',serif;font-size:18px;color:var(--hac);font-weight:700}
+.hr-back{margin-left:auto;background:none;border:1px solid var(--hbor);border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;color:var(--hmu);display:flex;align-items:center;gap:6px;transition:all .15s}
+.hr-back:hover{background:var(--hcard);color:var(--htx)}
+.hr-main{max-width:600px;margin:0 auto;padding:32px 20px}
 
-/* API key notice */
-.api-notice {
-  background: #fdf3e3; border: 1px solid #f0d49a; border-radius: var(--r2);
-  padding: 10px 14px; font-size: 12px; color: #7a5010; margin-bottom: 12px;
-  display: flex; align-items: center; gap: 8px;
-}
-.api-key-row {
-  display: flex; gap: 8px; margin-bottom: 12px;
-}
-.api-key-input {
-  flex: 1; background: var(--bg); border: 1.5px solid var(--bor);
-  border-radius: var(--r2); padding: 8px 12px; font-size: 13px;
-  font-family: 'Nunito', sans-serif; outline: none; color: var(--tx);
-  transition: border .15s;
-}
-.api-key-input:focus { border-color: var(--ac); }
-.api-key-btn {
-  background: var(--ac); border: none; border-radius: var(--r2);
-  color: #fff; padding: 8px 14px; font-size: 12px; font-weight: 700;
-  font-family: 'Nunito', sans-serif; cursor: pointer; white-space: nowrap;
-  transition: background .15s;
-}
-.api-key-btn:hover { background: var(--ac2); }
+/* HR cards */
+.hcard{background:#fff;border:1px solid var(--hbor);border-radius:var(--hr);padding:24px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:16px}
+.hbtn{display:inline-flex;align-items:center;gap:5px;border:none;border-radius:var(--hr2);padding:10px 18px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .18s}
+.hbp{background:var(--hac);color:#fff}.hbp:hover{background:var(--hac2)}
+.hbg{background:transparent;color:var(--hmu);border:1px solid var(--hbor)}.hbg:hover{background:var(--hcard)}
+.hbfull{width:100%;justify-content:center}
+.hfl{margin-bottom:14px}
+.hfl label{display:block;font-size:11px;font-weight:700;color:var(--hmu);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.hinp{width:100%;background:var(--hbg);border:1.5px solid var(--hbor);border-radius:var(--hr2);padding:11px 13px;color:var(--htx);font-size:14px;font-family:'Nunito',sans-serif;font-weight:500;outline:none;transition:border .18s}
+.hinp:focus{border-color:var(--hac)}
+.hinp.err{border-color:var(--her)}
+.hinp::placeholder{color:var(--hmu2)}
+.hetx{font-size:11px;color:var(--her);font-weight:700;margin-top:3px}
+.hhint{font-size:11px;color:var(--hmu);margin-top:3px}
+.hbadge{display:inline-flex;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.bok{background:#e8f5ee;color:#2c7a4b;border:1px solid #b8ddc8}
+.bwa{background:#fdf3e3;color:#b87a1a;border:1px solid #f0d49a}
+.ber-b{background:#fdf0f0;color:#b83c3c;border:1px solid #f0c4c4}
+/* Steps dots */
+.hdots{display:flex;gap:7px;justify-content:center;margin-bottom:20px}
+.hdot{width:8px;height:8px;border-radius:50%;background:var(--hbor);transition:all .3s}
+.hdot.on{background:var(--hac);width:22px;border-radius:4px}
+.hdot.dn{background:var(--hac2)}
+.hpbar{height:4px;background:var(--hbor);border-radius:10px;overflow:hidden;margin:12px 0 5px}
+.hpfill{height:100%;background:linear-gradient(90deg,var(--hac),var(--hac2));border-radius:10px;transition:width .4s}
+/* Kasb grid */
+.hpg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}
+.hpc{background:#fff;border:2px solid var(--hbor);border-radius:var(--hr);padding:14px 10px;cursor:pointer;text-align:center;transition:all .2s;position:relative}
+.hpc:hover{border-color:var(--hac2);background:var(--hacl)}
+.hpc.sel{border-color:var(--hac);background:var(--hacl)}
+.hpc .hck{position:absolute;top:6px;right:6px;width:18px;height:18px;background:var(--hac);border-radius:50%;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0}
+.hpc.sel .hck{opacity:1}
+/* Savol */
+.hqcat{font-size:11px;color:var(--hac);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.hqtxt{font-family:'Playfair Display',serif;font-size:18px;line-height:1.45;margin-bottom:16px;color:var(--htx)}
+.hchoices{display:flex;flex-direction:column;gap:8px}
+.hch{background:var(--hbg);border:1.5px solid var(--hbor);border-radius:var(--hr2);padding:11px 14px;cursor:pointer;font-size:13px;font-family:'Nunito',sans-serif;font-weight:600;text-align:left;width:100%;transition:all .18s;color:var(--htx)}
+.hch:hover{border-color:var(--hac2);background:var(--hacl)}
+.hch.sel{background:var(--hacl);border-color:var(--hac);color:var(--hac)}
 
-@media(max-width:640px){
-  .ll{display:none}.lr{padding:20px 14px}
-  .g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}
-  .tb{padding:0 14px}.main{padding:20px 14px}
-  .ai-starters{grid-template-columns:1fr}
-  .ai-page{padding:0}
-  .ai-chat{padding:14px}
-  .ai-input-area{padding:10px 14px 14px}
-}
+/* ══════════════════════════════════════
+   ADMIN OVERLAY
+══════════════════════════════════════ */
+.admin-overlay{position:fixed;inset:0;z-index:300;display:none;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);align-items:center;justify-content:center}
+.admin-overlay.open{display:flex}
+.admin-box{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;width:100%;max-width:420px;overflow:hidden;animation:adIn .25s ease}
+@keyframes adIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.admin-tabs{display:flex;border-bottom:1px solid var(--border)}
+.admin-tab{flex:1;padding:14px;background:none;border:none;color:var(--text3);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s}
+.admin-tab.on{color:var(--accent2);border-bottom:2px solid var(--accent)}
+.admin-body{padding:24px}
+.admin-title{font-size:18px;font-weight:600;margin-bottom:6px}
+.admin-sub{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6}
+.admin-contact-card{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.admin-contact-icon{width:38px;height:38px;border-radius:9px;background:var(--accent-bg);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.admin-contact-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
+.admin-contact-val{font-size:13px;color:var(--text2);font-family:var(--mono)}
+.admin-inp{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:var(--font);font-size:14px;padding:10px 13px;outline:none;transition:border .15s;margin-bottom:10px}
+.admin-inp:focus{border-color:var(--accent-border)}
+.admin-err{font-size:12px;color:var(--red);margin-bottom:10px;display:none}
+.admin-login-btn{width:100%;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:var(--font);font-size:14px;font-weight:500;padding:11px;cursor:pointer;transition:background .15s}
+.admin-login-btn:hover{background:#6a58e8}
+.admin-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--text3);font-size:20px;cursor:pointer;line-height:1}
+
+/* Admin dashboard (ichki panel) */
+.admin-dash{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;width:100%;max-width:680px;max-height:85vh;overflow:hidden;display:flex;flex-direction:column;animation:adIn .25s ease}
+.admin-dash-top{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.admin-dash-title{font-size:15px;font-weight:600}
+.admin-dash-body{overflow-y:auto;flex:1;padding:16px 20px}
+.exam-row{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:8px;cursor:pointer;transition:all .15s}
+.exam-row:hover{border-color:var(--border2)}
+.exam-name{font-size:14px;font-weight:500;color:var(--text)}
+.exam-meta{font-size:12px;color:var(--text2);margin-top:3px;font-family:var(--mono)}
+.exam-score{font-size:20px;font-weight:700;font-family:var(--mono)}
+.exam-detail{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:none}
+.exam-detail.open{display:block}
+.qa-item{padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.qa-item:last-child{border:none}
+.qa-q{color:var(--text2);margin-bottom:3px}
+.qa-a{color:var(--accent2);font-weight:500}
+
+*{scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
 </style>
 </head>
 <body>
-<div id="app"></div>
+
+<!-- ════ SIDEBAR ════ -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="logo-mark">O</div>
+    <span class="logo-text">Ottimo</span>
+    <span class="logo-tag">AI</span>
+  </div>
+
+  <div class="sb-nav">
+    <div class="sb-label">Menyu</div>
+    <button class="nav-btn active" onclick="navClick('chat',this)">
+      <span class="nb-icon">💬</span> AI Agent
+    </button>
+    <button class="nav-btn" onclick="openHR()">
+      <span class="nb-icon">📋</span> Ishchi qabul qilish
+    </button>
+    <button class="nav-btn" onclick="openAdmin()">
+      <span class="nb-icon">👨‍💼</span> Administrator
+    </button>
+  </div>
+
+  <div class="sb-label" style="padding:12px 16px 4px">Suhbatlar</div>
+  <div class="chat-list" id="chatList"></div>
+
+  <div class="sb-footer">
+    <div class="sb-model-label">Model</div>
+    <select class="sb-model-select" id="modelSel">
+      <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+      <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+    </select>
+  </div>
+</aside>
+
+<!-- ════ MAIN CHAT ════ -->
+<main class="main">
+  <div class="topbar">
+    <span class="tb-title" id="tbTitle">Ottimo AI Agent</span>
+    <span class="tb-badge" id="tbModel">gemini-2.0-flash</span>
+    <div class="tb-status"><div class="tb-dot"></div>Online</div>
+  </div>
+
+  <div class="chat-view" id="chatView">
+    <div class="welcome" id="welcomeScreen">
+      <div class="welcome-orb">O</div>
+      <div>
+        <div class="welcome-title">Ottimo Agent</div>
+        <div class="welcome-sub">Ottimo Cafe haqida har qanday savolga javob beraman. Boshqa mavzularda javob bermayman.</div>
+      </div>
+      <div class="starter-grid">
+        <div class="starter-card" onclick="useStarter('Ottimo Cafeda qanday bo\'sh ish o\'rinlari bor?')">
+          <div class="starter-card-icon">💼</div>
+          <div class="starter-card-title">Bo'sh ish o'rinlar</div>
+          <div class="starter-card-sub">Lavozimlar va talablar</div>
+        </div>
+        <div class="starter-card" onclick="useStarter('Filiallar qayerda joylashgan?')">
+          <div class="starter-card-icon">📍</div>
+          <div class="starter-card-title">Filiallar</div>
+          <div class="starter-card-sub">Manzillar va xaritalar</div>
+        </div>
+        <div class="starter-card" onclick="useStarter('Ish vaqti va smenalar haqida aytib bering')">
+          <div class="starter-card-icon">⏰</div>
+          <div class="starter-card-title">Ish vaqti</div>
+          <div class="starter-card-sub">Smena jadvali</div>
+        </div>
+        <div class="starter-card" onclick="useStarter('Maosh va bonuslar haqida ma\'lumot bering')">
+          <div class="starter-card-icon">💰</div>
+          <div class="starter-card-title">Maosh</div>
+          <div class="starter-card-sub">To'lov va bonuslar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-zone">
+    <div class="input-box">
+      <textarea class="input-ta" id="msgInput" placeholder="Ottimo haqida savol bering..." rows="1"
+        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <div class="input-toolbar">
+        <button class="tb-tool-btn" onclick="clearChat()">🗑 Tozalash</button>
+        <button class="send-btn" id="sendBtn" onclick="sendMsg()">
+          Yuborish
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="input-hint"><kbd>Enter</kbd> yuborish · <kbd>Shift+Enter</kbd> yangi qator</div>
+  </div>
+</main>
+
+<!-- ════ HR OVERLAY ════ -->
+<div class="hr-overlay" id="hrOverlay">
+  <div class="hr-topbar">
+    <div class="hr-logo">Ottimo HR</div>
+    <button class="hr-back" onclick="closeHR()">← Agentga qaytish</button>
+  </div>
+  <div class="hr-main">
+    <div id="hrContent"></div>
+  </div>
+</div>
+
+<!-- ════ ADMIN OVERLAY ════ -->
+<div class="admin-overlay" id="adminOverlay" onclick="adminBgClose(event)">
+  <div id="adminBox"></div>
+</div>
+
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getFirestore,collection,addDoc,getDocs,query,orderBy}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const db=getFirestore(initializeApp({
   apiKey:"AIzaSyBkFbcT--VfrLe2ZMjxhmRAs1V7Svzx2Bg",
-  authDomain:"ottimo-hr.firebaseapp.com",
-  projectId:"ottimo-hr",
+  authDomain:"ottimo-hr.firebaseapp.com",projectId:"ottimo-hr",
   storageBucket:"ottimo-hr.firebasestorage.app",
   messagingSenderId:"130893452321",
   appId:"1:130893452321:web:d70ddfc1fffc57a1c97f60"
 }));
 
-const TG_TOKEN="8173395748:AAFCbwHLLTiEOu0L9mjD2_Yy-a-UZXLKghU";
-const TG_CHAT="206004279";
-const MGR_PASS="688466";
+// ═══ CONFIG ═══
+const GEMINI_KEY = 'AIzaSyDCwFEq4bGl8YuiwrHdKP-xI_fkRGi7IRc';
+const TG_TOKEN = "8173395748:AAFCbwHLLTiEOu0L9mjD2_Yy-a-UZXLKghU";
+const TG_CHAT = "206004279";
+const MGR_PASS = "688466";
 
-async function tg(txt){
-  try{
-    await fetch("https://api.telegram.org/bot"+TG_TOKEN+"/sendMessage",{
-      method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({chat_id:TG_CHAT,text:txt,parse_mode:"HTML"})
-    });
-  }catch(e){}
-}
+const OTTIMO_SYSTEM = `Sen Ottimo Cafe uchun maxsus AI agentsan. FAQAT Ottimo Cafe haqidagi savollarga javob berasan. Agar savol Ottimo Cafe bilan bog'liq bo'lmasa, albatta quyidagi javobni ber: "Mingbor uzur, men faqat Ottimo Cafe haqidagi savollarga javob bera olaman. Ottimo haqida biror narsani so'rasangiz, xursandlik bilan javob beraman! 🙏"
 
-// ═══════════════════ KASBLAR ═══════════════════
-var POS={
-  menejer:{l:"Menejer",i:"👔",q:[
-    {id:"m1",c:"Rahbarlik",t:"Xodim ish rejasini bajarmasa birinchi nima qilasiz?",o:["Sababini aniqlab, yordam beraman","Ogohlantirib, muddatni uzaytiraman","Boshqa xodimga topshiraman","Darhol jazo chorasi ko'raman"]},
-    {id:"m2",c:"Qaror",t:"Ikki muhim ish bir vaqtda tushsa qanday harakat qilasiz?",o:["Muhimligiga qarab ustuvorlik belgilayman","Ikkalasini parallel bajaraman","Jamoaga taqsimlayman","Rahbardan ko'rsatma kutaman"]},
-    {id:"m3",c:"Muloqot",t:"Xodim siz bilan rozi bo'lmasa qanday muloqot qilasiz?",o:["Tinglash va birgalikda yechim topaman","O'z fikrimni to'g'ri deb davom ettiraman","Ovoz berish o'tkazaman","Rahbariyatga hisobot beraman"]},
-    {id:"m4",c:"Motivatsiya",t:"Jamoangiz ish sifati pasayib ketsa nima qilasiz?",o:["Muammoni aniqlab, qo'llab-quvvatlayman","Rag'batlantirish tizimini ko'rib chiqaman","Umumiy yig'ilish o'tkazaman","Eng yaxshilarga bonus beraman"]},
-    {id:"m5",c:"Mijoz",t:"VIP mijoz shikoyat bilan kelsa nima qilasiz?",o:["Zudlik bilan shaxsan muloqot qilaman","Mas'ul xodimni yo'naltiraman","Kechirim so'rab, yechim taklif qilaman","Standart jarayon bo'yicha hal qilaman"]},
-    {id:"m6",c:"Hisobot",t:"Oylik ko'rsatkichlar past bo'lsa rahbariyatga nima deysiz?",o:["Sabablarni tahlil qilib, yechim rejasi taqdim etaman","Faqat natijani aytaman","Jamoani ayblayman","Keyingi oy yaxshilanadi deb va'da qilaman"]},
-    {id:"m7",c:"Yangi xodim",t:"Yangi xodimni jamoaga qo'shishda asosiy ustuvorlik?",o:["Mentor tayinlab, moslashishiga yordam beraman","Qo'llanma va yo'riqnoma tayyorlayman","Jamoaga tanishtirib qo'yaman","Faqat ish vazifalarini tushuntiraman"]},
-    {id:"m8",c:"Ziddiyat",t:"Ikki xodim o'rtasida jiddiy ziddiyat bo'lsa?",o:["Har ikki tomonni alohida tinglash va yechim topaman","Jamoa oldida hal qilamiz","HR ga topshiraman","Ogohlantirish beraman"]},
-    {id:"m9",c:"Innovatsiya",t:"Jamoada yangi g'oya taklif qilinsa qanday yondashasiz?",o:["Baholash mezonlari asosida ko'rib chiqaman","Darhol tatbiq etishga harakat qilaman","Rahbariyat bilan kelishaman","Avvalgi tajribaga asoslanib qaror qilaman"]},
-    {id:"m10",c:"Natija",t:"Kvartaldagi asosiy muvaffaqiyatingiz nimada bo'ldi?",o:["Jamoa samaradorligini oshirdim","Yangi mijozlar jalb qildim","Jarayon va tizimlarni yaxshiladim","Xarajatlarni kamaytirishga erishdim"]},
-  ]},
+Ottimo Cafe haqida to'liq ma'lumot:
+━━━━━━━━━━━━━━━
+📍 FILIALLAR (3 ta):
+1. Nukus kinoteatri yonida — Toshkent, Shifer ko'chasi 71
+   Xarita: https://yandex.uz/maps/org/144255252741
+2. Parus ostida — Toshkent, Katartal ko'chasi 60A/1
+   Xarita: https://yandex.uz/maps/org/45535920435
+3. Talant International School ro'parasida — Toshkent, Buyuk Ipak Yo'li 31
+
+📞 Telefon: +998 99 060 33 53
+💬 Telegram: @Ottimo_hr
+🔗 Murojaat: https://t.me/ottimo_uz
+
+💼 BO'SH ISH O'RINLARI:
+• ☕ Barista
+• 💳 Kassir
+• 🍰 Konditer-sotuvchi
+
+📋 ISH SHARTLARI:
+• Yosh: 20-35 yosh
+• Rus tilini bilish shart
+• Chekmaydigan bo'lishi kerak
+• Spirtli ichimlik iste'mol qilmaydigan bo'lishi kerak
+• Probatsiya: 1 oy
+
+⏰ ISH VAQTI:
+• ☀️ 1-smena (kunduzi): 07:30 — 16:30
+• 🌙 2-smena (kechki): 16:00 — 24:00
+• Jadval har dushanba yangilanadi
+• Kechikish jarima: 50 000 so'm
+
+💰 MAOSH VA IMTIYOZLAR:
+• Maosh har 10 kunda to'lanadi
+• Har smenada bepul ovqat
+• Rasmiy mehnat shartnomasi
+• Karyera o'sishi imkoniyati
+• Do'stona jamoa (25+ xodim)
+━━━━━━━━━━━━━━━
+Javoblar o'zbek tilida, do'stona, qisqa va aniq bo'lsin. Emoji ishlatib jonlantir.`;
+
+// ═══ KASBLAR ═══
+const POS = {
   barista:{l:"Barista",i:"☕",q:[
     {id:"b1",c:"Texnika",t:"Espresso tayyorlashda eng muhim omil nima?",o:["Tortish vaqti (25-30 sek) va hajmi (25-30ml)","Kofe turi va qovurish darajasi","Suv harorati va bosimi","Kofe maydalash darajasi"]},
     {id:"b2",c:"Sifat",t:"Mijoz qahvasi ta'mini yoqtirmasa nima qilasiz?",o:["Uzr so'rab darhol yangi tayyorlayman","Isitish uchun mikroto'lqin taklif qilaman","Kechirim so'rayman","Menejerni chaqiraman"]},
     {id:"b3",c:"Bilim",t:"Latte va cappuccino farqi nima?",o:["Latte ko'proq sut, cappuccino ko'proq ko'pik","Ikkalasi bir xil, faqat nomi farq qiladi","Cappuccino kuchliroq, latte yumshoqroq","Latte sovuq, cappuccino issiq servis qilinadi"]},
     {id:"b4",c:"Tozalik",t:"Espresso mashinasini qachon tozalash kerak?",o:["Har smena boshida, oxirida va zarur bo'lganda","Faqat ko'zga ko'rinadigan kir bo'lganda","Hafta oxirida bir marta","Texnik xizmat vaqtida"]},
     {id:"b5",c:"Mijoz",t:"Allergiyasi bor mijoz kelsa nima qilasiz?",o:["Ingredientlarni tushuntirib, muqobil taklif qilaman","Doktor maslahatiga yo'naltiraman","Hech narsa demayman","Faqat kutilgan mahsulotni beraman"]},
-    {id:"b6",c:"Tezlik",t:"Navbat uzayib ketsa qanday ish tartibini qo'llaysiz?",o:["Parallel tayyorlash: bir vaqtda bir nechta buyurtma","Tezlik uchun sifatni biroz pasaytiraman","Yordamchi so'rayman","Har bir buyurtmani tartibda bajaraman"]},
-    {id:"b7",c:"O'rganish",t:"Menyuga yangi ichimlik qo'shilsa qanday o'rganasiz?",o:["Retseptni yod olib, o'zim sinab ko'raman","Faqat ko'rsatma bo'lganda o'rganaman","Internet va video darslardan o'rganaman","Hamkasbdan so'rayman"]},
-    {id:"b8",c:"Muammo",t:"Mashina ishlamay qolsa smena o'rtasida nima qilasiz?",o:["Darhol mas'ulni xabardor qilib, mijozlarni ogohlantiraman","O'zim tuzatishga harakat qilaman","Smenani to'xtataman","Muqobil usul bilan davom etaman"]},
-    {id:"b9",c:"Jamoa",t:"Hamkasbingiz xato retsept ishlatayotganini ko'rsangiz?",o:["Xushmuomalalik bilan to'g'ri retseptni ko'rsataman","Menejerni xabardor qilaman","Hech narsa demay davom etaman","Mijoz shikoyat qilganidan keyin aytaman"]},
-    {id:"b10",c:"Mas'uliyat",t:"Smena oxirida ish joyi tartibsiz qolsa nima qilasiz?",o:["O'zim to'liq tozalab, keyingi smenani tayyorlab ketaman","Faqat o'z ish joyimni tozalayman","Keyingi smena o'zi tartibga soladi","Tez-tez tozalab, tartibli ushlab turaman"]},
   ]},
-  sotuvchi:{l:"Sotuvchi",i:"🛍️",q:[
-    {id:"s1",c:"Sotuv",t:"Mijoz mahsulot narxini qimmat desa qanday javob berasiz?",o:["Mahsulotning qiymatini va foydasini tushuntiraman","Chegirma beraman","Arzonroq variantni taklif qilaman","Narx bozor narxiga mos deb tushuntiraman"]},
-    {id:"s2",c:"Ehtiyoj",t:"Mijozning haqiqiy ehtiyojini aniqlash uchun nima qilasiz?",o:["Ochiq savollar beraman va diqqat bilan tinglayman","Mahsulotlarimizni birin-ketin taqdim etaman","Eng mashhur mahsulotni taklif qilaman","Mijoz o'zi so'raganini beraman"]},
-    {id:"s3",c:"Rad etish",t:"Mijoz 'O'ylab ko'raman' desa qanday harakat qilasiz?",o:["Asosiy savollarni aniqlab, shubhalarni bartaraf etaman","Qayta qo'ng'iroq vaqtini belgilab ruxsat so'rayman","Yangi taklif bilan chiqaman","Xayrlashib, keyingi mijozga o'taman"]},
-    {id:"s4",c:"Bilim",t:"Raqobatchi mahsulotidan afzalligimizni qanday tushuntirасиз?",o:["Aniq faktlar va farqlarni ko'rsataman","Raqobatchilarni tanqid qilaman","Narq jihatiga e'tibor qarataman","Faqat o'z mahsulotimiz haqida gapiraman"]},
-    {id:"s5",c:"Taqdimot",t:"Yangi mijozga mahsulot taqdimotini qanday boshlaysiz?",o:["Avval mijoz ehtiyojini aniqlayman, so'ng mahsulotni ko'rsataman","Mahsulotning barcha xususiyatlarini batafsil aytaman","Demo ko'rsataman","Muvaffaqiyatli mijozlar misolini keltiraman"]},
-    {id:"s6",c:"Munosabat",t:"Mijoz bilan uzoq muddatli munosabat qurish uchun nima qilasiz?",o:["Sotuvdan keyin ham xabardor bo'lib turaman","Har oy yangi takliflar yuboraman","Bayramlarda tabriklayman","Faqat yangi mahsulot chiqqanda muloqot qilaman"]},
-    {id:"s7",c:"Reja",t:"Oylik reja bajarilmayotganini sezsa qanday harakat qilasiz?",o:["Sabablarni tahlil qilib, strategiyani o'zgartiraman","Rahbariyatga aytaman","Qolgan kunlarda ikki barobar harakat qilaman","Keyingi oyga umid qilaman"]},
-    {id:"s8",c:"Guruh",t:"Jamoaviy sotuv loyihasida o'z vazifangiz nima?",o:["Aniq rolimni o'tab, jamoa muvaffaqiyatiga hissa qo'shaman","Eng ko'p sotuv qilishga intilamаn","Loyiha rahbarini qo'llab-quvvatlayman","Jamoadan mustaqil ishlashni afzal ko'raman"]},
-    {id:"s9",c:"Shikoyat",t:"Mijoz mahsulotdan norozi bo'lib qaytib kelsa nima qilasiz?",o:["Muammoni tinglash, kechirim so'rash va yechim taklif qilish","Qaytarish yoki almashtirish tartibini tushuntiraman","Menejerga yo'naltiraman","Sababini aniqlab, imkon qadar hal qilaman"]},
-    {id:"s10",c:"O'rganish",t:"Yangi mahsulot haqida qanday bilim olasiz?",o:["Barcha materiallarni o'qib, o'zim sinab ko'raman","Treninglar va prezentatsiyalarda qatnashaman","Hamkasblardan o'rganaman","Mijoz savollari orqali o'rganaman"]},
+  kassir:{l:"Kassir",i:"💳",q:[
+    {id:"k1",c:"Hisob",t:"Mijoz to'g'ri pul berganini qanday tekshirasiz?",o:["Har doim mashinada sanayman va chek beraman","Ko'zdan kechirib qoldirib qo'yaman","Mijoz aytganiga ishonaman","Faqat katta kupyuralarni tekshiraman"]},
+    {id:"k2",c:"Xizmat",t:"Navbatda bir nechta mijoz kutayotganida nima qilasiz?",o:["Tezlik bilan, lekin aniq xizmat ko'rsataman","Eng avval tanishimni o'tkazaman","Smenani almashtirishni so'rayman","Tezlikni oshirish uchun ba'zi qadamlarni o'tkazib ketaman"]},
+    {id:"k3",c:"Xato",t:"Kassada kamomad aniqlanganida nima qilasiz?",o:["Darhol menejerga xabar beraman va hisobot tuzaman","Ertasi kuni o'zim to'ldiraman","Kimdir olgan bo'lsa kerak deb o'ylayman","Yashirishga harakat qilaman"]},
+    {id:"k4",c:"Mijoz",t:"Mijoz chek so'rasa nima qilasiz?",o:["Har doim chek beraman, so'ramasdan ham","Faqat so'raganda beraman","Printer buzuq deb aytaman","Elektron chek taklif qilaman"]},
+    {id:"k5",c:"Intizom",t:"Smena boshida kassani qanday qabul qilasiz?",o:["Pul sanab, avvalgi smenadan qabul aktini imzolayman","Shoshib kassa seyfini ochaman","Menejer aytganiga ishonaman","Oldingi kassirdan og'zaki qabul qilaman"]},
   ]},
-  hr:{l:"HR",i:"🤝",q:[
-    {id:"h1",c:"Yollash",t:"Intervyu o'tkazishda qanday savollardan foydalanasiz?",o:["Vaziyatga asoslangan (STAR) savollar","Standart ish tajribasi savollari","Ko'proq motivatsiya savollari","Texnik bilimni tekshiruvchi savollar"]},
-    {id:"h2",c:"Onboarding",t:"Yangi xodim birinchi haftada nimaga muhtoj?",o:["Aniq rol, mentor va ish muhiti bilan tanishish","Faqat hujjatlarni to'ldirish","Darhol ish boshlash","Jamoa bilan tanishish yig'ilishi"]},
-    {id:"h3",c:"Nizo",t:"Bo'limlar o'rtasida mojaro yuzaga kelsa HR sifatida nima qilasiz?",o:["Betaraf vositachi sifatida ikki tomonni tinglaman","Qoida va tartibga asosan qaror qilaman","Yuqori rahbariyatga topshiraman","Tomonlarni alohida yig'ib, yechim topaman"]},
-    {id:"h4",c:"Bo'shatish",t:"Xodimni bo'shatish zarur bo'lganda qanday harakat qilasiz?",o:["Qonuniy tartib va insoniy munosabat bilan o'tkazaman","Faqat hujjat va rasmiy jarayon","Xodimga oldindan ogohlantirish beraman","Menejer bilan birgalikda hal qilaman"]},
-    {id:"h5",c:"Siyosat",t:"Xodim kompaniya qoidasini buzsa nima qilasiz?",o:["Darajasiga qarab tartib bo'yicha jazo chorasi","Avval suhbat, keyin rasmiy ogohlantirish","Darhol menejerga xabar beraman","Yozma ogohlantirish yuboraman"]},
-    {id:"h6",c:"Motivatsiya",t:"Xodimlar ish qoldirish ko'rsatkichi oshsa nimadan boshlayman?",o:["Exit interview va sabab tahlili","Ish sharoitini ko'rib chiqaman","Maosh va benefitlarni taqqoslayman","Xodimlar so'rovnomasini o'tkazaman"]},
-    {id:"h7",c:"Rivojlanish",t:"Xodim o'sishini qo'llab-quvvatlash uchun nima qilasiz?",o:["Individual rivojlanish rejasi (IDP) tuzaman","Treninglar va kurslar tashkil etaman","Mentorlik dasturini yo'lga qo'yaman","Ichki ko'tarilish imkoniyatlarini taqdim etaman"]},
-    {id:"h8",c:"Madaniyat",t:"Korporativ madaniyatni shakllantirishda HR roli nima?",o:["Qadriyatlarni tatbiq etuvchi tadbirlar","Faqat yangi xodimlarni o'rgatish","Rahbariyat ko'rsatmasini amalga oshirish","Xodimlar fikr-mulohazasini to'plash"]},
-    {id:"h9",c:"Qonun",t:"Xodim mehnat huquqlari haqida savol bersa nima qilasiz?",o:["To'g'ri ma'lumot beraman va kerak bo'lsa yuristga yo'naltiraman","Faqat kompaniya siyosatini tushuntiraman","Rahbariyatga havola qilaman","Standart javob tayyorlagiman"]},
-    {id:"h10",c:"Maxfiylik",t:"Xodimlar ma'lumotlarining maxfiyligi bo'yicha yondashuvingiz?",o:["Qat'iy maxfiylik siyosati va ruxsatga asoslangan kirish","Faqat zarur hollarda maxfiy saqlayman","Umumiy bazada saqlayman","Har bir xodim o'z ma'lumotlarini boshqaradi"]},
+  konditer:{l:"Konditer",i:"🍰",q:[
+    {id:"p1",c:"Bilim",t:"Tort uchun krem tayyorlashda eng muhim narsa nima?",o:["Mahsulotlar harorati va proportsiyaniga rioya qilish","Ko'proq shakar qo'shish","Tez-tez aralashtirish","Faqat sifatli mahsulot ishlatish"]},
+    {id:"p2",c:"Gigiyena",t:"Mahsulotlar bilan ishlashdan oldin nima qilasiz?",o:["Qo'l yuvib, qo'lqop kiyib, ish kiyimini kiyaman","Faqat qo'l yuvaman","Hech narsa, shunday boshlayman","Dezinfektant ishlataman"]},
+    {id:"p3",c:"Sifat",t:"Tayyor mahsulot ko'rinishi yaxshi bo'lmasa nima qilasiz?",o:["Qayta qilaman yoki menejerga ko'rsataman","Shunday ham o'tib ketadi deb qo'yaman","Bezatib yashiraman","Mijozga aytaman"]},
+    {id:"p4",c:"Saqlash",t:"Qolgan mahsulotlarni qanday saqlaysiz?",o:["Belgilangan temperatura va muddatga ko'ra saqlash","Muzlatgichga siqib qo'yaman","Ertasi kuni ko'ramiz deb qoldiraman","Hamkasbga topshiraman"]},
+    {id:"p5",c:"Mijoz",t:"Mijoz maxsus buyurtma bersa nima qilasiz?",o:["Imkoniyatlarni aniqlab, muddati va narxini kelishaman","Imkonsiz deb rad etaman","Xohlaganini qilishga harakat qilaman","Menejerga yo'naltiraman"]},
   ]},
-  tozalovchi:{l:"Tozalovchi",i:"🧹",q:[
-    {id:"t1",c:"Tartib",t:"Smena boshida birinchi nimani qilasiz?",o:["Jihozlar va materiallarni tekshirib, rejani tuzaman","Oldingidan qolgan ishlarni davom ettiraman","Mas'uldan ko'rsatma olaman","Darhol tozalashni boshlayman"]},
-    {id:"t2",c:"Vositalar",t:"Turli yuzalar uchun qaysi tozalash vositasini tanlaysiz?",o:["Yuzaga qarab tegishli vositani tanlayman","Umumiy tozalovchi vositani hamma yerda ishlataman","Ishchi bergan narsani ishlataman","Ko'proq bo'lsa yaxshiroq deb ko'p ishlataman"]},
-    {id:"t3",c:"Xavfsizlik",t:"Kimyoviy moddalar bilan ishlashda ehtiyot choralar?",o:["Qo'lqop, niqob va himoya kiyimini kiyaman","Faqat qo'lqop kiyaman","Ko'rsatmalarga qarab harakat qilaman","Himoya vositasisiz ishlashga odatlanganman"]},
-    {id:"t4",c:"Muammo",t:"Kuchli dog' tozalab bo'lmayotgan joy bilan nima qilasiz?",o:["Maxsus vosita yoki texnika qidiraman","Mas'ulni xabardor qilaman","Qayta-qayta urinishni davom ettiraman","Boshqa joyga o'tib, keyinroq qaytaman"]},
-    {id:"t5",c:"Vaqt",t:"Katta maydonni qisqa vaqtda tozalash kerak bo'lsa?",o:["Yuqoridan pastga, ichkaridan tashqariga usulida","Eng ko'zga ko'rinadigan joylarni birinchi","Har bir xonani to'liq yakunlab keyingisiga o'taman","Tez ko'zdan kechirib, muhimlarini birinchi qilaman"]},
-    {id:"t6",c:"Jihoz",t:"Tozalash jihozi ishlamay qolsa nima qilasiz?",o:["Darhol mas'ulni xabardor qilib, muqobil vosita so'rayman","O'zim tuzatishga harakat qilaman","Qo'l bilan davom ettiraman","Jihoz tuzatilguncha kutaman"]},
-    {id:"t7",c:"Sifat",t:"Ishingiz sifatini o'zingiz qanday nazorat qilasiz?",o:["Yakunlashdan oldin har joyni qayta tekshiraman","Cheklistdan foydalanaman","Mijozlar yoki nazoratchi fikriga tayanaman","Ko'zga ko'rinsa yetarli deb hisoblayman"]},
-    {id:"t8",c:"Muloqot",t:"Tozalayotgan paytda biror kishi halaqit bersa?",o:["Xushmuomalalik bilan kutishni so'rayman","Ularni e'tiborsiz qoldirib ishni davom ettiraman","Keyin qilish uchun to'xtataman","Mas'ulni chaqiraman"]},
-    {id:"t9",c:"Mas'uliyat",t:"Ish paytida biror narsani tasodifan sindirsangiz nima qilasiz?",o:["Darhol mas'ulni xabardor qilaman","Yashirishga harakat qilaman","O'zim tuzataman yoki almashtiraman","Kimdir ko'rmasa aytmasam ham bo'ladi"]},
-    {id:"t10",c:"Intizom",t:"Ish tugagandan keyin jihozlar bilan nima qilasiz?",o:["Jihozlarni tozalab, joy-joyiga qo'yaman va sarflarni qayd etaman","Tezda joyiga qo'yib ketaman","Ertangi smena o'zi qiladi deb qoldiraman","Mas'ul ko'rsatgan joyga qo'yaman"]},
+  menejer:{l:"Menejer",i:"👔",q:[
+    {id:"m1",c:"Rahbarlik",t:"Xodim ish rejasini bajarmasa birinchi nima qilasiz?",o:["Sababini aniqlab, yordam beraman","Ogohlantirib, muddatni uzaytiraman","Boshqa xodimga topshiraman","Darhol jazo chorasi ko'raman"]},
+    {id:"m2",c:"Qaror",t:"Ikki muhim ish bir vaqtda tushsa qanday harakat qilasiz?",o:["Muhimligiga qarab ustuvorlik belgilayman","Ikkalasini parallel bajaraman","Jamoaga taqsimlayman","Rahbardan ko'rsatma kutaman"]},
+    {id:"m3",c:"Muloqot",t:"Xodim siz bilan rozi bo'lmasa qanday muloqot qilasiz?",o:["Tinglash va birgalikda yechim topaman","O'z fikrimni to'g'ri deb davom ettiraman","Ovoz berish o'tkazaman","Rahbariyatga hisobot beraman"]},
+    {id:"m4",c:"Mijoz",t:"VIP mijoz shikoyat bilan kelsa nima qilasiz?",o:["Zudlik bilan shaxsan muloqot qilaman","Mas'ul xodimni yo'naltiraman","Kechirim so'rab, yechim taklif qilaman","Standart jarayon bo'yicha hal qilaman"]},
+    {id:"m5",c:"Natija",t:"Oylik ko'rsatkichlar past bo'lsa rahbariyatga nima deysiz?",o:["Sabablarni tahlil qilib, yechim rejasi taqdim etaman","Faqat natijani aytaman","Jamoani ayblayman","Keyingi oy yaxshilanadi deb va'da qilaman"]},
   ]},
 };
 
-// ═══════════════════ AI AGENT ═══════════════════
-const AI_LANGS = {
-  uz: {
-    name: "O'zbek",
-    welcome_title: "Ottimo HR Yordamchisi",
-    welcome_sub: "Ottimo Cafe haqida har qanday savolingizga javob beraman",
-    placeholder: "Savolingizni yozing...",
-    starters: [
-      { icon: "💼", title: "Bo'sh o'rinlar", sub: "Qanday lavozimlar bor?", q: "Ottimo Cafeda qanday bo'sh ish o'rinlari bor?" },
-      { icon: "⏰", title: "Ish vaqti", sub: "Smena jadvali", q: "Ish vaqti va smenalar haqida aytib bering" },
-      { icon: "📍", title: "Filiallar", sub: "Manzillar", q: "Ottimo Cafening filiallari qayerda joylashgan?" },
-      { icon: "💰", title: "Maosh", sub: "To'lov shartlari", q: "Ottimo Cafeda maosh qanday to'lanadi?" }
-    ],
-    system: `Sen Ottimo Cafe uchun HR yordamchisisisan. Faqat o'zbek tilida javob ber. Faqat Ottimo Cafe haqidagi savollarga javob ber. Boshqa savollarga: "Kechirasiz, men faqat Ottimo Cafe haqida javob bera olaman" de.
+// ═══ CHAT STATE ═══
+let conversations = [];
+let currentConvId = null;
+let isLoading = false;
+let chatHistory = [];
 
-Ottimo Cafe haqida to'liq ma'lumot:
-- Toshkentda 3 ta filiali bor
-- 1-filial: Nukus kinoteatri yonida, Shifer ko'chasi 71
-- 2-filial: Parus ostida, Katartal ko'chasi 60A/1  
-- 3-filial: Talant International School ro'parasida, Buyuk Ipak Yo'li 31
-- Bo'sh ish o'rinlari: Barista ☕, Kassir 💳, Konditer-sotuvchi 🍰
-- Ish vaqti: Kunduzi 07:30-16:30, Kechki payt 16:00-24:00
-- Yosh talabi: 20-35 yosh
-- Rus tilini bilish shart
-- Chekmaydigan va spirtli ichimlik iste'mol qilmaydigan bo'lishi kerak
-- Probatsiya muddati: 1 oy
-- Maosh har 10 kunda to'lanadi
-- Har smenada bepul ovqat beriladi
-- Rasmiy mehnat shartnomasi tuziladi
-- Karyera o'sishi imkoniyati mavjud
-- Do'stona jamoa (25+ xodim)
-- Telefon: +998 99 060 33 53
-- Telegram: @Ottimo_hr
-- Murojaat: https://t.me/ottimo_uz
+// ═══ GEMINI API ═══
+async function callGemini(userText, history) {
+  const model = document.getElementById('modelSel').value;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_KEY}`;
 
-Do'stona, qisqa va aniq javob ber. Emoji ishlatib muloqotni jonlantir.`
-  },
-  ru: {
-    name: "Русский",
-    welcome_title: "Ассистент Ottimo HR",
-    welcome_sub: "Отвечу на любые вопросы об Ottimo Cafe",
-    placeholder: "Напишите вопрос...",
-    starters: [
-      { icon: "💼", title: "Вакансии", sub: "Открытые позиции", q: "Какие вакансии есть в Ottimo Cafe?" },
-      { icon: "⏰", title: "График", sub: "Смены и время", q: "Расскажите о рабочем времени и сменах" },
-      { icon: "📍", title: "Филиалы", sub: "Адреса", q: "Где находятся филиалы Ottimo Cafe?" },
-      { icon: "💰", title: "Зарплата", sub: "Условия оплаты", q: "Как выплачивается зарплата в Ottimo Cafe?" }
-    ],
-    system: `Ты HR-ассистент Ottimo Cafe. Отвечай только на русском. Только на вопросы об Ottimo Cafe. На другие: "Извините, я отвечаю только на вопросы об Ottimo Cafe."
+  const histPart = history.slice(-6).map(h =>
+    `Foydalanuvchi: ${h.user}\nAgent: ${h.agent}`).join('\n\n');
 
-Об Ottimo Cafe:
-- 3 филиала в Ташкенте
-- 1-й: у кинотеатра Нукус, ул. Шифернур 71
-- 2-й: под Парусом, ул. Катартал 60А/1
-- 3-й: напротив Talant School, Buyuk Ipak Yoli 31
-- Вакансии: Бариста ☕, Кассир 💳, Кондитер 🍰
-- График: 07:30-16:30 и 16:00-24:00
-- Возраст: 20-35 лет, знание русского обязательно
-- Испытательный срок: 1 месяц
-- Зарплата каждые 10 дней
-- Бесплатное питание в каждую смену
-- Официальный трудовой договор
-- Тел: +998 99 060 33 53, @Ottimo_hr
-
-Отвечай дружелюбно и кратко. Используй эмодзи.`
-  },
-  en: {
-    name: "English",
-    welcome_title: "Ottimo HR Assistant",
-    welcome_sub: "I'll answer any questions about Ottimo Cafe",
-    placeholder: "Type your question...",
-    starters: [
-      { icon: "💼", title: "Vacancies", sub: "Open positions", q: "What job openings are available at Ottimo Cafe?" },
-      { icon: "⏰", title: "Schedule", sub: "Shifts & hours", q: "Tell me about work schedule and shifts" },
-      { icon: "📍", title: "Branches", sub: "Locations", q: "Where are Ottimo Cafe branches located?" },
-      { icon: "💰", title: "Salary", sub: "Payment terms", q: "How is salary paid at Ottimo Cafe?" }
-    ],
-    system: `You are an HR assistant for Ottimo Cafe. Reply only in English. Only answer questions about Ottimo Cafe. For other topics: "Sorry, I can only answer questions about Ottimo Cafe."
-
-About Ottimo Cafe:
-- 3 branches in Tashkent
-- Branch 1: Near Nukus Cinema, Shifernur St. 71
-- Branch 2: Under Parus, Katartal St. 60A/1
-- Branch 3: Opposite Talant School, Buyuk Ipak Yoli 31
-- Open positions: Barista ☕, Cashier 💳, Pastry seller 🍰
-- Hours: 07:30-16:30 and 16:00-24:00
-- Age: 20-35, Russian required
-- Probation: 1 month
-- Salary every 10 days + free meals every shift
-- Phone: +998 99 060 33 53, @Ottimo_hr
-
-Be friendly and concise. Use emojis.`
-  }
-};
-
-// ═══════════════════ AI STATE ═══════════════════
-let aiLang = 'uz';
-let aiHistory = [];
-let aiLoading = false;
-let geminiKey = 'AIzaSyDCwFEq4bGl8YuiwrHdKP-xI_fkRGi7IRc';
-
-async function callGemini(userText) {
-  const langCfg = AI_LANGS[aiLang];
-  const historyPart = aiHistory.slice(-6).map(h =>
-    `Foydalanuvchi: ${h.user}\nAgent: ${h.agent}`
-  ).join('\n\n');
-
-  const prompt = langCfg.system +
-    (historyPart ? '\n\nOldingi suhbat:\n' + historyPart : '') +
+  const prompt = OTTIMO_SYSTEM +
+    (histPart ? '\n\nOldingi suhbat:\n' + histPart : '') +
     `\n\nFoydalanuvchi: ${userText}\nAgent:`;
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${geminiKey}`;
   const res = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {'Content-Type':'application/json'},
     body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.7, maxOutputTokens: 800 }
+      contents: [{parts: [{text: prompt}]}],
+      generationConfig: {temperature: 0.7, maxOutputTokens: 800}
     })
   });
   if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.error?.message || `HTTP ${res.status}`);
+    const e = await res.json().catch(()=>({}));
+    throw new Error(e.error?.message || `HTTP ${res.status}`);
   }
   const data = await res.json();
   return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Javob kelmadi.';
 }
 
-function aiPageHTML() {
-  const langCfg = AI_LANGS[aiLang];
-  return `<div class="ai-page">
-    <!-- Top bar -->
-    <div class="ai-topbar">
-      <div class="ai-avatar">🤖</div>
+// ═══ CHAT UI ═══
+function newChat() {
+  const id = Date.now().toString();
+  conversations.push({id, title: 'Yangi suhbat', messages: []});
+  currentConvId = id;
+  chatHistory = [];
+  renderChatList();
+  renderMessages();
+  document.getElementById('tbTitle').textContent = 'Ottimo AI Agent';
+}
+
+function renderChatList() {
+  const el = document.getElementById('chatList');
+  el.innerHTML = '';
+  [...conversations].reverse().forEach(c => {
+    const d = document.createElement('div');
+    d.className = 'chat-item' + (c.id === currentConvId ? ' active' : '');
+    d.innerHTML = `<div class="chat-item-icon">💬</div><div class="chat-item-text">${c.title}</div>`;
+    d.onclick = () => loadConv(c.id);
+    el.appendChild(d);
+  });
+}
+
+function loadConv(id) {
+  currentConvId = id;
+  const c = conversations.find(x => x.id === id);
+  chatHistory = c ? c.messages.map(m => ({user: m.user, agent: m.agent})) : [];
+  renderChatList();
+  renderMessages();
+  document.getElementById('tbTitle').textContent = c?.title || 'Suhbat';
+}
+
+function renderMessages() {
+  const cv = document.getElementById('chatView');
+  const c = conversations.find(x => x.id === currentConvId);
+  cv.innerHTML = '';
+  if (!c || c.messages.length === 0) {
+    cv.innerHTML = `<div class="welcome" id="welcomeScreen">
+      <div class="welcome-orb">O</div>
       <div>
-        <div class="ai-title">${langCfg.welcome_title}</div>
-        <div class="ai-subtitle">Gemini 1.5 Flash · Ottimo Cafe</div>
+        <div class="welcome-title">Ottimo Agent</div>
+        <div class="welcome-sub">Ottimo Cafe haqida har qanday savolga javob beraman. Boshqa mavzularda javob bermayman.</div>
       </div>
-      <div class="ai-status"><div class="ai-dot"></div>Faol</div>
-      <div class="ai-lang-btns">
-        ${['uz','ru','en'].map(l=>`<button class="ai-lang-btn${aiLang===l?' on':''}" onclick="setAiLang('${l}')">${AI_LANGS[l].name}</button>`).join('')}
+      <div class="starter-grid">
+        <div class="starter-card" onclick="useStarter('Ottimo Cafeda qanday bo\\'sh ish o\\'rinlari bor?')">
+          <div class="starter-card-icon">💼</div><div class="starter-card-title">Bo'sh ish o'rinlar</div><div class="starter-card-sub">Lavozimlar va talablar</div>
+        </div>
+        <div class="starter-card" onclick="useStarter('Filiallar qayerda joylashgan?')">
+          <div class="starter-card-icon">📍</div><div class="starter-card-title">Filiallar</div><div class="starter-card-sub">Manzillar va xaritalar</div>
+        </div>
+        <div class="starter-card" onclick="useStarter('Ish vaqti va smenalar haqida aytib bering')">
+          <div class="starter-card-icon">⏰</div><div class="starter-card-title">Ish vaqti</div><div class="starter-card-sub">Smena jadvali</div>
+        </div>
+        <div class="starter-card" onclick="useStarter('Maosh va bonuslar haqida ma\\'lumot bering')">
+          <div class="starter-card-icon">💰</div><div class="starter-card-title">Maosh</div><div class="starter-card-sub">To'lov va bonuslar</div>
+        </div>
       </div>
+    </div>`;
+    return;
+  }
+  c.messages.forEach(m => appendMsgEl(m.role, m.content, false));
+  cv.scrollTop = cv.scrollHeight;
+}
+
+function appendMsgEl(role, content, animate = true) {
+  const cv = document.getElementById('chatView');
+  document.getElementById('welcomeScreen')?.remove();
+  const row = document.createElement('div');
+  row.className = `msg-row ${role}`;
+  if (!animate) row.style.animation = 'none';
+  const time = new Date().toLocaleTimeString('uz', {hour:'2-digit',minute:'2-digit'});
+  row.innerHTML = `
+    <div class="msg-av">${role==='user'?'Siz':'AI'}</div>
+    <div class="msg-content">
+      <div class="msg-bubble">${fmtText(content)}</div>
+      ${role==='ai'?`<div class="msg-meta"><span>${time}</span>
+        <button class="copy-btn" onclick="cpText(this,\`${content.replace(/`/g,'\\`')}\`)">nusxa</button>
+      </div>`:''}
+    </div>`;
+  cv.appendChild(row);
+  cv.scrollTop = cv.scrollHeight;
+}
+
+function fmtText(t) {
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/```([\s\S]*?)```/g,'<pre style="background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:12px;margin:8px 0;overflow-x:auto;font-family:var(--mono);font-size:12px">$1</pre>')
+    .replace(/`([^`]+)`/g,'<code style="background:var(--bg3);padding:2px 6px;border-radius:4px;font-family:var(--mono);font-size:12px">$1</code>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\n/g,'<br>');
+}
+
+window.cpText = async (btn, text) => {
+  await navigator.clipboard.writeText(text).catch(()=>{});
+  btn.textContent = '✓ nusxalandi'; setTimeout(()=>btn.textContent='nusxa',1500);
+};
+
+window.useStarter = function(q) {
+  document.getElementById('msgInput').value = q;
+  window.sendMsg();
+};
+
+window.clearChat = function() {
+  const c = conversations.find(x=>x.id===currentConvId);
+  if(c){c.messages=[];chatHistory=[];}
+  renderMessages();
+};
+
+window.sendMsg = async function() {
+  const inp = document.getElementById('msgInput');
+  const text = inp.value.trim();
+  if (!text || isLoading) return;
+  if (!currentConvId) newChat();
+
+  const c = conversations.find(x=>x.id===currentConvId);
+  if (!c) return;
+  if (c.messages.length === 0) {
+    c.title = text.slice(0,34)+(text.length>34?'…':'');
+    document.getElementById('tbTitle').textContent = c.title;
+    renderChatList();
+  }
+
+  inp.value=''; inp.style.height='auto';
+  isLoading=true;
+  document.getElementById('sendBtn').disabled=true;
+  c.messages.push({role:'user',content:text});
+  appendMsgEl('user',text);
+
+  const typRow = document.createElement('div');
+  typRow.className='typing-row'; typRow.id='typRow';
+  typRow.innerHTML=`<div class="msg-av" style="background:linear-gradient(135deg,var(--accent),#b06af7);color:#fff;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0">AI</div>
+    <div class="typing-dots"><span></span><span></span><span></span></div>`;
+  document.getElementById('chatView').appendChild(typRow);
+  document.getElementById('chatView').scrollTop=99999;
+
+  try {
+    const reply = await callGemini(text, chatHistory);
+    typRow.remove();
+    chatHistory.push({user:text,agent:reply});
+    c.messages.push({role:'ai',content:reply});
+    appendMsgEl('ai',reply);
+  } catch(e) {
+    typRow.remove();
+    appendMsgEl('ai',`⚠️ Xato: ${e.message}`);
+  }
+  isLoading=false;
+  document.getElementById('sendBtn').disabled=false;
+  inp.focus();
+};
+
+window.handleKey = e => {if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();window.sendMsg();}};
+window.autoResize = el => {el.style.height='auto';el.style.height=Math.min(el.scrollHeight,180)+'px';};
+window.navClick = (p, btn) => {
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+};
+
+document.getElementById('modelSel').onchange = function(){
+  document.getElementById('tbModel').textContent = this.value;
+};
+
+// ═══════════════════════════════════════
+//  HR TEST
+// ═══════════════════════════════════════
+const HR = {
+  step:1, nm:'',em:'',ph:'',bd:'',ad:'',pos:'',
+  errs:{}, ans:{}, qi:0, result:null
+};
+
+function ex(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function ve(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((e||'').trim())}
+function vp(p){return /^\+?[0-9]{9,13}$/.test((p||'').replace(/[\s\-\(\)]/g,''))}
+function sb(s){
+  if(s>=85)return '<span class="hbadge bok">✓ Qabul</span>';
+  if(s>=65)return '<span class="hbadge bwa">◎ Ko\'rib chiqiladi</span>';
+  return '<span class="hbadge ber-b">✗ Rad</span>';
+}
+function calcScore(ans,qs){
+  let t=0,c=0;
+  qs.forEach(q=>{const i=parseInt(ans[q.id]);if(!isNaN(i)&&i>=0){t+=((q.o.length-i)/q.o.length)*100;c++;}});
+  return c?Math.round(t/c):50;
+}
+
+function hrRender(){document.getElementById('hrContent').innerHTML=hrHTML();}
+
+function hrHTML(){
+  if(HR.step===1)return hrStep1();
+  if(HR.step===2)return hrStep2();
+  if(HR.step===3)return hrStep3();
+  if(HR.step===4)return hrStep4();
+  return hrStep1();
+}
+
+function hrStep1(){
+  const e=HR.errs;
+  return `<div class="hcard">
+    <div class="hdots"><div class="hdot on"></div><div class="hdot"></div><div class="hdot"></div></div>
+    <p style="font-size:11px;font-weight:700;color:var(--hmu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px">Shaxsiy ma'lumotlar</p>
+    <div class="hfl"><label>Ism va familiya *</label>
+      <input class="hinp${e.nm?' err':''}" id="h1" type="text" placeholder="To'liq ismingiz" value="${ex(HR.nm)}"/>
+      ${e.nm?`<div class="hetx">⚠ ${e.nm}</div>`:''}
     </div>
-
-    <!-- API key area -->
-    ${!geminiKey ? `<div style="padding:14px 24px 0">
-      <div class="api-notice">⚠️ Gemini API kalitini kiriting (bepul: aistudio.google.com)</div>
-      <div class="api-key-row">
-        <input class="api-key-input" type="password" id="geminiKeyInput" placeholder="AIza..." value=""/>
-        <button class="api-key-btn" onclick="saveGeminiKey()">Saqlash</button>
-      </div>
-    </div>` : ''}
-
-    <!-- Chat area -->
-    <div class="ai-chat" id="aiChat">
-      ${aiHistory.length === 0 ? `
-      <div class="ai-welcome">
-        <div class="ai-welcome-icon">🌿</div>
-        <div>
-          <div class="ai-welcome-title">${langCfg.welcome_title}</div>
-          <div class="ai-welcome-sub">${langCfg.welcome_sub}</div>
-        </div>
-        <div class="ai-starters">
-          ${langCfg.starters.map(s=>`
-          <div class="ai-starter" onclick="aiSendStarter('${s.q.replace(/'/g,"\\'")}')">
-            <div class="ai-starter-icon">${s.icon}</div>
-            <div class="ai-starter-title">${s.title}</div>
-            <div class="ai-starter-sub">${s.sub}</div>
-          </div>`).join('')}
-        </div>
-      </div>` : aiHistory.map(m=>`
-        <div class="ai-msg-row user">
-          <div class="ai-msg-av">Siz</div>
-          <div class="ai-bubble">${ex(m.user)}</div>
-        </div>
-        <div class="ai-msg-row ai">
-          <div class="ai-msg-av">AI</div>
-          <div class="ai-bubble">${formatAiText(m.agent)}</div>
-        </div>`).join('')}
+    <div class="hfl"><label>Email *</label>
+      <input class="hinp${e.em?' err':''}" id="h2" type="email" placeholder="email@gmail.com" value="${ex(HR.em)}"/>
+      ${e.em?`<div class="hetx">⚠ ${e.em}</div>`:'<div class="hhint">Format: ism@gmail.com</div>'}
     </div>
+    <div class="hfl"><label>Telefon *</label>
+      <input class="hinp${e.ph?' err':''}" id="h3" type="tel" placeholder="+998901234567" value="${ex(HR.ph)}"/>
+      ${e.ph?`<div class="hetx">⚠ ${e.ph}</div>`:''}
+    </div>
+    <div class="hfl"><label>Tug'ilgan sana *</label>
+      <input class="hinp${e.bd?' err':''}" id="h4" type="date" value="${ex(HR.bd)}"/>
+      ${e.bd?`<div class="hetx">⚠ ${e.bd}</div>`:''}
+    </div>
+    <div class="hfl"><label>Manzil *</label>
+      <input class="hinp${e.ad?' err':''}" id="h5" type="text" placeholder="Toshkent, Chilonzor" value="${ex(HR.ad)}"/>
+      ${e.ad?`<div class="hetx">⚠ ${e.ad}</div>`:''}
+    </div>
+    <button class="hbtn hbp hbfull" style="margin-top:8px" onclick="hrNext1()">Davom etish →</button>
+  </div>`;
+}
 
-    <!-- Input -->
-    <div class="ai-input-area">
-      <div class="ai-input-box">
-        <textarea class="ai-textarea" id="aiInput" placeholder="${langCfg.placeholder}"
-          rows="1" onkeydown="aiKey(event)" oninput="aiResize(this)"></textarea>
-        <button class="ai-send" id="aiSendBtn" onclick="aiSend()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
-          </svg>
-        </button>
-      </div>
-      <div class="ai-hint"><kbd>Enter</kbd> yuborish · <kbd>Shift+Enter</kbd> yangi qator</div>
+function hrStep2(){
+  let cards='';
+  Object.keys(POS).forEach(k=>{
+    const p=POS[k];
+    cards+=`<div class="hpc${HR.pos===k?' sel':''}" onclick="hrSel('${k}')">
+      <div class="hck">✓</div>
+      <div style="font-size:26px;margin-bottom:6px">${p.i}</div>
+      <div style="font-size:13px;font-weight:700;color:var(--htx)">${p.l}</div>
+    </div>`;
+  });
+  return `<div class="hcard">
+    <div class="hdots"><div class="hdot dn"></div><div class="hdot on"></div><div class="hdot"></div></div>
+    <p style="font-size:11px;font-weight:700;color:var(--hmu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Kasbingizni tanlang</p>
+    ${HR.errs.pos?'<div class="hetx" style="margin-bottom:10px">⚠ Kasbni tanlang</div>':''}
+    <div class="hpg">${cards}</div>
+    <div style="display:flex;gap:8px">
+      <button class="hbtn hbg" onclick="HR.step=1;hrRender()">← Orqaga</button>
+      <button class="hbtn hbp" style="flex:1;justify-content:center" onclick="hrNext2()">Imtihonni boshlash →</button>
     </div>
   </div>`;
 }
 
-function formatAiText(text) {
-  return ex(text).replace(/\n/g,'<br>');
-}
-
-window.setAiLang = function(l) { aiLang = l; R(); };
-window.saveGeminiKey = function() {
-  const v = (document.getElementById('geminiKeyInput')||{}).value||'';
-  if(v.trim()) {
-    geminiKey = v.trim();
-    localStorage.setItem('ottimo_gemini_key', geminiKey);
-    R();
-  }
-};
-window.aiSendStarter = function(q) {
-  const inp = document.getElementById('aiInput');
-  if(inp) inp.value = q;
-  aiSend();
-};
-window.aiKey = function(e) {
-  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();aiSend();}
-};
-window.aiResize = function(el) {
-  el.style.height='auto';
-  el.style.height=Math.min(el.scrollHeight,120)+'px';
-};
-window.aiSend = async function() {
-  const inp = document.getElementById('aiInput');
-  const text = (inp?.value||'').trim();
-  if(!text||aiLoading) return;
-  if(!geminiKey) { alert("Iltimos, avval Gemini API kalitini kiriting!"); return; }
-
-  inp.value=''; inp.style.height='auto';
-  aiLoading=true;
-  document.getElementById('aiSendBtn').disabled=true;
-
-  // Append user message & typing
-  const chat=document.getElementById('aiChat');
-  const ws=chat.querySelector('.ai-welcome');
-  if(ws) ws.remove();
-
-  const uRow=document.createElement('div');
-  uRow.className='ai-msg-row user';
-  uRow.innerHTML=`<div class="ai-msg-av">Siz</div><div class="ai-bubble">${ex(text)}</div>`;
-  chat.appendChild(uRow);
-
-  const typingRow=document.createElement('div');
-  typingRow.id='aiTyping';
-  typingRow.className='ai-msg-row ai';
-  typingRow.innerHTML=`<div class="ai-msg-av">AI</div>
-    <div class="ai-typing"><span></span><span></span><span></span></div>`;
-  chat.appendChild(typingRow);
-  chat.scrollTop=99999;
-
-  try {
-    const reply=await callGemini(text);
-    typingRow.remove();
-    aiHistory.push({user:text,agent:reply});
-
-    const aiRow=document.createElement('div');
-    aiRow.className='ai-msg-row ai';
-    aiRow.innerHTML=`<div class="ai-msg-av">AI</div><div class="ai-bubble">${formatAiText(reply)}</div>`;
-    chat.appendChild(aiRow);
-    chat.scrollTop=99999;
-  } catch(err) {
-    typingRow.remove();
-    const errRow=document.createElement('div');
-    errRow.className='ai-msg-row ai';
-    errRow.innerHTML=`<div class="ai-msg-av">AI</div>
-      <div class="ai-bubble" style="color:var(--er)">⚠️ Xato: ${ex(err.message)}. API kalitni tekshiring.</div>`;
-    chat.appendChild(errRow);
-    chat.scrollTop=99999;
-  }
-
-  aiLoading=false;
-  document.getElementById('aiSendBtn').disabled=false;
-  inp?.focus();
-};
-
-// ═══════════════════ HR HELPERS ═══════════════════
-function ve(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((e||'').trim())}
-function vp(p){return /^\+?[0-9]{9,13}$/.test((p||'').replace(/[\s\-\(\)]/g,''))}
-function ex(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function sb(s){
-  if(s>=85)return '<span class="badge bok">✓ Qabul</span>';
-  if(s>=65)return '<span class="badge bwa">◎ Monitoring</span>';
-  return '<span class="badge ber">✗ Rad</span>';
-}
-function calcScore(ans,qs){
-  var t=0,c=0;
-  for(var i=0;i<qs.length;i++){
-    var idx=parseInt(ans[qs[i].id]);
-    if(!isNaN(idx)&&idx>=0){t+=((qs[i].o.length-idx)/qs[i].o.length)*100;c++;}
-  }
-  return c?Math.round(t/c):50;
-}
-
-// ═══════════════════ HR STATE ═══════════════════
-var S={
-  tab:'manager',
-  mgr:false,mgrName:'',
-  page:'home',
-  exams:[],
-  openId:null,
-  srch:'',
-  step:1,
-  nm:'',em:'',ph:'',bd:'',ad:'',pos:'',
-  errs:{},
-  ans:{},qi:0,
-  result:null,
-  toast:null,
-};
-
-// ═══════════════════ RENDER ═══════════════════
-function R(){
-  var h='';
-  if(S.toast)h+='<div class="toast '+(S.toast.t==='e'?'ter':'tok')+'">'+S.toast.m+'</div>';
-  if(S.mgr){h+=appHTML();}
-  else{h+=loginHTML();}
-  document.getElementById('app').innerHTML=h;
-}
-
-// LOGIN
-function loginHTML(){
-  return '<div class="lw">'
-    +'<div class="ll"><div class="ll-lg">Ottimo</div>'
-    +'<p class="ll-tg">Xodimlarni sinov muddatida baholash tizimi</p></div>'
-    +'<div class="lr"><div class="lbox fu">'
-    +'<div style="font-family:\'Playfair Display\',serif;font-size:24px;margin-bottom:4px">'
-    +(S.tab==='manager'?'Rahbar kirish':'Sinov imtihoni')+'</div>'
-    +'<div style="font-size:13px;color:var(--mu);margin-bottom:18px">'
-    +(S.tab==='manager'?'Boshqaruv paneliga kirish':'Ma\'lumotlarni to\'ldiring va imtihonni boshlang')+'</div>'
-    +'<div class="ltabs">'
-    +'<button class="ltab '+(S.tab==='manager'?'on':'')+'" onclick="TAB(\'manager\')">Rahbar</button>'
-    +'<button class="ltab '+(S.tab==='employee'?'on':'')+'" onclick="TAB(\'employee\')">Hodim</button>'
-    +'</div>'
-    +(S.tab==='manager'?mgrForm():empFlow())
-    +'</div></div></div>';
-}
-
-function mgrForm(){
-  return '<div class="fl"><label>Ism Familiya</label>'
-    +'<input class="inp" id="mn" type="text" placeholder="Ism Familiya"/></div>'
-    +'<div class="fl"><label>Parol</label>'
-    +'<input class="inp" id="mp" type="password" placeholder="••••••••"/></div>'
-    +(S.errs.mgr?'<div class="etx" style="margin-bottom:10px">⚠ '+S.errs.mgr+'</div>':'')
-    +'<button class="btn bp bfull blg" style="margin-top:8px" onclick="LOGIN()">Kirish →</button>';
-}
-
-function empFlow(){
-  if(S.step===1)return step1();
-  if(S.step===2)return step2();
-  if(S.step===3)return step3();
-  if(S.step===4)return step4();
-  return step1();
-}
-
-function step1(){
-  var e=S.errs;
-  return '<div class="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>'
-    +'<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Shaxsiy ma\'lumotlar</div>'
-    +'<div class="fl"><label>Ism va familiya *</label>'
-    +'<input class="inp'+(e.nm?' err':'')+'" id="f1" type="text" placeholder="To\'liq ismingiz" value="'+ex(S.nm)+'"/>'
-    +(e.nm?'<div class="etx">⚠ '+e.nm+'</div>':'')+'</div>'
-    +'<div class="fl"><label>Email *</label>'
-    +'<input class="inp'+(e.em?' err':'')+'" id="f2" type="email" placeholder="email@gmail.com" value="'+ex(S.em)+'"/>'
-    +(e.em?'<div class="etx">⚠ '+e.em+'</div>':'<div class="hint">To\'g\'ri format: ism@gmail.com</div>')+'</div>'
-    +'<div class="fl"><label>Telefon *</label>'
-    +'<input class="inp'+(e.ph?' err':'')+'" id="f3" type="tel" placeholder="+998901234567" value="'+ex(S.ph)+'"/>'
-    +(e.ph?'<div class="etx">⚠ '+e.ph+'</div>':'<div class="hint">Masalan: +998901234567</div>')+'</div>'
-    +'<div class="fl"><label>Tug\'ilgan sana *</label>'
-    +'<input class="inp'+(e.bd?' err':'')+'" id="f4" type="date" value="'+ex(S.bd)+'"/>'
-    +(e.bd?'<div class="etx">⚠ '+e.bd+'</div>':'')+'</div>'
-    +'<div class="fl"><label>Manzil *</label>'
-    +'<input class="inp'+(e.ad?' err':'')+'" id="f5" type="text" placeholder="Toshkent, Chilonzor" value="'+ex(S.ad)+'"/>'
-    +(e.ad?'<div class="etx">⚠ '+e.ad+'</div>':'')+'</div>'
-    +'<button class="btn bp bfull blg" style="margin-top:8px" onclick="NEXT1()">Davom etish →</button>';
-}
-
-function step2(){
-  var cards='';
-  Object.keys(POS).forEach(function(k){
-    var p=POS[k];
-    cards+='<div class="pc'+(S.pos===k?' sel':'')+'" onclick="SEL(\''+k+'\')">'
-      +'<div class="ck">✓</div>'
-      +'<div style="font-size:26px;margin-bottom:6px">'+p.i+'</div>'
-      +'<div style="font-size:13px;font-weight:700">'+p.l+'</div>'
-      +'</div>';
+function hrStep3(){
+  const qs=POS[HR.pos].q;
+  const q=qs[HR.qi];
+  if(!q){hrSubmit();return '<div style="text-align:center;padding:40px;font-size:28px">⏳</div>';}
+  const pct=Math.round((HR.qi/qs.length)*100);
+  let opts='';
+  q.o.forEach((o,i)=>{
+    opts+=`<button class="hch${HR.ans[q.id]===String(i)?' sel':''}" onclick="hrAns('${q.id}','${i}')">${ex(o)}</button>`;
   });
-  return '<div class="dots"><div class="dot dn"></div><div class="dot on"></div><div class="dot"></div></div>'
-    +'<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Kasbingizni tanlang</div>'
-    +(S.errs.pos?'<div class="etx" style="margin-bottom:10px">⚠ Iltimos kasbni tanlang</div>':'')
-    +'<div class="pg">'+cards+'</div>'
-    +'<div style="display:flex;gap:8px">'
-    +'<button class="btn bg2" onclick="S.step=1;R()">← Orqaga</button>'
-    +'<button class="btn bp" style="flex:1;justify-content:center" onclick="NEXT2()">Imtihonni boshlash →</button>'
-    +'</div>';
+  return `<div class="hcard">
+    <div class="hdots"><div class="hdot dn"></div><div class="hdot dn"></div><div class="hdot on"></div></div>
+    <div class="hpbar"><div class="hpfill" style="width:${pct}%"></div></div>
+    <p style="font-size:11px;color:var(--hmu);font-weight:600;margin-bottom:14px">Savol ${HR.qi+1} / ${qs.length}</p>
+    <div class="hqcat">${ex(q.c)}</div>
+    <div class="hqtxt">${ex(q.t)}</div>
+    <div class="hchoices">${opts}</div>
+    <div style="display:flex;gap:8px;margin-top:18px">
+      <button class="hbtn hbg" ${HR.qi===0?'disabled':''} onclick="hrPrev()">← Oldingi</button>
+      <button class="hbtn hbp" style="flex:1;justify-content:center" onclick="hrNextQ()">
+        ${HR.qi===qs.length-1?'Yakunlash →':'Keyingi →'}
+      </button>
+    </div>
+  </div>`;
 }
 
-function step3(){
-  var qs=POS[S.pos].q;
-  var q=qs[S.qi];
-  if(!q){SUBMIT();return '<div style="text-align:center;padding:32px"><div style="font-size:28px">⏳</div></div>';}
-  var pct=Math.round((S.qi/qs.length)*100);
-  var opts='';
-  for(var i=0;i<q.o.length;i++){
-    var sel=S.ans[q.id]===String(i);
-    opts+='<button class="ch'+(sel?' sel':'')+'" onclick="ANS(\''+q.id+'\',\''+i+'\')">'+ex(q.o[i])+'</button>';
-  }
-  return '<div class="dots"><div class="dot dn"></div><div class="dot dn"></div><div class="dot on"></div></div>'
-    +'<div class="pbar"><div class="pfill" style="width:'+pct+'%"></div></div>'
-    +'<div style="font-size:11px;color:var(--mu);font-weight:600;margin-bottom:14px">Savol '+(S.qi+1)+' / '+qs.length+'</div>'
-    +'<div class="qcat">'+ex(q.c)+'</div>'
-    +'<div class="qtxt">'+ex(q.t)+'</div>'
-    +'<div class="choices">'+opts+'</div>'
-    +'<div style="display:flex;gap:8px;margin-top:18px">'
-    +'<button class="btn bg2"'+(S.qi===0?' disabled':'')+' onclick="PREV()">← Oldingi</button>'
-    +'<button class="btn bp" style="flex:1;justify-content:center" onclick="NEXQ()">'
-    +(S.qi===qs.length-1?'Yakunlash →':'Keyingi →')+'</button>'
-    +'</div>';
+function hrStep4(){
+  if(!HR.result)return '<div style="text-align:center;padding:40px;font-size:28px">⏳</div>';
+  const r=HR.result;
+  const c=r.sc>=85?'#2c7a4b':r.sc>=65?'#b87a1a':'#b83c3c';
+  const ic=r.sc>=85?'🏆':r.sc>=65?'📊':'📋';
+  return `<div class="hcard" style="text-align:center">
+    <div style="font-size:52px;margin-bottom:10px">${ic}</div>
+    <div style="font-family:'Playfair Display',serif;font-size:64px;color:${c};line-height:1;font-weight:700">${r.sc}%</div>
+    <div style="margin:12px 0">${sb(r.sc)}</div>
+    <p style="font-size:13px;color:var(--hmu);margin-top:14px;line-height:1.7">
+      ${r.sc>=85?'Tabriklaymiz! Natijalaringiz rahbarga yuborildi. Tez orada siz bilan bog\'lanishadi.'
+        :r.sc>=65?'Yaxshi natija! Rahbar siz bilan ko\'rib chiqadi.'
+        :'Natijalaringiz rahbarga yuborildi. Rahbar siz bilan bog\'lanadi.'}
+    </p>
+    <div style="display:flex;gap:10px;margin-top:20px">
+      <button class="hbtn hbg" style="flex:1;justify-content:center" onclick="hrRestart()">Qayta boshlash</button>
+      <button class="hbtn hbp" style="flex:1;justify-content:center" onclick="closeHR()">← Agentga qaytish</button>
+    </div>
+  </div>`;
 }
 
-function step4(){
-  if(!S.result)return '<div style="text-align:center;padding:32px"><div style="font-size:28px">⏳</div></div>';
-  var r=S.result;
-  var c=r.sc>=85?'var(--ok)':r.sc>=65?'var(--wa)':'var(--er)';
-  var ic=r.sc>=85?'🏆':r.sc>=65?'📊':'📋';
-  return '<div style="text-align:center;padding:12px 0">'
-    +'<div style="font-size:48px;margin-bottom:10px">'+ic+'</div>'
-    +'<div style="font-family:\'Playfair Display\',serif;font-size:60px;color:'+c+';line-height:1">'+r.sc+'%</div>'
-    +'<div style="margin:10px 0">'+sb(r.sc)+'</div>'
-    +'<p style="font-size:13px;color:var(--mu);margin-top:14px;line-height:1.6">'
-    +(r.sc>=85?'Tabriklaymiz! Natijalaringiz rahbarga yuborildi.'
-      :r.sc>=65?"Yaxshi natija! Rahbar siz bilan bog'lanadi."
-      :'Natijalaringiz rahbarga yuborildi. Rahbar siz bilan bog\'lanadi.')+'</p>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;text-align:left">'
-    +'<div class="csm"><div style="font-size:11px;color:var(--mu);font-weight:700;margin-bottom:3px">BALL</div>'
-    +'<div style="font-size:28px;font-weight:700;color:'+c+'">'+r.sc+'%</div></div>'
-    +'<div class="csm"><div style="font-size:11px;color:var(--mu);font-weight:700;margin-bottom:3px">HOLAT</div>'
-    +'<div style="margin-top:4px">'+sb(r.sc)+'</div></div>'
-    +'</div></div>';
-}
-
-// ═══════════════════ APP (RAHBAR) ═══════════════════
-function appHTML(){
-  var isAI = S.page==='ai';
-  var content = isAI ? aiPageHTML() : (S.page==='results'?resultsHTML():homeHTML());
-  var wrapClass = isAI ? '' : 'class="main fu"';
-  return '<div style="display:flex;flex-direction:column;min-height:100vh">'
-    +'<div class="tb">'
-    +'<div class="logo">Ottimo HR</div>'
-    +'<nav class="nav">'
-    +'<button class="'+(S.page==='home'?'on':'')+'" onclick="PAGE(\'home\')">Bosh sahifa</button>'
-    +'<button class="'+(S.page==='results'?'on':'')+'" onclick="PAGE(\'results\')">Natijalar</button>'
-    +'<button class="'+(S.page==='ai'?'on':'')+'" onclick="PAGE(\'ai\')" style="display:flex;align-items:center;gap:5px">'
-    +'<span style="font-size:14px">🤖</span> AI Yordam</button>'
-    +'</nav>'
-    +'<div class="chip" onclick="LOGOUT()">'
-    +'<div class="av">'+(S.mgrName[0]||'R').toUpperCase()+'</div>'
-    +'<span>'+ex(S.mgrName)+'</span>'
-    +'<span style="font-size:11px;color:var(--mu)">↗ Chiqish</span>'
-    +'</div></div>'
-    +(isAI ? content : '<div '+wrapClass+'>'+content+'</div>')
-    +'</div>';
-}
-
-function homeHTML(){
-  var passed=S.exams.filter(function(e){return e.sc>=85}).length;
-  var mon=S.exams.filter(function(e){return e.sc>=65&&e.sc<85}).length;
-  var avg=S.exams.length?Math.round(S.exams.reduce(function(a,e){return a+e.sc},0)/S.exams.length):0;
-  var rows='';
-  var recent=S.exams.slice(0,6);
-  for(var i=0;i<recent.length;i++){
-    var e=recent[i];
-    var p=POS[e.position];
-    var c=e.sc>=85?'var(--ok)':e.sc>=65?'var(--wa)':'var(--er)';
-    rows+='<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--bor)">'
-      +'<div style="display:flex;align-items:center;gap:10px">'
-      +'<div style="width:34px;height:34px;border-radius:50%;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:15px">'+(p?p.i:'👤')+'</div>'
-      +'<div><div style="font-size:14px;font-weight:600">'+ex(e.nm||'')+'</div>'
-      +'<div style="font-size:12px;color:var(--mu)">'+(p?p.l:e.position||'')+(e.date?' · '+e.date:'')+'</div></div></div>'
-      +'<div style="display:flex;align-items:center;gap:8px">'
-      +'<span style="font-size:17px;font-weight:700;color:'+c+'">'+e.sc+'%</span>'
-      +sb(e.sc)+'</div></div>';
-  }
-  return '<h1 style="font-family:\'Playfair Display\',serif;font-size:28px;margin-bottom:4px">Bosh sahifa</h1>'
-    +'<p style="color:var(--mu);font-size:13px;margin-bottom:22px">Ottimo HR — Sinov muddati tizimi</p>'
-    +'<div class="g4" style="margin-bottom:20px">'
-    +'<div class="csm"><div class="sv" style="color:var(--ac)">'+S.exams.length+'</div><div class="sl">Jami topshirdi</div></div>'
-    +'<div class="csm"><div class="sv" style="color:var(--ok)">'+passed+'</div><div class="sl">Qabul qilindi</div></div>'
-    +'<div class="csm"><div class="sv" style="color:var(--wa)">'+mon+'</div><div class="sl">Monitoring</div></div>'
-    +'<div class="csm"><div class="sv" style="color:#2a5fa8">'+avg+'%</div><div class="sl">O\'rtacha ball</div></div>'
-    +'</div>'
-    +'<div class="card">'
-    +'<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">So\'nggi imtihonlar</div>'
-    +(recent.length?rows:'<p style="color:var(--mu);font-size:13px;text-align:center;padding:20px 0">Hali imtihon yo\'q</p>')
-    +'</div>';
-}
-
-function resultsHTML(){
-  var srch=(S.srch||'').toLowerCase();
-  var list=S.exams.filter(function(e){
-    return !srch||(e.nm||'').toLowerCase().includes(srch)||(e.position||'').toLowerCase().includes(srch);
-  });
-  var passed=S.exams.filter(function(e){return e.sc>=85}).length;
-  var mon=S.exams.filter(function(e){return e.sc>=65&&e.sc<85}).length;
-  var fail=S.exams.filter(function(e){return e.sc<65}).length;
-  var cards='';
-  for(var i=0;i<list.length;i++){cards+=examCard(list[i]);}
-  return '<h1 style="font-family:\'Playfair Display\',serif;font-size:28px;margin-bottom:18px">Natijalar</h1>'
-    +'<div class="g3" style="margin-bottom:18px">'
-    +'<div class="csm"><div class="sv" style="color:var(--ok)">'+passed+'</div><div class="sl">Qabul (≥85%)</div></div>'
-    +'<div class="csm"><div class="sv" style="color:var(--wa)">'+mon+'</div><div class="sl">Monitoring</div></div>'
-    +'<div class="csm"><div class="sv" style="color:var(--er)">'+fail+'</div><div class="sl">Rad (&lt;65%)</div></div>'
-    +'</div>'
-    +'<input class="inp" placeholder="Qidirish…" value="'+ex(S.srch)+'" oninput="S.srch=this.value;R()" style="max-width:320px;margin-bottom:16px"/>'
-    +(list.length?cards:'<div class="card" style="text-align:center;padding:40px"><p style="color:var(--mu)">Natija topilmadi</p></div>');
-}
-
-function examCard(e){
-  var p=POS[e.position];
-  var open=S.openId===e.id;
-  var c=e.sc>=85?'var(--ok)':e.sc>=65?'var(--wa)':'var(--er)';
-  var qa='';
-  if(open){
-    var ans=e.answers||{};
-    var qs=p?p.q:[];
-    for(var i=0;i<qs.length;i++){
-      var q=qs[i];
-      var raw=ans[q.id];
-      var idx=(raw!==undefined&&raw!==null&&raw!=='')?parseInt(raw):-1;
-      var at=(idx>=0&&idx<q.o.length)?q.o[idx]:'Javob berilmagan';
-      qa+='<div class="qa-it">'
-        +'<div class="qa-cat">'+ex(q.c)+'</div>'
-        +'<div class="qa-q">'+(i+1)+'. '+ex(q.t)+'</div>'
-        +'<div class="qa-a">✓ '+ex(at)+'</div>'
-        +'</div>';
-    }
-    if(!qa)qa='<p style="color:var(--mu);font-size:13px;text-align:center;padding:14px 0">Javoblar topilmadi</p>';
-  }
-  return '<div class="nc">'
-    +'<div class="nc-h" onclick="OPEN(\''+e.id+'\')">'
-    +'<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">'
-    +'<div style="display:flex;align-items:center;gap:10px">'
-    +'<div style="width:40px;height:40px;border-radius:50%;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">'+(p?p.i:'👤')+'</div>'
-    +'<div>'
-    +'<div style="font-size:15px;font-weight:700">'+ex(e.nm||'')+'</div>'
-    +'<div style="font-size:12px;color:var(--mu);margin-top:2px">'
-    +'<span class="badge bgr" style="margin-right:5px">'+(p?p.l:e.position||'—')+'</span>'+(e.date||'')+'</div>'
-    +'<div style="font-size:11px;color:var(--mu);margin-top:2px">📞 '+(e.ph||'—')+' · 📧 '+(e.em||'—')+'</div>'
-    +'<div style="font-size:11px;color:var(--mu)">📅 '+(e.bd||'—')+' · 📍 '+(e.ad||'—')+'</div>'
-    +'</div></div>'
-    +'<div style="text-align:right;flex-shrink:0">'
-    +'<div style="font-family:\'Playfair Display\',serif;font-size:32px;font-weight:700;color:'+c+';line-height:1">'+e.sc+'%</div>'
-    +'<div style="margin-top:4px">'+sb(e.sc)+'</div>'
-    +'</div></div>'
-    +'<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--bor);display:flex;align-items:center;justify-content:space-between">'
-    +'<span style="font-size:12px;font-weight:700;color:var(--ac)">'+(open?'▲ Yopish':'👁 Savollar va javoblarni ko\'rish')+'</span>'
-    +'<span style="font-size:11px;color:var(--mu)">'+(p?p.q.length:0)+' ta savol</span>'
-    +'</div></div>'
-    +(open?'<div class="nc-b">'+qa+'</div>':'')
-    +'</div>';
-}
-
-// ═══════════════════ GLOBAL ═══════════════════
-window.TAB=function(t){S.tab=t;S.step=1;S.nm='';S.em='';S.ph='';S.bd='';S.ad='';S.pos='';S.errs={};S.ans={};S.qi=0;S.result=null;R();};
-window.SEL=function(k){S.pos=k;S.errs.pos=null;R();};
-window.ANS=function(id,v){S.ans[id]=v;R();};
-window.OPEN=function(id){S.openId=S.openId===id?null:id;R();};
-window.PAGE=function(p){S.page=p;if(p==='results')loadEx().then(R);else R();};
-
-window.LOGIN=function(){
-  var n=(document.getElementById('mn')||{}).value||'';
-  var p=(document.getElementById('mp')||{}).value||'';
-  n=n.trim();
-  if(!n){S.errs={mgr:'Ism Familiyangizni kiriting'};R();return;}
-  if(p!==MGR_PASS){S.errs={mgr:"Parol noto'g'ri"};R();return;}
-  S.mgr=true;S.mgrName=n;S.errs={};S.page='home';
-  loadEx().then(R);
+window.hrSel = k=>{HR.pos=k;HR.errs.pos=false;hrRender();};
+window.hrAns = (id,v)=>{HR.ans[id]=v;hrRender();};
+window.hrPrev = ()=>{if(HR.qi>0){HR.qi--;hrRender();}};
+window.hrNext1 = function(){
+  HR.nm=(document.getElementById('h1')||{}).value?.trim()||'';
+  HR.em=(document.getElementById('h2')||{}).value?.trim()||'';
+  HR.ph=(document.getElementById('h3')||{}).value?.trim()||'';
+  HR.bd=(document.getElementById('h4')||{}).value?.trim()||'';
+  HR.ad=(document.getElementById('h5')||{}).value?.trim()||'';
+  const er={};
+  if(HR.nm.length<3)er.nm="Ism kamida 3 harf bo'lsin";
+  if(!ve(HR.em))er.em="To'g'ri email kiriting";
+  if(!vp(HR.ph))er.ph="To'g'ri telefon kiriting";
+  if(!HR.bd)er.bd="Tug'ilgan sanani kiriting";
+  if(HR.ad.length<3)er.ad="Manzilni kiriting";
+  HR.errs=er;
+  if(Object.keys(er).length>0){hrRender();return;}
+  HR.step=2;hrRender();
+};
+window.hrNext2 = function(){
+  if(!HR.pos){HR.errs={pos:true};hrRender();return;}
+  HR.errs={};HR.step=3;HR.ans={};HR.qi=0;hrRender();
+};
+window.hrNextQ = function(){
+  const qs=POS[HR.pos].q;
+  if(HR.qi>=qs.length-1){HR.step=4;hrRender();hrSubmit();}
+  else{HR.qi++;hrRender();}
+};
+window.hrRestart = function(){
+  HR.step=1;HR.nm='';HR.em='';HR.ph='';HR.bd='';HR.ad='';
+  HR.pos='';HR.errs={};HR.ans={};HR.qi=0;HR.result=null;
+  hrRender();
 };
 
-window.LOGOUT=function(){S.mgr=false;S.mgrName='';S.tab='manager';S.exams=[];aiHistory=[];R();};
-
-window.NEXT1=function(){
-  var nm=(document.getElementById('f1')||{}).value||'';
-  var em=(document.getElementById('f2')||{}).value||'';
-  var ph=(document.getElementById('f3')||{}).value||'';
-  var bd=(document.getElementById('f4')||{}).value||'';
-  var ad=(document.getElementById('f5')||{}).value||'';
-  nm=nm.trim();em=em.trim();ph=ph.trim();bd=bd.trim();ad=ad.trim();
-  S.nm=nm;S.em=em;S.ph=ph;S.bd=bd;S.ad=ad;
-  var er={};
-  if(nm.length<3)er.nm="Ism kamida 3 harfdan iborat bo'lsin";
-  if(!ve(em))er.em="To'g'ri email kiriting";
-  if(!vp(ph))er.ph="To'g'ri telefon kiriting (+998901234567)";
-  if(!bd)er.bd="Tug'ilgan sanani kiriting";
-  if(ad.length<4)er.ad="Manzilni kiriting";
-  S.errs=er;
-  if(Object.keys(er).length>0){R();return;}
-  S.step=2;R();
-};
-
-window.NEXT2=function(){
-  if(!S.pos){S.errs={pos:true};R();return;}
-  S.errs={};S.step=3;S.ans={};S.qi=0;R();
-};
-
-window.PREV=function(){if(S.qi>0){S.qi--;R();}};
-
-window.NEXQ=function(){
-  var qs=POS[S.pos].q;
-  if(S.qi>=qs.length-1){
-    S.step=4;R();
-    SUBMIT();
-  } else {
-    S.qi++;R();
-  }
-};
-
-window.SUBMIT=async function(){
-  var qs=POS[S.pos].q;
-  var sc=calcScore(S.ans,qs);
-  var data={
-    nm:S.nm,em:S.em,ph:S.ph,bd:S.bd,ad:S.ad,
-    position:S.pos,answers:S.ans,sc:sc,
-    date:new Date().toLocaleDateString('uz-UZ'),
-    ts:Date.now(),
-  };
+async function hrSubmit(){
+  const qs=POS[HR.pos].q;
+  const sc=calcScore(HR.ans,qs);
+  const pos=POS[HR.pos];
+  const data={nm:HR.nm,em:HR.em,ph:HR.ph,bd:HR.bd,ad:HR.ad,
+    position:HR.pos,answers:HR.ans,sc,
+    date:new Date().toLocaleDateString('uz-UZ'),ts:Date.now()};
   try{
     await addDoc(collection(db,'exams'),data);
-    var pos=POS[S.pos];
-    var msg='<b>🆕 Yangi imtihon natijasi</b>\n\n'
-      +'👤 <b>Ism:</b> '+S.nm+'\n'
-      +'💼 <b>Kasb:</b> '+(pos?pos.l:S.pos)+'\n'
-      +'📧 <b>Email:</b> '+S.em+'\n'
-      +'📞 <b>Telefon:</b> '+S.ph+'\n'
-      +'📊 <b>Ball:</b> '+sc+'%\n'
-      +'✅ <b>Holat:</b> '+(sc>=85?'Qabul':sc>=65?'Monitoring':'Rad');
-    await tg(msg);
-    S.result=data;R();
-  }catch(err){
-    S.result={sc:sc};R();
-  }
-};
-
-async function loadEx(){
-  try{
-    var snap=await getDocs(query(collection(db,'exams'),orderBy('ts','desc')));
-    S.exams=snap.docs.map(function(d){var x=d.data();x.id=d.id;return x;});
-  }catch(e){console.warn(e);}
+    let msg=`<b>🆕 Yangi imtihon natijasi</b>\n\n👤 <b>Ism:</b> ${HR.nm}\n💼 <b>Kasb:</b> ${pos.l}\n📧 <b>Email:</b> ${HR.em}\n📞 <b>Telefon:</b> ${HR.ph}\n📅 <b>Sana:</b> ${HR.bd}\n📍 <b>Manzil:</b> ${HR.ad}\n📊 <b>Ball:</b> ${sc}%\n✅ <b>Holat:</b> ${sc>=85?'✅ Qabul':sc>=65?'⚠️ Ko\'rib chiqiladi':'❌ Rad'}\n\n<b>Javoblar:</b>\n`;
+    qs.forEach((q,i)=>{const idx=parseInt(HR.ans[q.id]);const a=(!isNaN(idx)&&q.o[idx])?q.o[idx]:'—';msg+=`${i+1}. ${q.t}\n→ ${a}\n\n`;});
+    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({chat_id:TG_CHAT,text:msg,parse_mode:'HTML'})
+    });
+  }catch(err){console.warn(err);}
+  HR.result={sc};hrRender();
 }
 
-R();
+// ═══════════════════════════════════════
+//  ADMIN PANEL
+// ═══════════════════════════════════════
+let adminTab = 'contact';
+let adminLoggedIn = false;
+let adminExams = [];
+let openExamId = null;
+
+function renderAdmin(){
+  document.getElementById('adminBox').innerHTML = adminLoggedIn ? adminDash() : adminModal();
+}
+
+function adminModal(){
+  return `<div class="admin-box" style="position:relative">
+    <button class="admin-close" onclick="closeAdmin()">✕</button>
+    <div class="admin-tabs">
+      <button class="admin-tab${adminTab==='contact'?' on':''}" onclick="setAdminTab('contact')">📞 Bog'lanish</button>
+      <button class="admin-tab${adminTab==='login'?' on':''}" onclick="setAdminTab('login')">🔐 Kirish</button>
+    </div>
+    <div class="admin-body">
+      ${adminTab==='contact'?adminContact():adminLogin()}
+    </div>
+  </div>`;
+}
+
+function adminContact(){
+  return `<div class="admin-title">Administrator bilan bog'lanish</div>
+    <div class="admin-sub">Ottimo HR bo'yicha savollar uchun quyidagi kanallar orqali murojaat qiling.</div>
+    <div class="admin-contact-card">
+      <div class="admin-contact-icon">💬</div>
+      <div>
+        <div class="admin-contact-name">Telegram</div>
+        <div class="admin-contact-val">@Ottimo_hr</div>
+      </div>
+      <a href="https://t.me/Ottimo_hr" target="_blank" style="margin-left:auto;background:var(--accent);color:#fff;border:none;border-radius:7px;padding:7px 12px;font-size:12px;font-weight:600;text-decoration:none;font-family:var(--font)">Ochish →</a>
+    </div>
+    <div class="admin-contact-card">
+      <div class="admin-contact-icon">📞</div>
+      <div>
+        <div class="admin-contact-name">Telefon</div>
+        <div class="admin-contact-val">+998 99 060 33 53</div>
+      </div>
+      <a href="tel:+998990603353" style="margin-left:auto;background:var(--bg4);color:var(--text);border:none;border-radius:7px;padding:7px 12px;font-size:12px;font-weight:600;text-decoration:none;font-family:var(--font)">Qo'ng'iroq</a>
+    </div>
+    <div class="admin-contact-card">
+      <div class="admin-contact-icon">🔗</div>
+      <div>
+        <div class="admin-contact-name">Ish uchun murojaat</div>
+        <div class="admin-contact-val">t.me/ottimo_uz</div>
+      </div>
+      <a href="https://t.me/ottimo_uz" target="_blank" style="margin-left:auto;background:var(--bg4);color:var(--text);border:none;border-radius:7px;padding:7px 12px;font-size:12px;font-weight:600;text-decoration:none;font-family:var(--font)">Ochish</a>
+    </div>`;
+}
+
+function adminLogin(){
+  return `<div class="admin-title">Rahbar paneli</div>
+    <div class="admin-sub">Imtihon natijalarini ko'rish uchun kiring.</div>
+    <input class="admin-inp" type="text" id="adName" placeholder="Ism Familiya"/>
+    <input class="admin-inp" type="password" id="adPass" placeholder="Parol" onkeydown="if(event.key==='Enter')adminLogin()"/>
+    <div class="admin-err" id="adErr">Parol noto'g'ri</div>
+    <button class="admin-login-btn" onclick="doAdminLogin()">Kirish →</button>`;
+}
+
+window.doAdminLogin = async function(){
+  const p=(document.getElementById('adPass')||{}).value||'';
+  const n=(document.getElementById('adName')||{}).value||'';
+  if(!n.trim()){document.getElementById('adErr').textContent='Ismingizni kiriting';document.getElementById('adErr').style.display='block';return;}
+  if(p!==MGR_PASS){document.getElementById('adErr').style.display='block';return;}
+  adminLoggedIn=true;
+  // load exams
+  try{
+    const snap=await getDocs(query(collection(db,'exams'),orderBy('ts','desc')));
+    adminExams=snap.docs.map(d=>{const x=d.data();x.id=d.id;return x;});
+  }catch(e){}
+  renderAdmin();
+};
+
+function adminDash(){
+  const passed=adminExams.filter(e=>e.sc>=85).length;
+  const mon=adminExams.filter(e=>e.sc>=65&&e.sc<85).length;
+  const fail=adminExams.filter(e=>e.sc<65).length;
+
+  let rows='';
+  adminExams.forEach(e=>{
+    const p=POS[e.position];
+    const c=e.sc>=85?'var(--green)':e.sc>=65?'#f59e0b':'var(--red)';
+    const isOpen=openExamId===e.id;
+    let qa='';
+    if(isOpen&&p){
+      p.q.forEach((q,i)=>{
+        const idx=parseInt((e.answers||{})[q.id]);
+        const a=(!isNaN(idx)&&q.o[idx])?q.o[idx]:'Javob berilmagan';
+        qa+=`<div class="qa-item"><div class="qa-q">${i+1}. ${ex(q.t)}</div><div class="qa-a">→ ${ex(a)}</div></div>`;
+      });
+    }
+    rows+=`<div class="exam-row" onclick="toggleExam('${e.id}')">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div class="exam-name">${ex(e.nm||'')}</div>
+          <div class="exam-meta">${p?p.l:'—'} · ${e.date||''} · ${ex(e.ph||'')} </div>
+        </div>
+        <div style="text-align:right">
+          <div class="exam-score" style="color:${c}">${e.sc}%</div>
+          <div style="margin-top:3px">${sb(e.sc)}</div>
+        </div>
+      </div>
+      ${isOpen?`<div class="exam-detail open">${qa||'<p style="color:var(--text3);font-size:12px;padding:8px 0">Javoblar yo\'q</p>'}</div>`:''}
+    </div>`;
+  });
+
+  return `<div class="admin-dash">
+    <div class="admin-dash-top">
+      <div style="font-size:20px">📊</div>
+      <div class="admin-dash-title">Natijalar paneli</div>
+      <div style="margin-left:auto;display:flex;gap:8px;font-size:12px">
+        <span style="color:var(--green)">✓ ${passed}</span>
+        <span style="color:#f59e0b">◎ ${mon}</span>
+        <span style="color:var(--red)">✗ ${fail}</span>
+      </div>
+      <button onclick="closeAdmin()" style="background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;margin-left:8px">✕</button>
+    </div>
+    <div class="admin-dash-body">
+      ${adminExams.length?rows:'<p style="color:var(--text3);text-align:center;padding:32px">Hali natija yo\'q</p>'}
+    </div>
+  </div>`;
+}
+
+window.toggleExam = id=>{openExamId=openExamId===id?null:id;renderAdmin();};
+
+// ═══════════════════════════════════════
+//  GLOBAL OVERLAY CONTROLS
+// ═══════════════════════════════════════
+window.openHR = function(){
+  HR.step=1;HR.nm='';HR.em='';HR.ph='';HR.bd='';HR.ad='';
+  HR.pos='';HR.errs={};HR.ans={};HR.qi=0;HR.result=null;
+  document.getElementById('hrOverlay').classList.add('open');
+  hrRender();
+};
+window.closeHR = ()=>document.getElementById('hrOverlay').classList.remove('open');
+
+window.openAdmin = function(){
+  adminTab='contact';
+  document.getElementById('adminOverlay').classList.add('open');
+  renderAdmin();
+};
+window.closeAdmin = ()=>{
+  document.getElementById('adminOverlay').classList.remove('open');
+  adminLoggedIn=false; openExamId=null;
+};
+window.adminBgClose = e=>{if(e.target===document.getElementById('adminOverlay'))closeAdmin();};
+window.setAdminTab = t=>{adminTab=t;renderAdmin();};
+
+// ═══ INIT ═══
+newChat();
 </script>
 </body>
 </html>
