@@ -322,7 +322,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
   </div>
 </main>
 
-<script type="module">
+<script type="module" id="mainscript">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getFirestore,collection,addDoc,getDocs,query,orderBy}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
@@ -603,7 +603,18 @@ renderStarters();
 
 window.showInfo=function(key){
   showPage('chat');
-  useStarter(INFO_MSGS[key]);
+  const view=document.getElementById('chatView');
+  const ws=document.getElementById('welcomeScreen');
+  if(ws)ws.remove();
+  const msg=INFO_MSGS[key]||'';
+  const aRow=document.createElement('div');
+  aRow.className='msg-row ai';
+  aRow.innerHTML=`<div class='msg-av' style='width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--accent),#b06af7);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0'>AI</div>
+    <div><div class='msg-bubble'>${ex(msg).replace(/
+/g,'<br>')}</div>
+    <div class='msg-meta'>${new Date().toLocaleTimeString('uz',{hour:'2-digit',minute:'2-digit'})}</div></div>`;
+  view.appendChild(aRow);
+  view.scrollTop=99999;
 };
 
 // ════════════════════════════════
@@ -757,7 +768,7 @@ function hodimStep2(){
   ${hrState.errs.pos?'<div style="color:var(--red);font-size:12px;margin-bottom:10px">⚠ Iltimos kasbni tanlang</div>':''}
   <div class="kasb-grid">${cards}</div>
   <div class="flex-row">
-    <button class="hr-btn sec" style="width:auto;padding:10px 18px" onclick="hrState.step=1;renderHR()">← Orqaga</button>
+    <button class="hr-btn sec" style="width:auto;padding:10px 18px" onclick="hrGoStep1()">← Orqaga</button>
     <button class="hr-btn" onclick="hrNext2()">Imtihonni boshlash →</button>
   </div>`;
 }
@@ -913,6 +924,7 @@ window.hrLogin=function(){
 };
 
 window.hrLogout=function(){hrState.mgr=false;hrState.mgrName='';hrState.mode='select';hrState.exams=[];renderHR();};
+window.hrGoStep1=function(){hrState.step=1;renderHR();};
 
 window.hrNext1=function(){
   const nm=(document.getElementById('f1')||{}).value||'';
