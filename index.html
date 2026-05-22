@@ -2,232 +2,252 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Ottimo Agent</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0c0c0f;--bg2:#131318;--bg3:#1a1a22;--bg4:#22222d;
-  --brd:rgba(255,255,255,.07);--brd2:rgba(255,255,255,.12);
-  --tx:#f0f0f5;--tx2:#9090a8;--tx3:#5a5a72;
-  --ac:#2c6e30;--ac2:#3d8a42;--acb:rgba(44,110,48,.15);--acbr:rgba(44,110,48,.35);
-  --green:#3ecf8e;--red:#f66;--gold:#c8973a;
-  --sw:240px;--font:'DM Sans',sans-serif;
+  --bg:#f8f7f4;--sur:#fff;--card:#f2f0ec;--bor:#e5e1d8;
+  --ac:#2c5f2e;--ac2:#3d7a40;--acl:#eaf2ea;
+  --gold:#c8973a;--tx:#1a1a18;--mu:#6b6860;--mu2:#a09d97;
+  --ok:#2c7a4b;--wa:#b87a1a;--er:#b83c3c;
+  --r:12px;--r2:8px;
+  --green:#3ecf8e;--red:#f55;
+  --sw:230px;
 }
-html,body{height:100%;overflow:hidden}
-body{font-family:var(--font);background:var(--bg);color:var(--tx);display:flex;font-size:14px}
+html,body{height:100%;font-family:'Nunito',sans-serif;background:var(--bg);color:var(--tx);overflow:hidden}
+body{display:flex}
 
-/* SIDEBAR */
-.sb{width:var(--sw);background:var(--bg2);border-right:1px solid var(--brd);display:flex;flex-direction:column;height:100vh;flex-shrink:0}
-.sb-logo{padding:14px 12px;border-bottom:1px solid var(--brd);display:flex;justify-content:center;align-items:center;background:#fff;min-height:70px}
-.sb-logo img{width:140px;object-fit:contain}
-.sb-sec{padding:14px 14px 5px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--tx3)}
+/* ── SIDEBAR ── */
+.sb{width:var(--sw);background:var(--sur);border-right:1px solid var(--bor);display:flex;flex-direction:column;height:100vh;flex-shrink:0;box-shadow:2px 0 10px rgba(0,0,0,.05)}
+.sb-logo{padding:14px 16px;border-bottom:1px solid var(--bor);display:flex;align-items:center;justify-content:center;min-height:64px;background:var(--sur)}
+.sb-logo img{height:38px;object-fit:contain}
+.sb-sec{padding:14px 16px 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--mu2)}
 .sb-nav{padding:0 8px;display:flex;flex-direction:column;gap:2px}
-.sb-btn{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;cursor:pointer;border:1px solid transparent;background:none;color:var(--tx2);font-family:var(--font);font-size:13px;font-weight:500;text-align:left;transition:all .15s;width:100%}
-.sb-btn:hover{background:var(--bg3);color:var(--tx)}
-.sb-btn.on{background:var(--acb);border-color:var(--acbr);color:#6ecf72}
+.sb-btn{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:8px;cursor:pointer;border:1px solid transparent;background:none;color:var(--mu);font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;text-align:left;transition:all .15s;width:100%}
+.sb-btn:hover{background:var(--card);color:var(--tx)}
+.sb-btn.on{background:var(--acl);border-color:rgba(44,95,46,.2);color:var(--ac)}
 .sb-icon{font-size:15px;width:20px;text-align:center;flex-shrink:0}
-.sb-div{height:1px;background:var(--brd);margin:8px 14px}
-.sb-foot{padding:12px;border-top:1px solid var(--brd);margin-top:auto}
-.sb-status{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--green);background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.2);border-radius:20px;padding:5px 10px}
-.sb-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.sb-div{height:1px;background:var(--bor);margin:6px 12px}
+.sb-foot{padding:12px;border-top:1px solid var(--bor);margin-top:auto}
+.sb-stat{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;color:var(--ok);background:rgba(44,122,75,.08);border:1px solid rgba(44,122,75,.2);border-radius:20px;padding:6px 12px}
+.sb-dot{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* MAIN */
+/* ── MAIN ── */
 .main{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden}
-.topbar{height:52px;border-bottom:1px solid var(--brd);display:flex;align-items:center;padding:0 20px;gap:10px;flex-shrink:0}
-.topbar-title{font-size:14px;font-weight:500}
-.topbar-tag{font-size:11px;color:var(--tx3);font-family:monospace;background:var(--bg3);border:1px solid var(--brd);border-radius:5px;padding:2px 8px}
+.topbar{height:56px;background:var(--sur);border-bottom:1px solid var(--bor);display:flex;align-items:center;padding:0 20px;gap:10px;flex-shrink:0;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.topbar-title{font-size:14px;font-weight:700;color:var(--tx)}
+.topbar-tag{font-size:11px;color:var(--mu);background:var(--card);border:1px solid var(--bor);border-radius:6px;padding:2px 8px;font-weight:600}
 .lang-wrap{margin-left:auto;display:flex;gap:4px}
-.lang-btn{background:none;border:1px solid var(--brd);border-radius:6px;color:var(--tx3);font-size:11px;padding:3px 9px;cursor:pointer;font-family:var(--font);font-weight:500;transition:all .15s}
-.lang-btn.on{background:var(--acb);border-color:var(--acbr);color:#6ecf72}
+.lang-btn{background:none;border:1px solid var(--bor);border-radius:6px;color:var(--mu);font-size:11px;padding:3px 9px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700;transition:all .15s}
+.lang-btn.on{background:var(--acl);border-color:rgba(44,95,46,.3);color:var(--ac)}
 
-/* PAGES */
+/* ── PAGES ── */
 .page{display:none;flex:1;overflow:hidden;flex-direction:column}
 .page.on{display:flex}
 
-/* ── CHAT ── */
-.chat-area{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+/* ── CHAT PAGE ── */
+.chat-area{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
 .chat-area::-webkit-scrollbar{width:3px}
-.chat-area::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:3px}
-
-.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:55vh;gap:16px;text-align:center;padding:20px}
-.w-logo{width:120px;object-fit:contain;margin-bottom:4px}
-.w-title{font-size:20px;font-weight:600;letter-spacing:-.3px}
-.w-sub{font-size:13px;color:var(--tx2);max-width:340px;line-height:1.7}
-.starters{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:440px;width:100%;margin-top:4px}
-.starter{background:var(--bg2);border:1px solid var(--brd);border-radius:10px;padding:12px 14px;cursor:pointer;text-align:left;transition:all .15s}
-.starter:hover{border-color:var(--acbr);background:var(--acb);transform:translateY(-1px)}
-.starter-icon{font-size:16px;margin-bottom:4px}
-.starter-title{font-size:12px;font-weight:600;color:var(--tx);margin-bottom:2px}
-.starter-sub{font-size:11px;color:var(--tx3)}
-
-.msg-row{display:flex;gap:10px;align-items:flex-start;max-width:760px;width:100%;margin:0 auto;animation:msgin .22s ease}
-@keyframes msgin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.chat-area::-webkit-scrollbar-thumb{background:var(--bor);border-radius:3px}
+.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:55vh;gap:14px;text-align:center;padding:24px}
+.w-logo{height:56px;object-fit:contain;margin-bottom:4px}
+.w-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--tx)}
+.w-sub{font-size:13px;color:var(--mu);max-width:300px;line-height:1.7;font-weight:500}
+.starters{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:380px;width:100%;margin-top:6px}
+.sc{background:var(--sur);border:1px solid var(--bor);border-radius:10px;padding:12px 13px;cursor:pointer;text-align:left;transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.sc:hover{border-color:rgba(44,95,46,.3);background:var(--acl);transform:translateY(-1px)}
+.sc-i{font-size:18px;margin-bottom:4px}
+.sc-t{font-size:12px;font-weight:700;color:var(--tx);margin-bottom:2px}
+.sc-s{font-size:11px;color:var(--mu)}
+.msg-row{display:flex;gap:10px;align-items:flex-start;max-width:720px;width:100%;margin:0 auto;animation:mi .2s ease}
+@keyframes mi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 .msg-row.user{flex-direction:row-reverse;margin-left:auto}
-.msg-av{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px}
-.msg-row.ai .msg-av{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}
-.msg-row.user .msg-av{background:var(--bg3);border:1px solid var(--brd2);color:var(--tx2)}
-.bubble{font-size:13.5px;line-height:1.75;max-width:680px}
-.msg-row.user .bubble{background:var(--bg3);border:1px solid var(--brd2);border-radius:12px 12px 3px 12px;padding:9px 13px;display:inline-block}
+.av{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
+.av.ai{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}
+.av.user{background:var(--card);border:1px solid var(--bor);color:var(--mu)}
+.bubble{font-size:13.5px;line-height:1.75;max-width:640px}
+.msg-row.user .bubble{background:var(--sur);border:1px solid var(--bor);border-radius:12px 12px 3px 12px;padding:10px 14px;display:inline-block;box-shadow:0 1px 4px rgba(0,0,0,.05)}
 .msg-row.ai .bubble{padding:2px 0}
-.msg-time{font-size:10px;color:var(--tx3);margin-top:4px;font-family:monospace}
-
-.typing-row{display:flex;gap:10px;max-width:760px;width:100%;margin:0 auto}
-.typing{display:flex;gap:4px;padding:10px 13px;background:var(--bg2);border:1px solid var(--brd);border-radius:3px 12px 12px 12px;width:fit-content}
-.typing span{width:6px;height:6px;border-radius:50%;background:var(--ac2);animation:blink 1.2s infinite;opacity:.4}
+.msg-time{font-size:10px;color:var(--mu2);margin-top:4px}
+.typing-row{display:flex;gap:10px;max-width:720px;width:100%;margin:0 auto}
+.typing{display:flex;gap:4px;padding:10px 14px;background:var(--sur);border:1px solid var(--bor);border-radius:3px 12px 12px 12px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--ac2);animation:bl 1.2s infinite;opacity:.4}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
-@keyframes blink{0%,100%{opacity:.3;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}
-
-.input-area{padding:12px 20px 16px;border-top:1px solid var(--brd);flex-shrink:0;max-width:800px;margin:0 auto;width:100%}
-.input-box{background:var(--bg2);border:1px solid var(--brd2);border-radius:12px;display:flex;align-items:flex-end;transition:border-color .15s}
-.input-box:focus-within{border-color:var(--acbr)}
-.inp-ta{flex:1;background:transparent;border:none;outline:none;color:var(--tx);font-family:var(--font);font-size:13.5px;line-height:1.6;padding:12px 14px 10px;resize:none;min-height:44px;max-height:160px}
-.inp-ta::placeholder{color:var(--tx3)}
+@keyframes bl{0%,100%{opacity:.3;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}
+.inp-area{padding:12px 20px 16px;border-top:1px solid var(--bor);flex-shrink:0;max-width:760px;margin:0 auto;width:100%;background:var(--bg)}
+.inp-box{background:var(--sur);border:1.5px solid var(--bor);border-radius:12px;display:flex;align-items:flex-end;transition:border-color .15s;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.inp-box:focus-within{border-color:var(--ac)}
+.inp-ta{flex:1;background:transparent;border:none;outline:none;color:var(--tx);font-family:'Nunito',sans-serif;font-size:13.5px;font-weight:500;line-height:1.6;padding:12px 14px 10px;resize:none;min-height:44px;max-height:150px}
+.inp-ta::placeholder{color:var(--mu2)}
 .send-btn{width:34px;height:34px;border-radius:8px;background:var(--ac);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;margin:5px 6px;flex-shrink:0;transition:all .15s}
 .send-btn:hover{background:var(--ac2)}
-.send-btn:disabled{background:var(--bg4);cursor:not-allowed}
+.send-btn:disabled{background:var(--card);cursor:not-allowed}
 .send-btn svg{width:15px;height:15px}
-.inp-hint{font-size:11px;color:var(--tx3);text-align:center;margin-top:6px;font-family:monospace}
-.inp-hint kbd{background:var(--bg3);border:1px solid var(--brd2);border-radius:3px;padding:1px 5px;font-size:10px}
+.inp-hint{font-size:11px;color:var(--mu2);text-align:center;margin-top:6px}
+.inp-hint kbd{background:var(--card);border:1px solid var(--bor);border-radius:3px;padding:1px 5px;font-size:10px;font-weight:700}
 
 /* ── HR PAGE ── */
 .hr-scroll{flex:1;overflow-y:auto}
 .hr-scroll::-webkit-scrollbar{width:3px}
-.hr-scroll::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:3px}
-.hr-wrap{max-width:560px;margin:0 auto;padding:28px 20px}
-.hr-card{background:var(--bg2);border:1px solid var(--brd);border-radius:14px;padding:28px}
-.hr-title{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:5px;color:var(--tx)}
-.hr-sub{font-size:13px;color:var(--tx2);margin-bottom:20px}
-.hr-tabs{display:flex;gap:3px;background:var(--bg3);border:1px solid var(--brd);border-radius:8px;padding:3px;margin-bottom:20px}
-.hr-tab{flex:1;padding:8px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;font-family:var(--font);background:transparent;color:var(--tx2);transition:all .2s}
-.hr-tab.on{background:var(--acb);color:#6ecf72;border:1px solid var(--acbr)}
-.hr-dots{display:flex;gap:6px;justify-content:center;margin-bottom:18px}
-.hr-dot{width:7px;height:7px;border-radius:50%;background:var(--brd2);transition:all .3s}
-.hr-dot.on{background:var(--ac2);width:20px;border-radius:4px}
-.hr-dot.done{background:var(--green)}
-.flabel{display:block;font-size:11px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
-.finp{width:100%;background:var(--bg3);border:1px solid var(--brd2);border-radius:8px;padding:10px 12px;color:var(--tx);font-family:var(--font);font-size:13px;outline:none;transition:border .15s;margin-bottom:12px}
-.finp:focus{border-color:var(--acbr)}
-.finp::placeholder{color:var(--tx3)}
-.finp.err{border-color:var(--red)}
-.ferr{font-size:11px;color:var(--red);margin-top:-8px;margin-bottom:8px;font-weight:600}
-.fhint{font-size:11px;color:var(--tx3);margin-top:-8px;margin-bottom:8px}
-.hbtn{width:100%;padding:12px;background:var(--ac);border:none;border-radius:8px;color:#fff;font-family:var(--font);font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;margin-top:4px}
-.hbtn:hover{background:var(--ac2)}
-.hbtn.sec{background:transparent;border:1px solid var(--brd2);color:var(--tx2);margin-top:8px}
-.hbtn.sec:hover{background:var(--bg3);color:var(--tx)}
-.hbtn:disabled{opacity:.4;cursor:not-allowed}
-.kasb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.kasb{background:var(--bg3);border:2px solid var(--brd2);border-radius:10px;padding:14px;cursor:pointer;text-align:center;transition:all .2s;position:relative}
-.kasb:hover{border-color:var(--acbr)}
-.kasb.on{border-color:var(--ac2);background:var(--acb)}
-.kasb-ck{position:absolute;top:6px;right:6px;width:16px;height:16px;background:var(--ac2);border-radius:50%;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0}
-.kasb.on .kasb-ck{opacity:1}
-.prog{height:3px;background:var(--brd2);border-radius:10px;margin:8px 0 5px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:10px;transition:width .4s}
-.s-cat{font-size:10px;color:#6ecf72;font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
-.s-txt{font-family:'Playfair Display',serif;font-size:17px;line-height:1.4;margin-bottom:14px}
-.choices{display:flex;flex-direction:column;gap:7px}
-.choice{background:var(--bg3);border:1.5px solid var(--brd2);border-radius:8px;padding:10px 13px;cursor:pointer;font-size:13px;font-family:var(--font);font-weight:500;text-align:left;width:100%;transition:all .18s;color:var(--tx)}
-.choice:hover{border-color:var(--acbr)}
-.choice.on{background:var(--acb);border-color:var(--ac2);color:#6ecf72}
-.badge{display:inline-flex;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px}
-.bok{background:rgba(62,207,142,.15);color:var(--green);border:1px solid rgba(62,207,142,.3)}
-.bwa{background:rgba(200,151,58,.12);color:var(--gold);border:1px solid rgba(200,151,58,.3)}
-.ber{background:rgba(255,102,102,.12);color:var(--red);border:1px solid rgba(255,102,102,.3)}
-.bgr{background:var(--bg3);color:var(--tx2);border:1px solid var(--brd2)}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
-.stat{background:var(--bg2);border:1px solid var(--brd);border-radius:10px;padding:14px 16px}
-.stat-v{font-family:'Playfair Display',serif;font-size:30px;line-height:1;margin-bottom:3px}
-.stat-l{font-size:10px;color:var(--tx3);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
-.e-card{background:var(--bg2);border:1px solid var(--brd);border-radius:12px;overflow:hidden;margin-bottom:8px}
-.e-head{padding:14px 16px;cursor:pointer;transition:background .15s}
-.e-head:hover{background:var(--bg3)}
-.e-body{padding:0 16px 14px;border-top:1px solid var(--brd)}
-.qa-it{padding:8px 0;border-bottom:1px solid var(--brd)}
+.hr-scroll::-webkit-scrollbar-thumb{background:var(--bor);border-radius:3px}
+.hr-wrap{max-width:520px;margin:0 auto;padding:24px 16px}
+.lw{min-height:100%;display:flex}
+.ll{width:280px;background:linear-gradient(150deg,var(--ac),#1a3d1c);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 28px;color:#fff;flex-shrink:0}
+.ll-lg{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:10px}
+.ll-tg{font-size:12px;color:rgba(255,255,255,.7);text-align:center;line-height:1.6}
+.lr{flex:1;display:flex;align-items:center;justify-content:center;padding:28px 20px;overflow-y:auto}
+.lbox{width:100%;max-width:380px}
+.ltabs{display:flex;gap:3px;background:var(--card);border:1px solid var(--bor);border-radius:var(--r2);padding:3px;margin-bottom:18px}
+.ltab{flex:1;padding:8px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;background:transparent;color:var(--mu);transition:all .2s}
+.ltab.on{background:var(--sur);color:var(--ac)}
+/* Shared HR styles */
+.card{background:var(--sur);border:1px solid var(--bor);border-radius:var(--r);padding:22px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.csm{background:var(--sur);border:1px solid var(--bor);border-radius:var(--r);padding:14px 16px;box-shadow:0 1px 6px rgba(0,0,0,.04)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.badge{display:inline-flex;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.bok{background:#e8f5ee;color:#2c7a4b;border:1px solid #b8ddc8}
+.bwa{background:#fdf3e3;color:#b87a1a;border:1px solid #f0d49a}
+.ber{background:#fdf0f0;color:#b83c3c;border:1px solid #f0c4c4}
+.bgr{background:var(--card);color:var(--mu);border:1px solid var(--bor)}
+.btn{display:inline-flex;align-items:center;gap:5px;border:none;border-radius:var(--r2);padding:10px 18px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .18s}
+.bp{background:var(--ac);color:#fff}.bp:hover{background:var(--ac2)}
+.bg2{background:transparent;color:var(--mu);border:1px solid var(--bor)}.bg2:hover{background:var(--card)}
+.bfull{width:100%;justify-content:center}
+.blg{padding:12px 24px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.fl{margin-bottom:13px}
+.fl label{display:block;font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.inp{width:100%;background:var(--bg);border:1.5px solid var(--bor);border-radius:var(--r2);padding:10px 12px;color:var(--tx);font-size:14px;font-family:'Nunito',sans-serif;font-weight:500;outline:none;transition:border .15s}
+.inp:focus{border-color:var(--ac);background:var(--sur)}
+.inp.err{border-color:var(--er)}
+.inp::placeholder{color:var(--mu2)}
+.hint{font-size:11px;color:var(--mu);margin-top:3px}
+.etx{font-size:11px;color:var(--er);font-weight:700;margin-top:3px}
+.dots{display:flex;gap:7px;justify-content:center;margin-bottom:18px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--bor);transition:all .3s}
+.dot.on{background:var(--ac);width:22px;border-radius:4px}
+.dot.dn{background:var(--ac2)}
+.pbar{height:4px;background:var(--bor);border-radius:10px;overflow:hidden;margin:12px 0 5px}
+.pfill{height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:10px;transition:width .4s}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.pc{background:var(--sur);border:2px solid var(--bor);border-radius:var(--r);padding:14px 10px;cursor:pointer;text-align:center;transition:all .2s;position:relative}
+.pc:hover{border-color:var(--ac2);background:var(--acl)}
+.pc.sel{border-color:var(--ac);background:var(--acl)}
+.pc .ck{position:absolute;top:6px;right:6px;width:18px;height:18px;background:var(--ac);border-radius:50%;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0}
+.pc.sel .ck{opacity:1}
+.qcat{font-size:11px;color:var(--ac);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.qtxt{font-family:'Playfair Display',serif;font-size:18px;line-height:1.45;margin-bottom:14px}
+.choices{display:flex;flex-direction:column;gap:8px}
+.ch{background:var(--bg);border:1.5px solid var(--bor);border-radius:var(--r2);padding:11px 14px;cursor:pointer;font-size:13px;font-family:'Nunito',sans-serif;font-weight:600;text-align:left;width:100%;transition:all .18s;color:var(--tx)}
+.ch:hover{border-color:var(--ac2);background:var(--acl)}
+.ch.sel{background:var(--acl);border-color:var(--ac);color:var(--ac)}
+.nc{background:var(--sur);border:1px solid var(--bor);border-radius:var(--r);margin-bottom:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.nc-h{padding:16px 18px;cursor:pointer;transition:background .15s}
+.nc-h:hover{background:var(--bg)}
+.nc-b{padding:4px 18px 16px;border-top:1px solid var(--bor)}
+.qa-it{padding:10px 0;border-bottom:1px solid var(--bor)}
 .qa-it:last-child{border-bottom:none}
-.qa-cat{font-size:10px;color:#6ecf72;font-weight:600;text-transform:uppercase;margin-bottom:2px}
-.qa-q{font-size:12px;font-weight:600;color:var(--tx);margin-bottom:4px}
-.qa-a{background:var(--acb);border-radius:5px;padding:3px 8px;font-size:11px;font-weight:600;color:#6ecf72;display:inline-block}
-.search{width:100%;background:var(--bg2);border:1px solid var(--brd2);border-radius:8px;padding:9px 12px;color:var(--tx);font-family:var(--font);font-size:13px;outline:none;transition:border .15s;margin-bottom:14px}
-.search:focus{border-color:var(--acbr)}
-.flex-row{display:flex;gap:8px}
+.qa-cat{font-size:10px;color:var(--ac);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.qa-q{font-size:13px;font-weight:600;color:var(--tx);margin-bottom:5px}
+.qa-a{background:var(--acl);border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700;color:var(--ac);display:inline-block}
+.sv{font-family:'Playfair Display',serif;font-size:34px;line-height:1;margin-bottom:3px}
+.sl{font-size:11px;color:var(--mu);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 
-/* ── ADMIN TG PAGE ── */
-.tg-page{flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;text-align:center;padding:32px}
-.tg-icon{width:68px;height:68px;background:linear-gradient(135deg,#2aabee,#229ed9);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px}
-.tg-link{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#2aabee,#229ed9);border:none;border-radius:10px;color:#fff;padding:12px 24px;font-size:14px;font-weight:600;font-family:var(--font);cursor:pointer;text-decoration:none;transition:opacity .15s}
+/* ── TG (ADMIN) PAGE ── */
+.tg-wrap{flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;text-align:center;padding:32px;background:var(--bg)}
+.tg-ico{width:72px;height:72px;background:linear-gradient(135deg,#2aabee,#229ed9);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 4px 16px rgba(42,171,238,.3)}
+.tg-link{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#2aabee,#229ed9);border:none;border-radius:10px;color:#fff;padding:13px 26px;font-size:14px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(42,171,238,.3);transition:opacity .15s}
 .tg-link:hover{opacity:.9}
-.inf-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:360px;width:100%}
-.inf-card{background:var(--bg2);border:1px solid var(--brd);border-radius:10px;padding:12px 14px;text-align:left}
-.inf-lbl{font-size:10px;color:var(--tx3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
-.inf-val{font-size:13px;font-weight:600;color:var(--tx)}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:320px;width:100%}
+.ic{background:var(--sur);border:1px solid var(--bor);border-radius:10px;padding:13px 14px;text-align:left;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.ic-l{font-size:10px;color:var(--mu);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.ic-v{font-size:13px;font-weight:700;color:var(--tx)}
+
+/* ── TOPBAR for HR Manager panel ── */
+.mgr-topbar{height:56px;background:var(--sur);border-bottom:1px solid var(--bor);display:flex;align-items:center;padding:0 20px;gap:10px;flex-shrink:0;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.mgr-nav button{background:none;border:none;padding:7px 14px;border-radius:var(--r2);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--mu);cursor:pointer;transition:all .2s}
+.mgr-nav button.on{color:var(--ac);background:var(--acl)}
+.chip{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--bor);border-radius:20px;padding:5px 12px 5px 6px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.chip:hover{background:var(--bg)}
+.mgr-av{width:26px;height:26px;border-radius:50%;background:var(--ac);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.mgr-main{flex:1;overflow-y:auto;padding:24px;background:var(--bg)}
+.mgr-main::-webkit-scrollbar{width:3px}
+.mgr-main::-webkit-scrollbar-thumb{background:var(--bor);border-radius:3px}
+
+/* ── INFO TOAST ── */
+.toast{position:fixed;top:16px;right:16px;z-index:999;padding:12px 18px;border-radius:var(--r2);font-size:13px;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.15);animation:toastIn .3s ease}
+@keyframes toastIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.tok{background:var(--ac);color:#fff}
+.ter{background:var(--er);color:#fff}
 </style>
 </head>
 <body>
 
+<!-- SIDEBAR -->
 <aside class="sb">
   <div class="sb-logo">
-    <img src="data:image/jpeg;base64,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OlNlcSB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPjxyZGY6bGk+QWNlcjwvcmRmOmxpPjwvcmRmOlNlcT4NCgkJCTwvZGM6Y3JlYXRvcj48L3JkZjpEZXNjcmlwdGlvbj48L3JkZjpSREY+PC94OnhtcG1ldGE+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw/eHBhY2tldCBlbmQ9J3cnPz7/4RCCRXhpZgAATU0AKgAAAAgABAE7AAIAAAAFAAAISodpAAQAAAABAAAIUJydAAEAAAAKAAAQcOocAAcAAAgMAAAAPgAAAAAc6gAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEFjZXIAAAAB6hwABwAACAwAAAhiAAAAABzqAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt="Ottimo"/>
+    <img src="data:image/jpeg;base64,/9j/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRyUkdCIFhZWiAHzgACAAkABgAxAABhY3NwTVNGVAAAAABJRUMgc1JHQgAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLUhQICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFjcHJ0AAABUAAAADNkZXNjAAABhAAAAGx3dHB0AAAB8AAAABRia3B0AAACBAAAABRyWFlaAAACGAAAABRnWFlaAAACLAAAABRiWFlaAAACQAAAABRkbW5kAAACVAAAAHBkbWRkAAACxAAAAIh2dWVkAAADTAAAAIZ2aWV3AAAD1AAAACRsdW1pAAAD+AAAABRtZWFzAAAEDAAAACR0ZWNoAAAEMAAAAAxyVFJDAAAEPAAACAxnVFJDAAAEPAAACAxiVFJDAAAEPAAACAx0ZXh0AAAAAENvcHlyaWdodCAoYykgMTk5OCBIZXdsZXR0LVBhY2thcmQgQ29tcGFueQAAZGVzYwAAAAAAAAASc1JHQiBJRUM2MTk2Ni0yLjEAAAAAAAAAAAAAABJzUkdCIElFQzYxOTY2LTIuMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWFlaIAAAAAAAAPNRAAEAAAABFsxYWVogAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z2Rlc2MAAAAAAAAAFklFQyBodHRwOi8vd3d3LmllYy5jaAAAAAAAAAAAAAAAFklFQyBodHRwOi8vd3d3LmllYy5jaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFjcHJ0AAABUAAAADNkZXNjAAABhAAAAGx3dHB0AAAB8AAAABRia3B0AAACBAAAABRyWFlaAAACGAAAABRnWFlaAAACLAAAABRiWFlaAAACQAAAABRkbW5kAAACVAAAAHBkbWRkAAACxAAAAIh2dWVkAAADTAAAAIZ2aWV3AAAD1AAAACRsdW1pAAAD+AAAABRtZWFzAAAEDAAAACR0ZWNoAAAEMAAAAAxyVFJDAAAEPAAACAxnVFJDAAAEPAAACAxiVFJDAAAEPAAACAx0ZXh0AAAAAENvcHlyaWdodCAoYykgMTk5OCBIZXdsZXR0LVBhY2thcmQgQ29tcGFueQAAZGVzYwAAAAAAAAASc1JHQiBJRUM2MTk2Ni0yLjEAAAAAAAAAAAAAABJzUkdCIElFQzYxOTY2LTIuMQ==" alt="Ottimo" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:Playfair Display,serif;font-size:22px;color:var(--ac);font-weight:700\'>Ottimo</span>'"/>
   </div>
-  <div class="sb-sec" id="sb-sec-main">Menyu</div>
+  <div class="sb-sec" id="sec1">Menyu</div>
   <div class="sb-nav">
     <button class="sb-btn on" id="nb-chat" onclick="goPage('chat')">
-      <span class="sb-icon">💬</span> <span id="nb-chat-txt">AI Agent</span>
+      <span class="sb-icon">💬</span><span id="nb-chat-l">AI Agent</span>
     </button>
     <button class="sb-btn" id="nb-hr" onclick="goPage('hr')">
-      <span class="sb-icon">📋</span> <span id="nb-hr-txt">Ishchi qabul qilish</span>
+      <span class="sb-icon">📋</span><span id="nb-hr-l">Ishchi qabul qilish</span>
     </button>
     <button class="sb-btn" id="nb-tg" onclick="goPage('tg')">
-      <span class="sb-icon">👨‍💼</span> <span id="nb-tg-txt">Administrator</span>
+      <span class="sb-icon">👨‍💼</span><span id="nb-tg-l">Administrator</span>
     </button>
   </div>
   <div class="sb-div"></div>
-  <div class="sb-sec" id="sb-sec-info">Ma'lumot</div>
+  <div class="sb-sec" id="sec2">Ma'lumot</div>
   <div class="sb-nav">
     <button class="sb-btn" onclick="showInfo('filial')">
-      <span class="sb-icon">📍</span> <span id="inf-filial-txt">Filiallar</span>
+      <span class="sb-icon">📍</span><span id="inf-filial">Filiallar</span>
     </button>
     <button class="sb-btn" onclick="showInfo('vaqt')">
-      <span class="sb-icon">⏰</span> <span id="inf-vaqt-txt">Ish vaqti</span>
+      <span class="sb-icon">⏰</span><span id="inf-vaqt">Ish vaqti</span>
     </button>
     <button class="sb-btn" onclick="showInfo('vakansiya')">
-      <span class="sb-icon">💼</span> <span id="inf-vak-txt">Vakansiyalar</span>
+      <span class="sb-icon">💼</span><span id="inf-vak">Vakansiyalar</span>
     </button>
   </div>
   <div class="sb-foot">
-    <div class="sb-status"><div class="sb-dot"></div><span id="status-txt">Ottimo AI · Faol</span></div>
+    <div class="sb-stat"><div class="sb-dot"></div><span id="stat-txt">Ottimo AI · Faol</span></div>
   </div>
 </aside>
 
+<!-- MAIN -->
 <main class="main">
   <div class="topbar">
-    <span id="page-title">AI Agent</span>
-    <span class="topbar-tag">Gemini 2.0</span>
+    <span id="pg-title" style="font-family:'Playfair Display',serif">AI Agent</span>
+    <span class="topbar-tag" id="pg-tag">Gemini 2.0</span>
     <div class="lang-wrap">
-      <button class="lang-btn on" onclick="setLang('uz')">🇺🇿 UZ</button>
-      <button class="lang-btn" onclick="setLang('ru')">🇷🇺 RU</button>
-      <button class="lang-btn" onclick="setLang('en')">🇬🇧 EN</button>
+      <button class="lang-btn on" onclick="setLang('uz',this)">🇺🇿 UZ</button>
+      <button class="lang-btn" onclick="setLang('ru',this)">🇷🇺 RU</button>
+      <button class="lang-btn" onclick="setLang('en',this)">🇬🇧 EN</button>
     </div>
   </div>
 
-  <!-- CHAT -->
+  <!-- CHAT PAGE -->
   <div class="page on" id="page-chat">
     <div class="chat-area" id="chatArea">
       <div class="welcome" id="welcomeEl">
-        <img class="w-logo" src="data:image/jpeg;base64,/9j/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRyUkdCIFhZWiAHzgACAAkABgAxAABhY3NwTVNGVAAAAABJRUMgc1JHQgAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLUhQICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFjcHJ0AAABUAAAADNkZXNjAAABhAAAAGx3dHB0AAAB8AAAABRia3B0AAACBAAAABRyWFlaAAACGAAAABRnWFlaAAACLAAAABRiWFlaAAACQAAAABRkbW5kAAACVAAAAHBkbWRkAAACxAAAAIh2dWVkAAADTAAAAIZ2aWV3AAAD1AAAACRsdW1pAAAD+AAAABRtZWFzAAAEDAAAACR0ZWNoAAAEMAAAAAxyVFJDAAAEPAAACAxnVFJDAAAEPAAACAxiVFJDAAAEPAAACAx0ZXh0AAAAAENvcHlyaWdodCAoYykgMTk5OCBIZXdsZXR0LVBhY2thcmQgQ29tcGFueQAAZGVzYwAAAAAAAAASc1JHQiBJRUM2MTk2Ni0yLjEAAAAAAAAAAAAAABJzUkdCIElFQzYxOTY2LTIuMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWFlaIAAAAAAAAPNRAAEAAAABFsxYWVogAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z2Rlc2MAAAAAAAAAFklFQyBodHRwOi8vd3d3LmllYy5jaAAAAAAAAAAAAAAAFklFQyBodHRwOi8vd3d3LmllYy5jaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkZXNjAAAAAAAAAC5JRUMgNjE5NjYtMi4xIERlZmF1bHQgUkdCIGNvbG91ciBzcGFjZSAtIHNSR0IAAAAAAAAAAAAAAC5JRUMgNjE5NjYtMi4xIERlZmF1bHQgUkdCIGNvbG91ciBzcGFjZSAtIHNSR0IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZGVzYwAAAAAAAAAsUmVmZXJlbmNlIFZpZXdpbmcgQ29uZGl0aW9uIGluIElFQzYxOTY2LTIuMQAAAAAAAAAAAAAALFJlZmVyZW5jZSBWaWV3aW5nIENvbmRpdGlvbiBpbiBJRUM2MTk2Ni0yLjEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHZpZXcAAAAAABOk/gAUXy4AEM8UAAPtzAAEEwsAA1yeAAAAAVhZWiAAAAAAAEwJVgBQAAAAVx/nbWVhcwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAo8AAAACc2lnIAAAAABDUlQgY3VydgAAAAAAAAQAAAAABQAKAA8AFAAZAB4AIwAoAC0AMgA3ADsAQABFAEoATwBUAFkAXgBjAGgAbQByAHcAfACBAIYAiwCQAJUAmgCfAKQAqQCuALIAtwC8AMEAxgDLANAA1QDbAOAA5QDrAPAA9gD7AQEBBwENARMBGQEfASUBKwEyATgBPgFFAUwBUgFZAWABZwFuAXUBfAGDAYsBkgGaAaEBqQGxAbkBwQHJAdEB2QHhAekB8gH6AgMCDAIUAh0CJgIvAjgCQQJLAlQCXQJnAnECegKEAo4CmAKiAqwCtgLBAssC1QLgAusC9QMAAwsDFgMhAy0DOANDA08DWgNmA3IDfgOKA5YDogOuA7oDxwPTA+AD7AP5BAYEEwQgBC0EOwRIBFUEYwRxBH4EjASaBKgEtgTEBNME4QTwBP4FDQUcBSsFOgVJBVgFZwV3BYYFlgWmBbUFxQXVBeUF9gYGBhYGJwY3BkgGWQZqBnsGjAadBq8GwAbRBuMG9QcHBxkHKwc9B08HYQd0B4YHmQesB78H0gflB/gICwgfCDIIRghaCG4IggiWCKoIvgjSCOcI+wkQCSUJOglPCWQJeQmPCaQJugnPCeUJ+woRCicKPQpUCmoKgQqYCq4KxQrcCvMLCwsiCzkLUQtpC4ALmAuwC8gL4Qv5DBIMKgxDDFwMdQyODKcMwAzZDPMNDQ0mDUANWg10DY4NqQ3DDd4N+A4TDi4OSQ5kDn8Omw62DtIO7g8JDyUPQQ9eD3oPlg+zD88P7BAJECYQQxBhEH4QmxC5ENcQ9RETETERTxFtEYwRqhHJEegSBxImEkUSZBKEEqMSwxLjEwMTIxNDE2MTgxOkE8UT5RQGFCcUSRRqFIsUrRTOFPAVEhU0FVYVeBWbFb0V4BYDFiYWSRZsFo8WshbWFvoXHRdBF2UXiReuF9IX9xgbGEAYZRiKGK8Y1Rj6GSAZRRlrGZEZtxndGgQaKhpRGncanhrFGuwbFBs7G2MbihuyG9ocAhwqHFIcexyjHMwc9R0eHUcdcB2ZHcMd7B4WHkAeah6UHr4e6R8THz4faR+UH78f6iAVIEEgbCCYIMQg8CEcIUghdSGhIc4h+yInIlUigiKvIt0jCiM4I2YjlCPCI/AkHyRNJHwkqyTaJQklOCVoJZclxyX3JicmVyaHJrcm6CcYJ0kneierJ9woDSg/KHEooijUKQYpOClrKZ0p0CoCKjUqaCqbKs8rAis2K2krnSvRLAUsOSxuLKIs1y0MLUEtdi2rLeEuFi5MLoIuty7uLyQvWi+RL8cv/jA1MGwwpDDbMRIxSjGCMbox8jIqMmMymzLUMw0zRjN/M7gz8TQrNGU0njTYNRM1TTWHNcI1/TY3NnI2rjbpNyQ3YDecN9c4FDhQOIw4yDkFOUI5fzm8Ofk6Njp0OrI67zstO2s7qjvoPCc8ZTykPOM9Ij1hPaE94D4gPmA+oD7gPyE/YT+iP+JAI0BkQKZA50EpQWpBrEHuQjBCckK1QvdDOkN9Q8BEA0RHRIpEzkUSRVVFmkXeRiJGZ0arRvBHNUd7R8BIBUhLSJFI10kdSWNJqUnwSjdKfUrESwxLU0uaS+JMKkxyTLpNAk1KTZNN3E4lTm5Ot08AT0lPk0/dUCdQcVC7UQZRUFGbUeZSMVJ8UsdTE1NfU6pT9lRCVI9U21UoVXVVwlYPVlxWqVb3V0RXklfgWC9YfVjLWRpZaVm4WgdaVlqmWvVbRVuVW+VcNVyGXNZdJ114XcleGl5sXr1fD19hX7NgBWBXYKpg/GFPYaJh9WJJYpxi8GNDY5dj62RAZJRk6WU9ZZJl52Y9ZpJm6Gc9Z5Nn6Wg/aJZo7GlDaZpp8WpIap9q92tPa6dr/2xXbK9tCG1gbbluEm5rbsRvHm94b9FwK3CGcOBxOnGVcfByS3KmcwFzXXO4dBR0cHTMdSh1hXXhdj52m3b4d1Z3s3gReG54zHkqeYl553pGeqV7BHtje8J8IXyBfOF9QX2hfgF+Yn7CfyN/hH/lgEeAqIEKgWuBzYIwgpKC9INXg7qEHYSAhOOFR4Wrhg6GcobXhzuHn4gEiGmIzokziZmJ/opkisqLMIuWi/yMY4zKjTGNmI3/jmaOzo82j56QBpBukNaRP5GokhGSepLjk02TtpQglIqU9JVflcmWNJaflwqXdZfgmEyYuJkkmZCZ/JpomtWbQpuvnByciZz3nWSd0p5Anq6fHZ+Ln/qgaaDYoUehtqImopajBqN2o+akVqTHpTilqaYapoum/adup+CoUqjEqTepqaocqo+rAqt1q+msXKzQrUStuK4trqGvFq+LsACwdbDqsWCx1rJLssKzOLOutCW0nLUTtYq2AbZ5tvC3aLfguFm40blKucK6O7q1uy67p7whvJu9Fb2Pvgq+hL7/v3q/9cBwwOzBZ8Hjwl/C28NYw9TEUcTOxUvFyMZGxsPHQce/yD3IvMk6ybnKOMq3yzbLtsw1zLXNNc21zjbOts83z7jQOdC60TzRvtI/0sHTRNPG1EnUy9VO1dHWVdbY11zX4Nhk2OjZbNnx2nba+9uA3AXcit0Q3ZbeHN6i3ynfr+A24L3hROHM4lPi2+Nj4+vkc+T85YTmDeaW5x/nqegy6LzpRunQ6lvq5etw6/vshu0R7ZzuKO6070DvzPBY8OXxcvH/8ozzGfOn9DT0wvVQ9d72bfb794r4Gfio+Tj5x/pX+uf7d/wH/Jj9Kf26/kv+3P9t////4QpdaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49J++7vycgaWQ9J1c1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCc/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyI+PHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj48cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIvPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSJ1dWlkOmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj48ZGM6Y3JlYXRvcj48cmRmOlNlcSB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPjxyZGY6bGk+QWNlcjwvcmRmOmxpPjwvcmRmOlNlcT4NCgkJCTwvZGM6Y3JlYXRvcj48L3JkZjpEZXNjcmlwdGlvbj48L3JkZjpSREY+PC94OnhtcG1ldGE+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw/eHBhY2tldCBlbmQ9J3cnPz7/4RCCRXhpZgAATU0AKgAAAAgABAE7AAIAAAAFAAAISodpAAQAAAABAAAIUJydAAEAAAAKAAAQcOocAAcAAAgMAAAAPgAAAAAc6gAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEFjZXIAAAAB6hwABwAACAwAAAhiAAAAABzqAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt="Ottimo"/>
-        <div class="w-title" id="w-title">Ottimo  Agentiga xush kelibsiz</div>
-        <div class="w-sub" id="w-sub">Ottimo haqida savolingizni bering</div>
-        <div class="starters" id="startersEl"></div>
+        <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:4px">🤖</div>
+        <div class="w-title" id="w-title">Ottimo AI Agentiga xush kelibsiz</div>
+        <div class="w-sub" id="w-sub">Ottimo Cafe haqida savolingizni bering</div>
+        <div class="starters" id="starters-el"></div>
       </div>
     </div>
-    <div class="input-area">
-      <div class="input-box">
-        <textarea class="inp-ta" id="msgInp" rows="1"
-          placeholder="Ottimo haqida savol bering..."
+    <div class="inp-area">
+      <div class="inp-box">
+        <textarea class="inp-ta" id="msgInp" rows="1" placeholder="Ottimo haqida savol bering..."
           onkeydown="onKey(event)" oninput="autoH(this)"></textarea>
         <button class="send-btn" id="sendBtn" onclick="sendMsg()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -239,776 +259,759 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);display:flex;f
     </div>
   </div>
 
-  <!-- HR -->
+  <!-- HR PAGE -->
   <div class="page" id="page-hr">
-    <div class="hr-scroll">
-      <div class="hr-wrap">
-        <div id="hrContent"></div>
-      </div>
-    </div>
+    <div id="hrPageContent" style="display:flex;flex:1;overflow:hidden;flex-direction:column"></div>
   </div>
 
-  <!-- TELEGRAM / ADMIN -->
+  <!-- ADMIN/TG PAGE -->
   <div class="page" id="page-tg">
-    <div class="tg-page">
-      <div class="tg-icon">✈️</div>
-      <div style="font-size:20px;font-weight:600" id="tg-title">Administrator bilan bog'lanish</div>
-      <div style="font-size:13px;color:var(--tx2);max-width:300px;line-height:1.7" id="tg-sub">Ottimo HR bo'limi bilan Telegram orqali muloqot qiling. Ish vaqti: 09:00 — 18:00</div>
+    <div class="tg-wrap">
+      <div class="tg-ico">✈️</div>
+      <div style="font-size:22px;font-weight:700;font-family:'Playfair Display',serif" id="tg-title">Administrator bilan bog'lanish</div>
+      <div style="font-size:13px;color:var(--mu);max-width:280px;line-height:1.7;font-weight:500" id="tg-sub">
+        Ottimo HR bo'limi bilan Telegram orqali muloqot qiling.<br>Ish vaqti: 09:00 — 18:00
+      </div>
       <a class="tg-link" href="https://t.me/Ottimo_hr" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.018 9.505c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.881.716z"/></svg>
-        @Ottimo_hr
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.018 9.505c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.881.716z"/>
+        </svg>
+        @Ottimo_hr ga yozish
       </a>
-      <div class="inf-grid">
-        <div class="inf-card"><div class="inf-lbl" id="tg-ph-lbl">Telefon</div><div class="inf-val">+998 99 060 33 53</div></div>
-        <div class="inf-card"><div class="inf-lbl" id="tg-wh-lbl">Ish vaqti</div><div class="inf-val">09:00 — 18:00</div></div>
-        <div class="inf-card"><div class="inf-lbl">Telegram</div><div class="inf-val">@Ottimo_hr</div></div>
-        <div class="inf-card"><div class="inf-lbl">Link</div><div class="inf-val">t.me/ottimo_uz</div></div>
+      <div class="igrid">
+        <div class="ic"><div class="ic-l" id="tg-ph-l">Telefon</div><div class="ic-v">+998 99 060 33 53</div></div>
+        <div class="ic"><div class="ic-l" id="tg-wh-l">Ish vaqti</div><div class="ic-v">09:00 — 18:00</div></div>
+        <div class="ic"><div class="ic-l">Telegram</div><div class="ic-v">@Ottimo_hr</div></div>
+        <div class="ic"><div class="ic-l">Link</div><div class="ic-v">t.me/ottimo_uz</div></div>
       </div>
     </div>
   </div>
 </main>
 
+<!-- Firebase -->
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getFirestore,collection,addDoc,getDocs,query,orderBy}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-const db=getFirestore(initializeApp({
-  apiKey:"AIzaSyCsyx-_BukA9EuY6qSbyXv7DVdo4pvMTa4",
+const _db=getFirestore(initializeApp({
+  apiKey:"AIzaSyBkFbcT--VfrLe2ZMjxhmRAs1V7Svzx2Bg",
   authDomain:"ottimo-hr.firebaseapp.com",projectId:"ottimo-hr",
   storageBucket:"ottimo-hr.firebasestorage.app",
   messagingSenderId:"130893452321",appId:"1:130893452321:web:d70ddfc1fffc57a1c97f60"
 }));
-const TG_BOT="8173395748:AAFCbwHLLTiEOu0L9mjD2_Yy-a-UZXLKghU";
-const TG_ID="206004279";
-const MGR_PASS="688466";
-const GKEY="AIzaSyCsyx-_BukA9EuY6qSbyXv7DVdo4pvMTa4";
-const GURL=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GKEY}`;
-async function tgSend(t){try{await fetch("https://api.telegram.org/bot"+TG_BOT+"/sendMessage",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:TG_ID,text:t,parse_mode:"HTML"})})}catch(e){}}
+window._fbAdd=(col,data)=>addDoc(collection(_db,col),data);
+window._fbGet=(col)=>getDocs(query(collection(_db,col),orderBy("ts","desc")));
+</script>
 
-// ═══ KASBLAR ═══
-const POS={
-  menejer:{l:{uz:"Menejer",ru:"Менеджер",en:"Manager"},i:"👔",q:[
-    {id:"m1",c:{uz:"Rahbarlik",ru:"Руководство",en:"Leadership"},t:{uz:"Xodim ish rejasini bajarmasa birinchi nima qilasiz?",ru:"Что сделаете первым, если сотрудник не выполняет план?",en:"What do you do first if an employee fails their work plan?"},o:{uz:["Sababini aniqlab, yordam beraman","Ogohlantirib, muddatni uzaytiraman","Boshqa xodimga topshiraman","Darhol jazo chorasi ko'raman"],ru:["Выясню причину и помогу","Предупрежу и продлю срок","Передам другому сотруднику","Немедленно приму меры"],en:["Find the reason and help","Warn and extend deadline","Assign to another employee","Take immediate action"]}},
-    {id:"m2",c:{uz:"Qaror",ru:"Решение",en:"Decision"},t:{uz:"Ikki muhim ish bir vaqtda tushsa qanday harakat qilasiz?",ru:"Что делаете, если два важных дела поступают одновременно?",en:"What do you do when two important tasks come at once?"},o:{uz:["Muhimligiga qarab ustuvorlik belgilayman","Ikkalasini parallel bajaraman","Jamoaga taqsimlayman","Rahbardan ko'rsatma kutaman"],ru:["Расставлю приоритеты по важности","Выполню оба параллельно","Распределю по команде","Жду указания от руководителя"],en:["Prioritize by importance","Do both in parallel","Distribute to team","Wait for manager guidance"]}},
-    {id:"m3",c:{uz:"Muloqot",ru:"Общение",en:"Communication"},t:{uz:"Xodim siz bilan rozi bo'lmasa qanday muloqot qilasiz?",ru:"Как общаетесь, если сотрудник не согласен с вами?",en:"How do you communicate if an employee disagrees with you?"},o:{uz:["Tinglash va birgalikda yechim topaman","O'z fikrimni to'g'ri deb davom ettiraman","Ovoz berish o'tkazaman","Rahbariyatga hisobot beraman"],ru:["Слушаю и ищем решение вместе","Продолжаю настаивать на своём","Провожу голосование","Докладываю руководству"],en:["Listen and find solution together","Continue with my opinion","Conduct a vote","Report to management"]}},
-    {id:"m4",c:{uz:"Motivatsiya",ru:"Мотивация",en:"Motivation"},t:{uz:"Jamoangiz ish sifati pasayib ketsa nima qilasiz?",ru:"Что делаете если качество работы команды снижается?",en:"What do you do if your team's work quality declines?"},o:{uz:["Muammoni aniqlab, qo'llab-quvvatlayman","Rag'batlantirish tizimini ko'rib chiqaman","Umumiy yig'ilish o'tkazaman","Eng yaxshilarga bonus beraman"],ru:["Выявлю проблему и поддержу","Пересмотрю систему мотивации","Проведу общее собрание","Дам бонусы лучшим"],en:["Identify problem and support","Review motivation system","Hold a general meeting","Give bonuses to best performers"]}},
-    {id:"m5",c:{uz:"Mijoz",ru:"Клиент",en:"Client"},t:{uz:"VIP mijoz shikoyat bilan kelsa nima qilasiz?",ru:"Что делаете, если VIP клиент приходит с жалобой?",en:"What do you do when a VIP client comes with a complaint?"},o:{uz:["Zudlik bilan shaxsan muloqot qilaman","Mas'ul xodimni yo'naltiraman","Kechirim so'rab, yechim taklif qilaman","Standart jarayon bo'yicha hal qilaman"],ru:["Немедленно лично связываюсь","Направляю ответственного сотрудника","Прошу прощения и предлагаю решение","Решаю по стандартной процедуре"],en:["Personally contact immediately","Direct responsible employee","Apologize and offer solution","Handle by standard procedure"]}},
+<script>
+// ── CONSTANTS ──
+var GKEY="AIzaSyDCwFEq4bGl8YuiwrHdKP-xI_fkRGi7IRc";
+var GURL="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="+GKEY;
+var TG_BOT="8173395748:AAFCbwHLLTiEOu0L9mjD2_Yy-a-UZXLKghU";
+var TG_ID="206004279";
+var MGR_PASS="688466";
+
+// ── KASB/POSITIONS ──
+var POS={
+  menejer:{l:"Menejer",i:"👔",q:[
+    {id:"m1",c:"Rahbarlik",t:"Xodim ish rejasini bajarmasa birinchi nima qilasiz?",o:["Sababini aniqlab, yordam beraman","Ogohlantirib, muddatni uzaytiraman","Boshqa xodimga topshiraman","Darhol jazo chorasi ko'raman"]},
+    {id:"m2",c:"Qaror",t:"Ikki muhim ish bir vaqtda tushsa qanday harakat qilasiz?",o:["Muhimligiga qarab ustuvorlik belgilayman","Ikkalasini parallel bajaraman","Jamoaga taqsimlayman","Rahbardan ko'rsatma kutaman"]},
+    {id:"m3",c:"Muloqot",t:"Xodim siz bilan rozi bo'lmasa qanday muloqot qilasiz?",o:["Tinglash va birgalikda yechim topaman","O'z fikrimni to'g'ri deb davom ettiraman","Ovoz berish o'tkazaman","Rahbariyatga hisobot beraman"]},
+    {id:"m4",c:"Motivatsiya",t:"Jamoangiz ish sifati pasayib ketsa nima qilasiz?",o:["Muammoni aniqlab, qo'llab-quvvatlayman","Rag'batlantirish tizimini ko'rib chiqaman","Umumiy yig'ilish o'tkazaman","Eng yaxshilarga bonus beraman"]},
+    {id:"m5",c:"Mijoz",t:"VIP mijoz shikoyat bilan kelsa nima qilasiz?",o:["Zudlik bilan shaxsan muloqot qilaman","Mas'ul xodimni yo'naltiraman","Kechirim so'rab, yechim taklif qilaman","Standart jarayon bo'yicha hal qilaman"]},
+    {id:"m6",c:"Hisobot",t:"Oylik ko'rsatkichlar past bo'lsa rahbariyatga nima deysiz?",o:["Sabablarni tahlil qilib, yechim rejasi taqdim etaman","Faqat natijani aytaman","Jamoani ayblayman","Keyingi oy yaxshilanadi deb va'da qilaman"]},
+    {id:"m7",c:"Yangi xodim",t:"Yangi xodimni jamoaga qo'shishda asosiy ustuvorlik?",o:["Mentor tayinlab, moslashishiga yordam beraman","Qo'llanma va yo'riqnoma tayyorlayman","Jamoaga tanishtirib qo'yaman","Faqat ish vazifalarini tushuntiraman"]},
+    {id:"m8",c:"Ziddiyat",t:"Ikki xodim o'rtasida jiddiy ziddiyat bo'lsa?",o:["Har ikki tomonni alohida tinglash va yechim topaman","Jamoa oldida hal qilamiz","HR ga topshiraman","Ogohlantirish beraman"]},
+    {id:"m9",c:"Innovatsiya",t:"Jamoada yangi g'oya taklif qilinsa qanday yondashasiz?",o:["Baholash mezonlari asosida ko'rib chiqaman","Darhol tatbiq etishga harakat qilaman","Rahbariyat bilan kelishaman","Avvalgi tajribaga asoslanib qaror qilaman"]},
+    {id:"m10",c:"Natija",t:"Kvartaldagi asosiy muvaffaqiyatingiz nimada bo'ldi?",o:["Jamoa samaradorligini oshirdim","Yangi mijozlar jalb qildim","Jarayon va tizimlarni yaxshiladim","Xarajatlarni kamaytirishga erishdim"]},
   ]},
-  barista:{l:{uz:"Barista",ru:"Бариста",en:"Barista"},i:"☕",q:[
-    {id:"b1",c:{uz:"Texnika",ru:"Техника",en:"Technique"},t:{uz:"Espresso tayyorlashda eng muhim omil nima?",ru:"Что самое важное при приготовлении эспрессо?",en:"What is the most important factor in making espresso?"},o:{uz:["Tortish vaqti (25-30 sek) va hajmi","Kofe turi va qovurish darajasi","Suv harorati va bosimi","Kofe maydalash darajasi"],ru:["Время (25-30 сек) и объём","Тип и степень обжарки кофе","Температура и давление воды","Степень помола кофе"],en:["Extraction time (25-30 sec) and volume","Coffee type and roast level","Water temperature and pressure","Coffee grind size"]}},
-    {id:"b2",c:{uz:"Sifat",ru:"Качество",en:"Quality"},t:{uz:"Mijoz qahvasi ta'mini yoqtirmasa nima qilasiz?",ru:"Что делаете, если клиенту не нравится вкус кофе?",en:"What do you do if a customer doesn't like the taste?"},o:{uz:["Uzr so'rab darhol yangi tayyorlayman","Isitish uchun mikroto'lqin taklif qilaman","Kechirim so'rayman","Menejerni chaqiraman"],ru:["Извинюсь и немедленно приготовлю новый","Предложу разогреть в микроволновке","Просто извинюсь","Позову менеджера"],en:["Apologize and make a new one immediately","Offer to reheat in microwave","Just apologize","Call the manager"]}},
-    {id:"b3",c:{uz:"Bilim",ru:"Знания",en:"Knowledge"},t:{uz:"Latte va cappuccino farqi nima?",ru:"В чём разница между латте и капучино?",en:"What is the difference between latte and cappuccino?"},o:{uz:["Latte ko'proq sut, cappuccino ko'proq ko'pik","Ikkalasi bir xil, faqat nomi farq qiladi","Cappuccino kuchliroq, latte yumshoqroq","Latte sovuq, cappuccino issiq servis qilinadi"],ru:["Латте больше молока, капучино больше пены","Одинаковые, только называются по-разному","Капучино крепче, латте мягче","Латте холодный, капучино горячий"],en:["Latte more milk, cappuccino more foam","Same, just different names","Cappuccino stronger, latte softer","Latte is cold, cappuccino is hot"]}},
-    {id:"b4",c:{uz:"Tozalik",ru:"Чистота",en:"Cleanliness"},t:{uz:"Espresso mashinasini qachon tozalash kerak?",ru:"Когда нужно чистить эспрессо-машину?",en:"When should you clean the espresso machine?"},o:{uz:["Har smena boshida, oxirida va zarur bo'lganda","Faqat ko'zga ko'rinadigan kir bo'lganda","Hafta oxirida bir marta","Texnik xizmat vaqtida"],ru:["В начале и конце каждой смены и по необходимости","Только когда видима грязь","Раз в неделю","Во время технического обслуживания"],en:["At start/end of each shift and as needed","Only when visibly dirty","Once a week","During technical service"]}},
-    {id:"b5",c:{uz:"Mas'uliyat",ru:"Ответственность",en:"Responsibility"},t:{uz:"Smena oxirida ish joyi tartibsiz qolsa nima qilasiz?",ru:"Что делаете, если рабочее место в беспорядке в конце смены?",en:"What do you do if workspace is messy at end of shift?"},o:{uz:["O'zim to'liq tozalab, keyingi smenani tayyorlab ketaman","Faqat o'z ish joyimni tozalayman","Keyingi smena o'zi tartibga soladi","Tez-tez tozalab, tartibli ushlab turaman"],ru:["Полностью убираю сам и готовлю для следующей смены","Убираю только своё место","Следующая смена сама уберёт","Регулярно убираю в течение смены"],en:["Clean fully myself and prepare for next shift","Only clean my own area","Next shift will clean it","Keep it tidy throughout the shift"]}},
+  barista:{l:"Barista",i:"☕",q:[
+    {id:"b1",c:"Texnika",t:"Espresso tayyorlashda eng muhim omil nima?",o:["Tortish vaqti (25-30 sek) va hajmi (25-30ml)","Kofe turi va qovurish darajasi","Suv harorati va bosimi","Kofe maydalash darajasi"]},
+    {id:"b2",c:"Sifat",t:"Mijoz qahvasi ta'mini yoqtirmasa nima qilasiz?",o:["Uzr so'rab darhol yangi tayyorlayman","Isitish uchun mikroto'lqin taklif qilaman","Kechirim so'rayman","Menejerni chaqiraman"]},
+    {id:"b3",c:"Bilim",t:"Latte va cappuccino farqi nima?",o:["Latte ko'proq sut, cappuccino ko'proq ko'pik","Ikkalasi bir xil, faqat nomi farq qiladi","Cappuccino kuchliroq, latte yumshoqroq","Latte sovuq, cappuccino issiq servis qilinadi"]},
+    {id:"b4",c:"Tozalik",t:"Espresso mashinasini qachon tozalash kerak?",o:["Har smena boshida, oxirida va zarur bo'lganda","Faqat ko'zga ko'rinadigan kir bo'lganda","Hafta oxirida bir marta","Texnik xizmat vaqtida"]},
+    {id:"b5",c:"Mijoz",t:"Allergiyasi bor mijoz kelsa nima qilasiz?",o:["Ingredientlarni tushuntirib, muqobil taklif qilaman","Doktor maslahatiga yo'naltiraman","Hech narsa demayman","Faqat kutilgan mahsulotni beraman"]},
+    {id:"b6",c:"Tezlik",t:"Navbat uzayib ketsa qanday ish tartibini qo'llaysiz?",o:["Parallel tayyorlash: bir vaqtda bir nechta buyurtma","Tezlik uchun sifatni biroz pasaytiraman","Yordamchi so'rayman","Har bir buyurtmani tartibda bajaraman"]},
+    {id:"b7",c:"O'rganish",t:"Menyuga yangi ichimlik qo'shilsa qanday o'rganasiz?",o:["Retseptni yod olib, o'zim sinab ko'raman","Faqat ko'rsatma bo'lganda o'rganaman","Internet va video darslardan o'rganaman","Hamkasbdan so'rayman"]},
+    {id:"b8",c:"Muammo",t:"Mashina ishlamay qolsa smena o'rtasida nima qilasiz?",o:["Darhol mas'ulni xabardor qilib, mijozlarni ogohlantiraman","O'zim tuzatishga harakat qilaman","Smenani to'xtataman","Muqobil usul bilan davom etaman"]},
+    {id:"b9",c:"Jamoa",t:"Hamkasbingiz xato retsept ishlatayotganini ko'rsangiz?",o:["Xushmuomalalik bilan to'g'ri retseptni ko'rsataman","Menejerni xabardor qilaman","Hech narsa demay davom etaman","Mijoz shikoyat qilganidan keyin aytaman"]},
+    {id:"b10",c:"Mas'uliyat",t:"Smena oxirida ish joyi tartibsiz qolsa nima qilasiz?",o:["O'zim to'liq tozalab, keyingi smenani tayyorlab ketaman","Faqat o'z ish joyimni tozalayman","Keyingi smena o'zi tartibga soladi","Tez-tez tozalab, tartibli ushlab turaman"]},
   ]},
-  sotuvchi:{l:{uz:"Sotuvchi",ru:"Продавец",en:"Seller"},i:"🛍️",q:[
-    {id:"s1",c:{uz:"Sotuv",ru:"Продажа",en:"Sales"},t:{uz:"Mijoz mahsulot narxini qimmat desa qanday javob berasiz?",ru:"Что отвечаете, если клиент говорит что цена высокая?",en:"What do you say if a customer says the price is too high?"},o:{uz:["Mahsulotning qiymatini va foydasini tushuntiraman","Chegirma beraman","Arzonroq variantni taklif qilaman","Narx bozor narxiga mos deb tushuntiraman"],ru:["Объясняю ценность и пользу продукта","Даю скидку","Предлагаю более дешёвый вариант","Объясняю что цена соответствует рынку"],en:["Explain product value and benefits","Give a discount","Offer a cheaper option","Explain price matches market"]}},
-    {id:"s2",c:{uz:"Ehtiyoj",ru:"Потребность",en:"Needs"},t:{uz:"Mijozning haqiqiy ehtiyojini aniqlash uchun nima qilasiz?",ru:"Как определяете реальную потребность клиента?",en:"How do you identify customer's real needs?"},o:{uz:["Ochiq savollar beraman va diqqat bilan tinglayman","Mahsulotlarimizni birin-ketin taqdim etaman","Eng mashhur mahsulotni taklif qilaman","Mijoz o'zi so'raganini beraman"],ru:["Задаю открытые вопросы и внимательно слушаю","Последовательно представляю продукты","Предлагаю самый популярный товар","Даю то, что клиент просит"],en:["Ask open questions and listen carefully","Present products one by one","Offer the most popular product","Give what customer asks"]}},
-    {id:"s3",c:{uz:"Shikoyat",ru:"Жалоба",en:"Complaint"},t:{uz:"Mijoz mahsulotdan norozi bo'lib qaytib kelsa nima qilasiz?",ru:"Что делаете если клиент возвращается недовольный продуктом?",en:"What do you do if a customer returns unsatisfied?"},o:{uz:["Muammoni tinglash, kechirim so'rash va yechim taklif qilish","Qaytarish yoki almashtirish tartibini tushuntiraman","Menejerga yo'naltiraman","Sababini aniqlab, imkon qadar hal qilaman"],ru:["Выслушаю, извинюсь и предложу решение","Объясню порядок возврата или обмена","Направлю к менеджеру","Выясню причину и решу по возможности"],en:["Listen, apologize and offer solution","Explain return or exchange procedure","Direct to manager","Find reason and resolve if possible"]}},
-    {id:"s4",c:{uz:"Bilim",ru:"Знания",en:"Knowledge"},t:{uz:"Yangi mahsulot haqida qanday bilim olasiz?",ru:"Как узнаёте о новых продуктах?",en:"How do you learn about new products?"},o:{uz:["Barcha materiallarni o'qib, o'zim sinab ko'raman","Treninglar va prezentatsiyalarda qatnashaman","Hamkasblardan o'rganaman","Mijoz savollari orqali o'rganaman"],ru:["Читаю все материалы и пробую сам","Участвую в тренингах и презентациях","Учусь у коллег","Узнаю через вопросы клиентов"],en:["Read all materials and try myself","Attend trainings and presentations","Learn from colleagues","Learn through customer questions"]}},
-    {id:"s5",c:{uz:"Munosabat",ru:"Отношения",en:"Relations"},t:{uz:"Mijoz bilan uzoq muddatli munosabat qurish uchun nima qilasiz?",ru:"Что делаете для построения долгосрочных отношений с клиентом?",en:"What do you do to build long-term client relationships?"},o:{uz:["Sotuvdan keyin ham xabardor bo'lib turaman","Har oy yangi takliflar yuboraman","Bayramlarda tabriklayman","Faqat yangi mahsulot chiqqanda muloqot qilaman"],ru:["Поддерживаю связь после продажи","Ежемесячно отправляю новые предложения","Поздравляю с праздниками","Связываюсь только при новых продуктах"],en:["Stay in touch after sales","Send new offers monthly","Congratulate on holidays","Contact only when new products arrive"]}},
+  sotuvchi:{l:"Sotuvchi",i:"🛍️",q:[
+    {id:"s1",c:"Sotuv",t:"Mijoz mahsulot narxini qimmat desa qanday javob berasiz?",o:["Mahsulotning qiymatini va foydasini tushuntiraman","Chegirma beraman","Arzonroq variantni taklif qilaman","Narx bozor narxiga mos deb tushuntiraman"]},
+    {id:"s2",c:"Ehtiyoj",t:"Mijozning haqiqiy ehtiyojini aniqlash uchun nima qilasiz?",o:["Ochiq savollar beraman va diqqat bilan tinglayman","Mahsulotlarimizni birin-ketin taqdim etaman","Eng mashhur mahsulotni taklif qilaman","Mijoz o'zi so'raganini beraman"]},
+    {id:"s3",c:"Rad etish",t:"Mijoz 'O'ylab ko'raman' desa qanday harakat qilasiz?",o:["Asosiy savollarni aniqlab, shubhalarni bartaraf etaman","Qayta qo'ng'iroq vaqtini belgilab ruxsat so'rayman","Yangi taklif bilan chiqaman","Xayrlashib, keyingi mijozga o'taman"]},
+    {id:"s4",c:"Bilim",t:"Raqobatchi mahsulotidan afzalligimizni qanday tushuntirасиз?",o:["Aniq faktlar va farqlarni ko'rsataman","Raqobatchilarni tanqid qilaman","Narq jihatiga e'tibor qarataman","Faqat o'z mahsulotimiz haqida gapiraman"]},
+    {id:"s5",c:"Taqdimot",t:"Yangi mijozga mahsulot taqdimotini qanday boshlaysiz?",o:["Avval mijoz ehtiyojini aniqlayman, so'ng mahsulotni ko'rsataman","Mahsulotning barcha xususiyatlarini batafsil aytaman","Demo ko'rsataman","Muvaffaqiyatli mijozlar misolini keltiraman"]},
+    {id:"s6",c:"Munosabat",t:"Mijoz bilan uzoq muddatli munosabat qurish uchun nima qilasiz?",o:["Sotuvdan keyin ham xabardor bo'lib turaman","Har oy yangi takliflar yuboraman","Bayramlarda tabriklayman","Faqat yangi mahsulot chiqqanda muloqot qilaman"]},
+    {id:"s7",c:"Reja",t:"Oylik reja bajarilmayotganini sezsa qanday harakat qilasiz?",o:["Sabablarni tahlil qilib, strategiyani o'zgartiraman","Rahbariyatga aytaman","Qolgan kunlarda ikki barobar harakat qilaman","Keyingi oyga umid qilaman"]},
+    {id:"s8",c:"Guruh",t:"Jamoaviy sotuv loyihasida o'z vazifangiz nima?",o:["Aniq rolimni o'tab, jamoa muvaffaqiyatiga hissa qo'shaman","Eng ko'p sotuv qilishga intilamаn","Loyiha rahbarini qo'llab-quvvatlayman","Jamoadan mustaqil ishlashni afzal ko'raman"]},
+    {id:"s9",c:"Shikoyat",t:"Mijoz mahsulotdan norozi bo'lib qaytib kelsa nima qilasiz?",o:["Muammoni tinglash, kechirim so'rash va yechim taklif qilish","Qaytarish yoki almashtirish tartibini tushuntiraman","Menejerga yo'naltiraman","Sababini aniqlab, imkon qadar hal qilaman"]},
+    {id:"s10",c:"O'rganish",t:"Yangi mahsulot haqida qanday bilim olasiz?",o:["Barcha materiallarni o'qib, o'zim sinab ko'raman","Treninglar va prezentatsiyalarda qatnashaman","Hamkasblardan o'rganaman","Mijoz savollari orqali o'rganaman"]},
   ]},
-  tozalovchi:{l:{uz:"Tozalovchi",ru:"Уборщик",en:"Cleaner"},i:"🧹",q:[
-    {id:"t1",c:{uz:"Tartib",ru:"Порядок",en:"Order"},t:{uz:"Smena boshida birinchi nimani qilasiz?",ru:"Что делаете первым в начале смены?",en:"What do you do first at the start of your shift?"},o:{uz:["Jihozlar va materiallarni tekshirib, rejani tuzaman","Oldingidan qolgan ishlarni davom ettiraman","Mas'uldan ko'rsatma olaman","Darhol tozalashni boshlayman"],ru:["Проверяю оборудование и составляю план","Продолжаю незавершённые задачи","Получаю инструктаж от ответственного","Сразу начинаю уборку"],en:["Check equipment and make a plan","Continue unfinished work","Get instructions from supervisor","Start cleaning immediately"]}},
-    {id:"t2",c:{uz:"Xavfsizlik",ru:"Безопасность",en:"Safety"},t:{uz:"Kimyoviy moddalar bilan ishlashda ehtiyot choralar?",ru:"Меры предосторожности при работе с химикатами?",en:"Precautions when working with chemicals?"},o:{uz:["Qo'lqop, niqob va himoya kiyimini kiyaman","Faqat qo'lqop kiyaman","Ko'rsatmalarga qarab harakat qilaman","Himoya vositasisiz ishlashga odatlanganman"],ru:["Надеваю перчатки, маску и защитную одежду","Надеваю только перчатки","Действую по инструкции","Привык работать без защиты"],en:["Wear gloves, mask and protective clothing","Only wear gloves","Follow instructions","Used to working without protection"]}},
-    {id:"t3",c:{uz:"Mas'uliyat",ru:"Ответственность",en:"Responsibility"},t:{uz:"Ish paytida biror narsani tasodifan sindirsangiz nima qilasiz?",ru:"Что делаете если случайно что-то сломали на работе?",en:"What do you do if you accidentally break something at work?"},o:{uz:["Darhol mas'ulni xabardor qilaman","Yashirishga harakat qilaman","O'zim tuzataman yoki almashtiraman","Kimdir ko'rmasa aytmasam ham bo'ladi"],ru:["Немедленно сообщаю ответственному","Пытаюсь скрыть","Починю или заменю сам","Не скажу если никто не видел"],en:["Immediately inform supervisor","Try to hide it","Fix or replace myself","Won't say if no one saw"]}},
-    {id:"t4",c:{uz:"Sifat",ru:"Качество",en:"Quality"},t:{uz:"Ishingiz sifatini o'zingiz qanday nazorat qilasiz?",ru:"Как сами контролируете качество своей работы?",en:"How do you control the quality of your work?"},o:{uz:["Yakunlashdan oldin har joyni qayta tekshiraman","Cheklistdan foydalanaman","Mijozlar yoki nazoratchi fikriga tayanaman","Ko'zga ko'rinsa yetarli deb hisoblayman"],ru:["Перепроверяю каждое место перед завершением","Использую чеклист","Опираюсь на мнение клиентов или проверяющего","Считаю достаточным если всё видно"],en:["Recheck every area before finishing","Use a checklist","Rely on client or supervisor feedback","Consider it enough if visible"]}},
-    {id:"t5",c:{uz:"Intizom",ru:"Дисциплина",en:"Discipline"},t:{uz:"Ish tugagandan keyin jihozlar bilan nima qilasiz?",ru:"Что делаете с оборудованием после работы?",en:"What do you do with equipment after work?"},o:{uz:["Jihozlarni tozalab, joy-joyiga qo'yaman va sarflarni qayd etaman","Tezda joyiga qo'yib ketaman","Ertangi smena o'zi qiladi deb qoldiraman","Mas'ul ko'rsatgan joyga qo'yaman"],ru:["Чищу, убираю на место и записываю расход","Быстро кладу на место и ухожу","Оставляю — следующая смена сделает","Кладу туда куда указал ответственный"],en:["Clean, store properly and record usage","Quickly put away and leave","Leave it — next shift will handle","Put where supervisor indicated"]}},
+  tozalovchi:{l:"Tozalovchi",i:"🧹",q:[
+    {id:"t1",c:"Tartib",t:"Smena boshida birinchi nimani qilasiz?",o:["Jihozlar va materiallarni tekshirib, rejani tuzaman","Oldingidan qolgan ishlarni davom ettiraman","Mas'uldan ko'rsatma olaman","Darhol tozalashni boshlayman"]},
+    {id:"t2",c:"Vositalar",t:"Turli yuzalar uchun qaysi tozalash vositasini tanlaysiz?",o:["Yuzaga qarab tegishli vositani tanlayman","Umumiy tozalovchi vositani hamma yerda ishlataman","Ishchi bergan narsani ishlataman","Ko'proq bo'lsa yaxshiroq deb ko'p ishlataman"]},
+    {id:"t3",c:"Xavfsizlik",t:"Kimyoviy moddalar bilan ishlashda ehtiyot choralar?",o:["Qo'lqop, niqob va himoya kiyimini kiyaman","Faqat qo'lqop kiyaman","Ko'rsatmalarga qarab harakat qilaman","Himoya vositasisiz ishlashga odatlanganman"]},
+    {id:"t4",c:"Muammo",t:"Kuchli dog' tozalab bo'lmayotgan joy bilan nima qilasiz?",o:["Maxsus vosita yoki texnika qidiraman","Mas'ulni xabardor qilaman","Qayta-qayta urinishni davom ettiraman","Boshqa joyga o'tib, keyinroq qaytaman"]},
+    {id:"t5",c:"Vaqt",t:"Katta maydonni qisqa vaqtda tozalash kerak bo'lsa?",o:["Yuqoridan pastga, ichkaridan tashqariga usulida","Eng ko'zga ko'rinadigan joylarni birinchi","Har bir xonani to'liq yakunlab keyingisiga o'taman","Tez ko'zdan kechirib, muhimlarini birinchi qilaman"]},
+    {id:"t6",c:"Jihoz",t:"Tozalash jihozi ishlamay qolsa nima qilasiz?",o:["Darhol mas'ulni xabardor qilib, muqobil vosita so'rayman","O'zim tuzatishga harakat qilaman","Qo'l bilan davom ettiraman","Jihoz tuzatilguncha kutaman"]},
+    {id:"t7",c:"Sifat",t:"Ishingiz sifatini o'zingiz qanday nazorat qilasiz?",o:["Yakunlashdan oldin har joyni qayta tekshiraman","Cheklistdan foydalanaman","Mijozlar yoki nazoratchi fikriga tayanaman","Ko'zga ko'rinsa yetarli deb hisoblayman"]},
+    {id:"t8",c:"Muloqot",t:"Tozalayotgan paytda biror kishi halaqit bersa?",o:["Xushmuomalalik bilan kutishni so'rayman","Ularni e'tiborsiz qoldirib ishni davom ettiraman","Keyin qilish uchun to'xtataman","Mas'ulni chaqiraman"]},
+    {id:"t9",c:"Mas'uliyat",t:"Ish paytida biror narsani tasodifan sindirsangiz nima qilasiz?",o:["Darhol mas'ulni xabardor qilaman","Yashirishga harakat qilaman","O'zim tuzataman yoki almashtiraman","Kimdir ko'rmasa aytmasam ham bo'ladi"]},
+    {id:"t10",c:"Intizom",t:"Ish tugagandan keyin jihozlar bilan nima qilasiz?",o:["Jihozlarni tozalab, joy-joyiga qo'yaman va sarflarni qayd etaman","Tezda joyiga qo'yib ketaman","Ertangi smena o'zi qiladi deb qoldiraman","Mas'ul ko'rsatgan joyga qo'yaman"]},
   ]},
-  hr:{l:{uz:"HR",ru:"HR",en:"HR"},i:"🤝",q:[
-    {id:"h1",c:{uz:"Yollash",ru:"Найм",en:"Hiring"},t:{uz:"Intervyu o'tkazishda qanday savollardan foydalanasiz?",ru:"Какие вопросы используете при проведении интервью?",en:"What questions do you use when conducting interviews?"},o:{uz:["Vaziyatga asoslangan (STAR) savollar","Standart ish tajribasi savollari","Ko'proq motivatsiya savollari","Texnik bilimni tekshiruvchi savollar"],ru:["Ситуационные вопросы (метод STAR)","Стандартные вопросы об опыте работы","Больше вопросов о мотивации","Вопросы для проверки технических знаний"],en:["Situational (STAR method) questions","Standard work experience questions","More motivation questions","Technical knowledge testing questions"]}},
-    {id:"h2",c:{uz:"Onboarding",ru:"Адаптация",en:"Onboarding"},t:{uz:"Yangi xodim birinchi haftada nimaga muhtoj?",ru:"Что нужно новому сотруднику в первую неделю?",en:"What does a new employee need in the first week?"},o:{uz:["Aniq rol, mentor va ish muhiti bilan tanishish","Faqat hujjatlarni to'ldirish","Darhol ish boshlash","Jamoa bilan tanishish yig'ilishi"],ru:["Чёткая роль, наставник и знакомство со средой","Только заполнение документов","Немедленно приступить к работе","Встреча знакомства с командой"],en:["Clear role, mentor and workplace introduction","Just filling out documents","Start working immediately","Team introduction meeting"]}},
-    {id:"h3",c:{uz:"Nizo",ru:"Конфликт",en:"Conflict"},t:{uz:"Bo'limlar o'rtasida mojaro yuzaga kelsa HR sifatida nima qilasiz?",ru:"Что делаете как HR если возникает конфликт между отделами?",en:"What do you do as HR if conflict arises between departments?"},o:{uz:["Betaraf vositachi sifatida ikki tomonni tinglaman","Qoida va tartibga asosan qaror qilaman","Yuqori rahbariyatga topshiraman","Tomonlarni alohida yig'ib, yechim topaman"],ru:["Выслушиваю обе стороны как нейтральный посредник","Принимаю решение согласно правилам","Передаю высшему руководству","Собираю стороны отдельно и нахожу решение"],en:["Listen to both sides as neutral mediator","Decide based on rules and regulations","Hand over to upper management","Meet each side separately and find solution"]}},
-    {id:"h4",c:{uz:"Rivojlanish",ru:"Развитие",en:"Development"},t:{uz:"Xodim o'sishini qo'llab-quvvatlash uchun nima qilasiz?",ru:"Что делаете для поддержки роста сотрудника?",en:"What do you do to support employee growth?"},o:{uz:["Individual rivojlanish rejasi (IDP) tuzaman","Treninglar va kurslar tashkil etaman","Mentorlik dasturini yo'lga qo'yaman","Ichki ko'tarilish imkoniyatlarini taqdim etaman"],ru:["Составляю индивидуальный план развития (IDP)","Организую тренинги и курсы","Внедряю программу наставничества","Предоставляю возможности внутреннего роста"],en:["Create individual development plan (IDP)","Organize trainings and courses","Implement mentoring program","Provide internal promotion opportunities"]}},
-    {id:"h5",c:{uz:"Motivatsiya",ru:"Мотивация",en:"Motivation"},t:{uz:"Xodimlar ish qoldirish ko'rsatkichi oshsa nimadan boshlayman?",ru:"С чего начнёте если показатель текучести кадров растёт?",en:"Where do you start if employee turnover rate increases?"},o:{uz:["Exit interview va sabab tahlili","Ish sharoitini ko'rib chiqaman","Maosh va benefitlarni taqqoslayman","Xodimlar so'rovnomasini o'tkazaman"],ru:["Провожу exit interview и анализ причин","Пересматриваю условия труда","Сравниваю зарплаты и льготы","Провожу опрос сотрудников"],en:["Conduct exit interview and analyze reasons","Review working conditions","Compare salaries and benefits","Conduct employee survey"]}},
+  hr:{l:"HR",i:"🤝",q:[
+    {id:"h1",c:"Yollash",t:"Intervyu o'tkazishda qanday savollardan foydalanasiz?",o:["Vaziyatga asoslangan (STAR) savollar","Standart ish tajribasi savollari","Ko'proq motivatsiya savollari","Texnik bilimni tekshiruvchi savollar"]},
+    {id:"h2",c:"Onboarding",t:"Yangi xodim birinchi haftada nimaga muhtoj?",o:["Aniq rol, mentor va ish muhiti bilan tanishish","Faqat hujjatlarni to'ldirish","Darhol ish boshlash","Jamoa bilan tanishish yig'ilishi"]},
+    {id:"h3",c:"Nizo",t:"Bo'limlar o'rtasida mojaro yuzaga kelsa HR sifatida nima qilasiz?",o:["Betaraf vositachi sifatida ikki tomonni tinglaman","Qoida va tartibga asosan qaror qilaman","Yuqori rahbariyatga topshiraman","Tomonlarni alohida yig'ib, yechim topaman"]},
+    {id:"h4",c:"Bo'shatish",t:"Xodimni bo'shatish zarur bo'lganda qanday harakat qilasiz?",o:["Qonuniy tartib va insoniy munosabat bilan o'tkazaman","Faqat hujjat va rasmiy jarayon","Xodimga oldindan ogohlantirish beraman","Menejer bilan birgalikda hal qilaman"]},
+    {id:"h5",c:"Siyosat",t:"Xodim kompaniya qoidasini buzsa nima qilasiz?",o:["Darajasiga qarab tartib bo'yicha jazo chorasi","Avval suhbat, keyin rasmiy ogohlantirish","Darhol menejerga xabar beraman","Yozma ogohlantirish yuboraman"]},
+    {id:"h6",c:"Motivatsiya",t:"Xodimlar ish qoldirish ko'rsatkichi oshsa nimadan boshlayman?",o:["Exit interview va sabab tahlili","Ish sharoitini ko'rib chiqaman","Maosh va benefitlarni taqqoslayman","Xodimlar so'rovnomasini o'tkazaman"]},
+    {id:"h7",c:"Rivojlanish",t:"Xodim o'sishini qo'llab-quvvatlash uchun nima qilasiz?",o:["Individual rivojlanish rejasi (IDP) tuzaman","Treninglar va kurslar tashkil etaman","Mentorlik dasturini yo'lga qo'yaman","Ichki ko'tarilish imkoniyatlarini taqdim etaman"]},
+    {id:"h8",c:"Madaniyat",t:"Korporativ madaniyatni shakllantirishda HR roli nima?",o:["Qadriyatlarni tatbiq etuvchi tadbirlar","Faqat yangi xodimlarni o'rgatish","Rahbariyat ko'rsatmasini amalga oshirish","Xodimlar fikr-mulohazasini to'plash"]},
+    {id:"h9",c:"Qonun",t:"Xodim mehnat huquqlari haqida savol bersa nima qilasiz?",o:["To'g'ri ma'lumot beraman va kerak bo'lsa yuristga yo'naltiraman","Faqat kompaniya siyosatini tushuntiraman","Rahbariyatga havola qilaman","Standart javob tayyorlagiman"]},
+    {id:"h10",c:"Maxfiylik",t:"Xodimlar ma'lumotlarining maxfiyligi bo'yicha yondashuvingiz?",o:["Qat'iy maxfiylik siyosati va ruxsatga asoslangan kirish","Faqat zarur hollarda maxfiy saqlayman","Umumiy bazada saqlayman","Har bir xodim o'z ma'lumotlarini boshqaradi"]},
   ]},
 };
 
-// ═══ LANG CONFIG ═══
-const L={
-  uz:{
-    pageTitle:{chat:"AI Agent",hr:"Ishchi qabul qilish",tg:"Administrator"},
-    wTitle:"Ottimo AI Agentiga xush kelibsiz",
-    wSub:"Men faqat Ottimo Cafe haqida javob beraman",
-    placeholder:"Ottimo haqida savol bering...",
-    starters:[
-      {i:"📍",t:"Filiallar",s:"3 ta filial manzili",q:"filial"},
-      {i:"⏰",t:"Ish vaqti",s:"Smena jadvali",q:"vaqt"},
-      {i:"💼",t:"Vakansiyalar",s:"Bo'sh o'rinlar",q:"vakansiya"},
-      {i:"📞",t:"Bog'lanish",s:"Admin va telefon",q:"boglanish"},
-    ],
-    infoMsgs:{
-      filial:"📍 Ottimo filiallari:
-
-1️⃣ Nukus kinoteatri yonida
-    📌 Toshkent, Shifer ko'chasi 71
-
-2️⃣ Parus ostida
-    📌 Toshkent, Katartal ko'chasi 60A/1
-
-3️⃣ Talant International School ro'parasida
-    📌 Buyuk Ipak Yo'li 31, Mirzo Ulug'bek tumani
-
-📞 +998 99 060 33 53 · @Ottimo_hr",
-      vaqt:"⏰ Ish smenalari:
-
-☀️ 1-smena:  07:30 — 16:30
-🌙 2-smena:  16:00 — 24:00",
-      vakansiya:"💼 Bo'sh o'rinlar haqida ma'lumot olish uchun administrator bilan bog'laning:
-
-📱 Telegram: @Ottimo_hr
-📞 Telefon: +998 99 060 33 53
-
-Ish vaqti: 09:00 — 18:00",
-      boglanish:"📞 Murojaat:
-
-Telegram: @Ottimo_hr
-Telefon: +998 99 060 33 53
-Ish vaqti: 09:00 — 18:00
-
-🔗 t.me/ottimo_uz",
-    },
-    statusTxt:"Ottimo AI · Faol",
-    sendHint:"Enter yuborish · Shift+Enter yangi qator",
-    hrTabs:["📝 Hodim imtihoni","🔐 Rahbar paneli"],
-    hrTitle:"Ottimo HR",hrSub:"Sinov muddatida baholash tizimi",
-    hrStep1Lbl:"Shaxsiy ma'lumotlar",
-    hrFields:["Ism va familiya *","Email *","Telefon *","Tug'ilgan sana *","Manzil *"],
-    hrPlaceholders:["To'liq ismingiz","email@gmail.com","+998901234567","","Toshkent, ..."],
-    hrHints:["","To'g'ri format: ism@gmail.com","Masalan: +998901234567","",""],
-    hrErrs:{nm:"Ism kamida 3 harf",em:"To'g'ri email kiriting",ph:"To'g'ri telefon kiriting",bd:"Sanani kiriting",ad:"Manzilni kiriting"},
-    nextBtn:"Davom etish →",startBtn:"Imtihonni boshlash →",backBtn:"← Orqaga",
-    kasbLbl:"Kasbingizni tanlang",
-    qOf:"Savol",
-    finishBtn:"Yakunlash →",nextQBtn:"Keyingi →",prevBtn:"← Oldingi",
-    resultsTitle:"Natijalar",
-    admTitle:"Rahbar paneli",admSub:"Faqat rahbarlar uchun",
-    namePh:"Ism Familiya",passPh:"Parol",loginBtn:"Kirish →",
-    logoutBtn:"Chiqish",
-    badgeOk:"✓ Qabul",badgeMon:"◎ Monitoring",badgeFail:"✗ Rad",
-    statLbls:["Qabul (≥85%)","Monitoring","Rad (<65%)","Jami"],
-    searchPh:"Qidirish...",
-    ansLbl:"Javoblar",noAns:"Javob berilmagan",
-    tgTitle:"Administrator bilan bog'lanish",
-    tgSub:"Ottimo HR bo'limi bilan Telegram orqali muloqot qiling. Ish vaqti: 09:00 — 18:00",
-    tgPhLbl:"Telefon",tgWhLbl:"Ish vaqti",
-    admErrName:"Ism Familiyangizni kiriting",admErrPass:"Parol noto'g'ri",
-    restartBtn:"Qayta boshlash",
-    viewAns:"👁 Javoblarni ko'rish",closeAns:"▲ Yopish",
-    scoreMsg:{ok:"Tabriklaymiz! Natijalaringiz rahbarga yuborildi.",mon:"Yaxshi natija! Rahbar siz bilan bog'lanadi.",fail:"Natijalaringiz rahbarga yuborildi."},
-    system:`Sen Ottimo uchun maxsus AI agentsan. FAQAT Ottimo Cafe haqidagi savollarga javob berasan. Agar savol Ottimo bilan bog'liq bo'lmasa, albatta "Mingbor uzur, men faqat Ottimo Cafe haqida yordam bera olaman 🙏" deb javob ber. Hech qanday istisno yo'q.
-
-OTTIMO TO'LIQ MA'LUMOT:
-📍 3 filial: Shifer ko'chasi 71 | Katartal ko'chasi 60A/1 | Buyuk Ipak Yo'li 31
-⏰ Smenalar: 07:30-16:30 va 16:00-24:00
-💼 Vakansiyalar: Barista, Kassir, Konditer-sotuvchi
-📋 Yosh: 20-35 | Rus tili shart | Probatsiya: 1 oy
-💰 Maosh: har 10 kunda | Har smenada bepul ovqat
-📞 Tel: +998 99 060 33 53 | @Ottimo_hr | 09:00-18:00
-
-O'zbek tilida qisqa, do'stona javob ber. Emoji ishlatib jonlantir 🌿`
+// ── LANG DATA ──
+var lang="uz";
+var LD={
+uz:{
+  pTitle:{chat:"AI Agent",hr:"Ishchi qabul qilish",tg:"Administrator"},
+  wTitle:"Ottimo AI Agentiga xush kelibsiz",
+  wSub:"Ottimo Cafe haqida savolingizni bering",
+  placeholder:"Ottimo haqida savol bering...",
+  sec1:"Menyu", sec2:"Ma'lumot",
+  nb:{chat:"AI Agent",hr:"Ishchi qabul qilish",tg:"Administrator"},
+  inf:{filial:"Filiallar",vaqt:"Ish vaqti",vakansiya:"Vakansiyalar"},
+  statTxt:"Ottimo AI · Faol",
+  info:{
+    filial:"📍 Ottimo filiallari:\n\n1️⃣  Nukus kinoteatri yonida\n    📌 Toshkent, Shifer ko'chasi 71\n\n2️⃣  Parus ostida\n    📌 Toshkent, Katartal ko'chasi 60A/1\n\n3️⃣  Talant International School ro'parasida\n    📌 Buyuk Ipak Yo'li 31, Mirzo Ulug'bek tumani\n\n📞 +998 99 060 33 53  ·  @Ottimo_hr",
+    vaqt:"⏰ Ish smenalari:\n\n☀️ 1-smena:  07:30 — 16:30\n🌙 2-smena:  16:00 — 24:00",
+    vakansiya:"💼 Bo'sh o'rinlar:\n\n☕ Barista\n💳 Kassir\n🍰 Konditer-sotuvchi\n\n📞 Telefon: +998 99 060 33 53\n📱 Telegram: @Ottimo_hr\n\nIsh vaqti: 09:00 — 18:00"
   },
-  ru:{
-    pageTitle:{chat:"AI Агент",hr:"Приём на работу",tg:"Администратор"},
-    wTitle:"Добро пожаловать в Ottimo AI",
-    wSub:"Я отвечаю только на вопросы об Ottimo Cafe",
-    placeholder:"Задайте вопрос об Ottimo...",
-    starters:[
-      {i:"📍",t:"Филиалы",s:"Адреса 3 филиалов",q:"filial"},
-      {i:"⏰",t:"График",s:"Расписание смен",q:"vaqt"},
-      {i:"💼",t:"Вакансии",s:"Открытые позиции",q:"vakansiya"},
-      {i:"📞",t:"Контакты",s:"Связаться с админом",q:"boglanish"},
-    ],
-    infoMsgs:{
-      filial:"📍 Филиалы Ottimo:
-
-1️⃣ У кинотеатра Нукус
-    📌 Ташкент, ул. Шифернур 71
-
-2️⃣ Под Парусом
-    📌 Ташкент, ул. Катартал 60А/1
-
-3️⃣ Напротив Talant International School
-    📌 Buyuk Ipak Yoli 31, р-н Мирзо-Улугбека
-
-📞 +998 99 060 33 53 · @Ottimo_hr",
-      vaqt:"⏰ Рабочие смены:
-
-☀️ Смена 1:  07:30 — 16:30
-🌙 Смена 2:  16:00 — 24:00",
-      vakansiya:"💼 По поводу вакансий обратитесь к администратору:
-
-📱 Telegram: @Ottimo_hr
-📞 Телефон: +998 99 060 33 53
-
-Рабочие часы: 09:00 — 18:00",
-      boglanish:"📞 Контакты:
-
-Telegram: @Ottimo_hr
-Телефон: +998 99 060 33 53
-Рабочие часы: 09:00 — 18:00
-
-🔗 t.me/ottimo_uz",
-    },
-    statusTxt:"Ottimo AI · Активен",
-    sendHint:"Enter отправить · Shift+Enter новая строка",
-    hrTabs:["📝 Тест сотрудника","🔐 Панель руководителя"],
-    hrTitle:"Ottimo HR",hrSub:"Система оценки на испытательном сроке",
-    hrStep1Lbl:"Личные данные",
-    hrFields:["Имя и фамилия *","Email *","Телефон *","Дата рождения *","Адрес *"],
-    hrPlaceholders:["Полное имя","email@gmail.com","+998901234567","","Ташкент, ..."],
-    hrHints:["","Формат: ism@gmail.com","Например: +998901234567","",""],
-    hrErrs:{nm:"Имя минимум 3 буквы",em:"Введите правильный email",ph:"Введите правильный телефон",bd:"Введите дату",ad:"Введите адрес"},
-    nextBtn:"Продолжить →",startBtn:"Начать тест →",backBtn:"← Назад",
-    kasbLbl:"Выберите профессию",
-    qOf:"Вопрос",
-    finishBtn:"Завершить →",nextQBtn:"Далее →",prevBtn:"← Назад",
-    resultsTitle:"Результаты",
-    admTitle:"Панель руководителя",admSub:"Только для руководителей",
-    namePh:"Имя Фамилия",passPh:"Пароль",loginBtn:"Войти →",
-    logoutBtn:"Выйти",
-    badgeOk:"✓ Принят",badgeMon:"◎ Мониторинг",badgeFail:"✗ Отклонён",
-    statLbls:["Принято (≥85%)","Мониторинг","Отклонено (<65%)","Всего"],
-    searchPh:"Поиск...",
-    ansLbl:"Ответы",noAns:"Ответ не дан",
-    tgTitle:"Связаться с администратором",
-    tgSub:"Общайтесь с HR отделом Ottimo через Telegram. Рабочее время: 09:00 — 18:00",
-    tgPhLbl:"Телефон",tgWhLbl:"Рабочее время",
-    admErrName:"Введите имя и фамилию",admErrPass:"Неверный пароль",
-    restartBtn:"Начать заново",
-    viewAns:"👁 Посмотреть ответы",closeAns:"▲ Закрыть",
-    scoreMsg:{ok:"Поздравляем! Результаты отправлены руководителю.",mon:"Хороший результат! Руководитель свяжется с вами.",fail:"Результаты отправлены руководителю."},
-    system:`Ты специальный AI агент для Ottimo Cafe. Отвечай ТОЛЬКО на вопросы об Ottimo Cafe. Если вопрос не связан с Ottimo, обязательно отвечай: "Тысяча извинений, я могу помочь только по вопросам Ottimo Cafe 🙏". Никаких исключений.
-
-ДАННЫЕ OTTIMO:
-📍 3 филиала: Шифернур 71 | Катартал 60А/1 | Buyuk Ipak Yoli 31
-⏰ Смены: 07:30-16:30 и 16:00-24:00
-💼 Вакансии: Бариста, Кассир, Кондитер
-📋 Возраст: 20-35 | Русский обязателен | Испытательный срок: 1 месяц
-💰 Зарплата: каждые 10 дней | Бесплатное питание каждую смену
-📞 Тел: +998 99 060 33 53 | @Ottimo_hr | 09:00-18:00
-
-Отвечай кратко и по-русски. Используй эмодзи 🌿`
+  starters:[
+    {i:"📍",t:"Filiallar",s:"3 ta manzil",q:"filial"},
+    {i:"⏰",t:"Ish vaqti",s:"Smena jadvali",q:"vaqt"},
+    {i:"💼",t:"Vakansiyalar",s:"Bo'sh o'rinlar",q:"vakansiya"},
+    {i:"📞",t:"Bog'lanish",s:"Admin kontakt",q:"boglanish"}
+  ],
+  infoBoglanish:"📞 Murojaat:\n\nTelegram: @Ottimo_hr\nTelefon: +998 99 060 33 53\nIsh vaqti: 09:00 — 18:00",
+  tgTitle:"Administrator bilan bog'lanish",
+  tgSub:"Ottimo HR bo'limi bilan Telegram orqali muloqot qiling.<br>Ish vaqti: 09:00 — 18:00",
+  tgPhL:"Telefon", tgWhL:"Ish vaqti",
+  hrTab0:"📝 Hodim imtihoni", hrTab1:"🔐 Rahbar paneli",
+  admTitle:"Rahbar paneli", admSub:"Faqat rahbarlar uchun",
+  admNmPh:"Ism Familiya", admPwPh:"Parol", admLoginBtn:"Kirish →",
+  admErrNm:"Ism Familiyangizni kiriting", admErrPw:"Parol noto'g'ri",
+  logoutBtn:"Chiqish",
+  resTitle:"Natijalar",
+  stLbls:["Qabul (≥85%)","Monitoring","Rad (<65%)","Jami"],
+  srchPh:"Qidirish...",
+  noAns:"Javob berilmagan",
+  viewAns:"👁 Javoblarni ko'rish", closeAns:"▲ Yopish",
+  scoreMsg:{ok:"Tabriklaymiz! Natijalaringiz rahbarga yuborildi.",mon:"Yaxshi natija! Rahbar siz bilan bog'lanadi.",fail:"Natijalaringiz rahbarga yuborildi."},
+  restartBtn:"Qayta boshlash",
+  kasbNames:{menejer:"Menejer",barista:"Barista",sotuvchi:"Sotuvchi",tozalovchi:"Tozalovchi",hr:"HR"},
+  system:"Sen Ottimo Cafe uchun maxsus AI agentsan. FAQAT Ottimo Cafe haqidagi savollarga javob berasan.\n\nAgar savol Ottimo bilan bog'liq bo'lmasa, ALBATTA quyidagicha javob ber:\n'Ming bor uzur! Men faqat Ottimo Cafe haqida yordam bera olaman 🙏'\n\nHech qanday istisno yo'q. Ottimo haqida emas — uzur so'ra.\n\nOTTIMO MA'LUMOTLARI:\n📍 3 filial: Shifer ko'chasi 71 | Katartal 60A/1 | Buyuk Ipak Yo'li 31\n⏰ Smenalar: 07:30-16:30 va 16:00-24:00\n💼 Vakansiyalar: Barista, Kassir, Konditer-sotuvchi\n📋 Yosh: 20-35 | Rus tili shart | Probatsiya: 1 oy\n💰 Maosh: har 10 kunda | Har smenada bepul ovqat\n📞 Tel: +998 99 060 33 53 | @Ottimo_hr\n\nO'zbek tilida qisqa, do'stona javob ber 🌿"
+},
+ru:{
+  pTitle:{chat:"AI Агент",hr:"Приём на работу",tg:"Администратор"},
+  wTitle:"Добро пожаловать в Ottimo AI",
+  wSub:"Я отвечаю только на вопросы об Ottimo Cafe",
+  placeholder:"Задайте вопрос об Ottimo...",
+  sec1:"Меню", sec2:"Информация",
+  nb:{chat:"AI Агент",hr:"Приём на работу",tg:"Администратор"},
+  inf:{filial:"Филиалы",vaqt:"График работы",vakansiya:"Вакансии"},
+  statTxt:"Ottimo AI · Активен",
+  info:{
+    filial:"📍 Филиалы Ottimo:\n\n1️⃣  У кинотеатра Нукус\n    📌 Ташкент, ул. Шифернур 71\n\n2️⃣  Под Парусом\n    📌 Ташкент, ул. Катартал 60А/1\n\n3️⃣  Напротив Talant International School\n    📌 Buyuk Ipak Yoli 31, р-н Мирзо-Улугбека\n\n📞 +998 99 060 33 53  ·  @Ottimo_hr",
+    vaqt:"⏰ Рабочие смены:\n\n☀️ Смена 1:  07:30 — 16:30\n🌙 Смена 2:  16:00 — 24:00",
+    vakansiya:"💼 Вакансии:\n\n☕ Бариста\n💳 Кассир\n🍰 Кондитер-продавец\n\n📞 Телефон: +998 99 060 33 53\n📱 Telegram: @Ottimo_hr\n\nРабочие часы: 09:00 — 18:00"
   },
-  en:{
-    pageTitle:{chat:"AI Agent",hr:"Job Application",tg:"Administrator"},
-    wTitle:"Welcome to Ottimo AI Agent",
-    wSub:"I only answer questions about Ottimo Cafe",
-    placeholder:"Ask about Ottimo...",
-    starters:[
-      {i:"📍",t:"Branches",s:"3 branch locations",q:"filial"},
-      {i:"⏰",t:"Schedule",s:"Shift schedule",q:"vaqt"},
-      {i:"💼",t:"Vacancies",s:"Open positions",q:"vakansiya"},
-      {i:"📞",t:"Contact",s:"Contact admin",q:"boglanish"},
-    ],
-    infoMsgs:{
-      filial:"📍 Ottimo branches:
-
-1️⃣ Near Nukus Cinema
-    📌 Tashkent, Shifernur St. 71
-
-2️⃣ Under Parus
-    📌 Tashkent, Katartal St. 60A/1
-
-3️⃣ Opposite Talant International School
-    📌 Buyuk Ipak Yoli 31, Mirzo-Ulugbek district
-
-📞 +998 99 060 33 53 · @Ottimo_hr",
-      vaqt:"⏰ Work shifts:
-
-☀️ Shift 1:  07:30 — 16:30
-🌙 Shift 2:  16:00 — 24:00",
-      vakansiya:"💼 For vacancy information please contact the administrator:
-
-📱 Telegram: @Ottimo_hr
-📞 Phone: +998 99 060 33 53
-
-Working hours: 09:00 — 18:00",
-      boglanish:"📞 Contacts:
-
-Telegram: @Ottimo_hr
-Phone: +998 99 060 33 53
-Working hours: 09:00 — 18:00
-
-🔗 t.me/ottimo_uz",
-    },
-    statusTxt:"Ottimo AI · Active",
-    sendHint:"Enter to send · Shift+Enter new line",
-    hrTabs:["📝 Employee Test","🔐 Manager Panel"],
-    hrTitle:"Ottimo HR",hrSub:"Probation period evaluation system",
-    hrStep1Lbl:"Personal information",
-    hrFields:["Full name *","Email *","Phone *","Date of birth *","Address *"],
-    hrPlaceholders:["Your full name","email@gmail.com","+998901234567","","Tashkent, ..."],
-    hrHints:["","Format: name@gmail.com","Example: +998901234567","",""],
-    hrErrs:{nm:"Name must be at least 3 chars",em:"Enter valid email",ph:"Enter valid phone",bd:"Enter date",ad:"Enter address"},
-    nextBtn:"Continue →",startBtn:"Start Test →",backBtn:"← Back",
-    kasbLbl:"Choose your profession",
-    qOf:"Question",
-    finishBtn:"Finish →",nextQBtn:"Next →",prevBtn:"← Previous",
-    resultsTitle:"Results",
-    admTitle:"Manager Panel",admSub:"For managers only",
-    namePh:"Full Name",passPh:"Password",loginBtn:"Login →",
-    logoutBtn:"Logout",
-    badgeOk:"✓ Accepted",badgeMon:"◎ Monitoring",badgeFail:"✗ Rejected",
-    statLbls:["Accepted (≥85%)","Monitoring","Rejected (<65%)","Total"],
-    searchPh:"Search...",
-    ansLbl:"Answers",noAns:"No answer given",
-    tgTitle:"Contact Administrator",
-    tgSub:"Communicate with Ottimo HR department via Telegram. Working hours: 09:00 — 18:00",
-    tgPhLbl:"Phone",tgWhLbl:"Working hours",
-    admErrName:"Enter your full name",admErrPass:"Wrong password",
-    restartBtn:"Start over",
-    viewAns:"👁 View answers",closeAns:"▲ Close",
-    scoreMsg:{ok:"Congratulations! Results sent to manager.",mon:"Good result! Manager will contact you.",fail:"Results sent to manager."},
-    system:`You are a special AI agent for Ottimo Cafe. Answer ONLY questions about Ottimo Cafe. If question is not related to Ottimo, always respond: "A thousand apologies, I can only help with Ottimo Cafe questions 🙏". No exceptions.
-
-OTTIMO DATA:
-📍 3 branches: Shifernur 71 | Katartal 60A/1 | Buyuk Ipak Yoli 31
-⏰ Shifts: 07:30-16:30 and 16:00-24:00
-💼 Vacancies: Barista, Cashier, Pastry seller
-📋 Age: 20-35 | Russian required | Probation: 1 month
-💰 Salary: every 10 days | Free meals every shift
-📞 Phone: +998 99 060 33 53 | @Ottimo_hr | 09:00-18:00
-
-Reply briefly in English. Use emojis 🌿`
-  }
+  starters:[
+    {i:"📍",t:"Филиалы",s:"3 адреса",q:"filial"},
+    {i:"⏰",t:"График",s:"Расписание смен",q:"vaqt"},
+    {i:"💼",t:"Вакансии",s:"Открытые позиции",q:"vakansiya"},
+    {i:"📞",t:"Контакты",s:"Связаться с админом",q:"boglanish"}
+  ],
+  infoBoglanish:"📞 Контакты:\n\nTelegram: @Ottimo_hr\nТелефон: +998 99 060 33 53\nРабочие часы: 09:00 — 18:00",
+  tgTitle:"Связаться с администратором",
+  tgSub:"Общайтесь с HR отделом Ottimo через Telegram.<br>Рабочее время: 09:00 — 18:00",
+  tgPhL:"Телефон", tgWhL:"Рабочее время",
+  hrTab0:"📝 Тест сотрудника", hrTab1:"🔐 Панель руководителя",
+  admTitle:"Панель руководителя", admSub:"Только для руководителей",
+  admNmPh:"Имя Фамилия", admPwPh:"Пароль", admLoginBtn:"Войти →",
+  admErrNm:"Введите имя и фамилию", admErrPw:"Неверный пароль",
+  logoutBtn:"Выйти",
+  resTitle:"Результаты",
+  stLbls:["Принято (≥85%)","Мониторинг","Отклонено (<65%)","Всего"],
+  srchPh:"Поиск...",
+  noAns:"Ответ не дан",
+  viewAns:"👁 Посмотреть ответы", closeAns:"▲ Закрыть",
+  scoreMsg:{ok:"Поздравляем! Результаты отправлены руководителю.",mon:"Хороший результат! Руководитель свяжется с вами.",fail:"Результаты отправлены руководителю."},
+  restartBtn:"Начать заново",
+  kasbNames:{menejer:"Менеджер",barista:"Бариста",sotuvchi:"Продавец",tozalovchi:"Уборщик",hr:"HR"},
+  system:"Ты специальный AI агент для Ottimo Cafe. Отвечай ТОЛЬКО на вопросы об Ottimo Cafe.\n\nЕсли вопрос не связан с Ottimo, ОБЯЗАТЕЛЬНО отвечай:\n'Тысяча извинений! Я могу помочь только по вопросам Ottimo Cafe 🙏'\n\nОДАННЫЕ OTTIMO:\n📍 3 филиала: Шифернур 71 | Катартал 60А/1 | Buyuk Ipak Yoli 31\n⏰ Смены: 07:30-16:30 и 16:00-24:00\n💼 Вакансии: Бариста, Кассир, Кондитер\n📋 Возраст: 20-35 | Русский обязателен | Испытательный срок: 1 месяц\n💰 Зарплата: каждые 10 дней | Бесплатное питание\n📞 Тел: +998 99 060 33 53 | @Ottimo_hr\n\nОтвечай кратко по-русски 🌿"
+},
+en:{
+  pTitle:{chat:"AI Agent",hr:"Job Application",tg:"Administrator"},
+  wTitle:"Welcome to Ottimo AI Agent",
+  wSub:"I only answer questions about Ottimo Cafe",
+  placeholder:"Ask about Ottimo...",
+  sec1:"Menu", sec2:"Information",
+  nb:{chat:"AI Agent",hr:"Job Application",tg:"Administrator"},
+  inf:{filial:"Branches",vaqt:"Working hours",vakansiya:"Vacancies"},
+  statTxt:"Ottimo AI · Active",
+  info:{
+    filial:"📍 Ottimo branches:\n\n1️⃣  Near Nukus Cinema\n    📌 Tashkent, Shifernur St. 71\n\n2️⃣  Under Parus\n    📌 Tashkent, Katartal St. 60A/1\n\n3️⃣  Opposite Talant International School\n    📌 Buyuk Ipak Yoli 31, Mirzo-Ulugbek district\n\n📞 +998 99 060 33 53  ·  @Ottimo_hr",
+    vaqt:"⏰ Work shifts:\n\n☀️ Shift 1:  07:30 — 16:30\n🌙 Shift 2:  16:00 — 24:00",
+    vakansiya:"💼 Vacancies:\n\n☕ Barista\n💳 Cashier\n🍰 Pastry seller\n\n📞 Phone: +998 99 060 33 53\n📱 Telegram: @Ottimo_hr\n\nWorking hours: 09:00 — 18:00"
+  },
+  starters:[
+    {i:"📍",t:"Branches",s:"3 locations",q:"filial"},
+    {i:"⏰",t:"Schedule",s:"Shift schedule",q:"vaqt"},
+    {i:"💼",t:"Vacancies",s:"Open positions",q:"vakansiya"},
+    {i:"📞",t:"Contact",s:"Contact admin",q:"boglanish"}
+  ],
+  infoBoglanish:"📞 Contacts:\n\nTelegram: @Ottimo_hr\nPhone: +998 99 060 33 53\nWorking hours: 09:00 — 18:00",
+  tgTitle:"Contact Administrator",
+  tgSub:"Communicate with Ottimo HR via Telegram.<br>Working hours: 09:00 — 18:00",
+  tgPhL:"Phone", tgWhL:"Working hours",
+  hrTab0:"📝 Employee Test", hrTab1:"🔐 Manager Panel",
+  admTitle:"Manager Panel", admSub:"For managers only",
+  admNmPh:"Full Name", admPwPh:"Password", admLoginBtn:"Login →",
+  admErrNm:"Enter your full name", admErrPw:"Wrong password",
+  logoutBtn:"Logout",
+  resTitle:"Results",
+  stLbls:["Accepted (≥85%)","Monitoring","Rejected (<65%)","Total"],
+  srchPh:"Search...",
+  noAns:"No answer given",
+  viewAns:"👁 View answers", closeAns:"▲ Close",
+  scoreMsg:{ok:"Congratulations! Results sent to manager.",mon:"Good result! Manager will contact you.",fail:"Results sent to manager."},
+  restartBtn:"Start over",
+  kasbNames:{menejer:"Manager",barista:"Barista",sotuvchi:"Seller",tozalovchi:"Cleaner",hr:"HR"},
+  system:"You are a special AI agent for Ottimo Cafe. Answer ONLY questions about Ottimo Cafe.\n\nIf question is not related to Ottimo, ALWAYS respond:\n'A thousand apologies! I can only help with Ottimo Cafe questions 🙏'\n\nOTTIMO DATA:\n📍 3 branches: Shifernur 71 | Katartal 60A/1 | Buyuk Ipak Yoli 31\n⏰ Shifts: 07:30-16:30 and 16:00-24:00\n💼 Vacancies: Barista, Cashier, Pastry seller\n📋 Age: 20-35 | Russian required | Probation: 1 month\n💰 Salary: every 10 days | Free meals every shift\n📞 Phone: +998 99 060 33 53 | @Ottimo_hr\n\nReply briefly in English 🌿"
+}
 };
 
-// ═══ STATE ═══
-let lang="uz";
-let chatHist=[];
-let chatBusy=false;
-let hrS={mode:"select",step:1,nm:"",em:"",ph:"",bd:"",ad:"",pos:"",errs:{},ans:{},qi:0,result:null,mgr:false,mgrName:"",exams:[],openId:null,srch:""};
+// ── HR STATE ──
+var hrS={
+  tab:"hodim", // hodim | admin
+  // hodim flow
+  step:1, nm:"",em:"",ph:"",bd:"",ad:"",pos:"",errs:{},ans:{},qi:0,result:null,
+  // admin
+  mgr:false, mgrName:"", exams:[], openId:null, srch:"", page:"home"
+};
 
-// ═══ HELPERS ═══
-function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
-function t(key){return L[lang][key]||""}
+// ── HELPERS ──
+function L(){return LD[lang];}
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function ve(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((e||"").trim());}
+function vp(p){return /^\+?[0-9]{9,13}$/.test((p||"").replace(/[\s\-\(\)]/g,""));}
+function sb(s){
+  var l=L();
+  if(s>=85)return '<span class="badge bok">'+l.scoreMsg.ok.split("!")[0].slice(0,8)+'✓ Qabul</span>';
+  if(s>=65)return '<span class="badge bwa">◎ Monitoring</span>';
+  return '<span class="badge ber">✗ Rad</span>';
+}
 function badge(s){
-  const l=L[lang];
-  if(s>=85)return `<span class="badge bok">${l.badgeOk}</span>`;
-  if(s>=65)return `<span class="badge bwa">${l.badgeMon}</span>`;
-  return `<span class="badge ber">${l.badgeFail}</span>`;
+  if(s>=85)return '<span class="badge bok">✓ '+L().stLbls[0].split("(")[0].trim()+'</span>';
+  if(s>=65)return '<span class="badge bwa">◎ Monitoring</span>';
+  return '<span class="badge ber">✗ '+L().stLbls[2].split("(")[0].trim()+'</span>';
 }
 function calcScore(ans,qs){
-  let tot=0,cnt=0;
-  for(let q of qs){let i=parseInt(ans[q.id]);if(!isNaN(i)&&i>=0){tot+=((q.o[lang].length-i)/q.o[lang].length)*100;cnt++;}}
-  return cnt?Math.round(tot/cnt):50;
+  var t=0,c=0;
+  for(var i=0;i<qs.length;i++){
+    var idx=parseInt(ans[qs[i].id]);
+    if(!isNaN(idx)&&idx>=0){t+=((qs[i].o.length-idx)/qs[i].o.length)*100;c++;}
+  }
+  return c?Math.round(t/c):50;
 }
 
-// ═══ PAGE NAV ═══
-window.goPage=function(p){
-  document.querySelectorAll(".page").forEach(el=>el.classList.remove("on"));
-  document.querySelectorAll(".sb-btn").forEach(el=>el.classList.remove("on"));
-  document.getElementById("page-"+p).classList.add("on");
-  document.getElementById("nb-"+p).classList.add("on");
-  document.getElementById("page-title").textContent=L[lang].pageTitle[p]||p;
-  if(p==="hr")renderHR();
-};
+function tgSend(msg){
+  fetch("https://api.telegram.org/bot"+TG_BOT+"/sendMessage",{
+    method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({chat_id:TG_ID,text:msg,parse_mode:"HTML"})
+  }).catch(function(){});
+}
 
-// ═══ LANGUAGE ═══
-window.setLang=function(l){
+// ── LANG ──
+var curPage="chat";
+function setLang(l,btn){
   lang=l;
-  document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("on"));
-  event.target.classList.add("on");
-  updateLangUI();
-};
-
-function updateLangUI(){
-  const c=L[lang];
-  // welcome
-  const wt=document.getElementById("w-title");
-  const ws=document.getElementById("w-sub");
-  if(wt)wt.textContent=c.wTitle;
-  if(ws)ws.textContent=c.wSub;
-  // input placeholder
-  const inp=document.getElementById("msgInp");
-  if(inp)inp.placeholder=c.placeholder;
-  // sidebar texts
-  const nb={chat:"nb-chat-txt",hr:"nb-hr-txt",tg:"nb-tg-txt"};
-  for(let k in nb){const el=document.getElementById(nb[k]);if(el)el.textContent=c.pageTitle[k];}
-  // info buttons
-  const inf={filial:"inf-filial-txt",vaqt:"inf-vaqt-txt",vakansiya:"inf-vak-txt"};
-  const infLabels={uz:{filial:"Filiallar",vaqt:"Ish vaqti",vakansiya:"Vakansiyalar"},ru:{filial:"Филиалы",vaqt:"График работы",vakansiya:"Вакансии"},en:{filial:"Branches",vaqt:"Working hours",vakansiya:"Vacancies"}};
-  for(let k in inf){const el=document.getElementById(inf[k]);if(el)el.textContent=infLabels[lang][k];}
-  // status
-  const st=document.getElementById("status-txt");if(st)st.textContent=c.statusTxt;
-  // topbar title
-  const pg=["chat","hr","tg"].find(p=>document.getElementById("page-"+p)?.classList.contains("on"))||"chat";
-  document.getElementById("page-title").textContent=c.pageTitle[pg];
-  // tg page
-  const tgt=document.getElementById("tg-title");if(tgt)tgt.textContent=c.tgTitle;
-  const tgs=document.getElementById("tg-sub");if(tgs)tgs.textContent=c.tgSub;
-  const tgph=document.getElementById("tg-ph-lbl");if(tgph)tgph.textContent=c.tgPhLbl;
-  const tgwh=document.getElementById("tg-wh-lbl");if(tgwh)tgwh.textContent=c.tgWhLbl;
-  // starters
+  document.querySelectorAll(".lang-btn").forEach(function(b){b.classList.remove("on");});
+  btn.classList.add("on");
+  updateUI();
   renderStarters();
-  // hr if open
-  if(document.getElementById("page-hr")?.classList.contains("on"))renderHR();
+  renderHR();
 }
 
-function renderStarters(){
-  const el=document.getElementById("startersEl");
-  if(!el)return;
-  el.innerHTML=L[lang].starters.map(s=>`
-    <div class="starter" onclick="onStarter('${s.q}')">
-      <div class="starter-icon">${s.i}</div>
-      <div class="starter-title">${s.t}</div>
-      <div class="starter-sub">${s.s}</div>
-    </div>`).join("");
+function updateUI(){
+  var l=L();
+  // sidebar
+  document.getElementById("nb-chat-l").textContent=l.nb.chat;
+  document.getElementById("nb-hr-l").textContent=l.nb.hr;
+  document.getElementById("nb-tg-l").textContent=l.nb.tg;
+  document.getElementById("sec1").textContent=l.sec1;
+  document.getElementById("sec2").textContent=l.sec2;
+  document.getElementById("inf-filial").textContent=l.inf.filial;
+  document.getElementById("inf-vaqt").textContent=l.inf.vaqt;
+  document.getElementById("inf-vak").textContent=l.inf.vakansiya;
+  document.getElementById("stat-txt").textContent=l.statTxt;
+  // topbar
+  var titles={chat:l.pTitle.chat,hr:l.pTitle.hr,tg:l.pTitle.tg};
+  document.getElementById("pg-title").textContent=titles[curPage]||"";
+  // welcome
+  var wt=document.getElementById("w-title");
+  var ws=document.getElementById("w-sub");
+  if(wt)wt.textContent=l.wTitle;
+  if(ws)ws.textContent=l.wSub;
+  var ta=document.getElementById("msgInp");
+  if(ta)ta.placeholder=l.placeholder;
+  // tg page
+  document.getElementById("tg-title").textContent=l.tgTitle;
+  document.getElementById("tg-sub").innerHTML=l.tgSub;
+  document.getElementById("tg-ph-l").textContent=l.tgPhL;
+  document.getElementById("tg-wh-l").textContent=l.tgWhL;
 }
-renderStarters();
 
-// ═══ SHOW INFO (no Gemini) ═══
-window.showInfo=function(key){
+// ── NAVIGATION ──
+function goPage(p){
+  curPage=p;
+  document.querySelectorAll(".page").forEach(function(el){el.classList.remove("on");});
+  document.querySelectorAll(".sb-btn[id^='nb-']").forEach(function(el){el.classList.remove("on");});
+  document.getElementById("page-"+p).classList.add("on");
+  var nb=document.getElementById("nb-"+p);
+  if(nb)nb.classList.add("on");
+  var l=L();
+  document.getElementById("pg-title").textContent=l.pTitle[p]||"";
+  var tags={chat:"Gemini 2.0",hr:"Ottimo HR",tg:"Telegram"};
+  document.getElementById("pg-tag").textContent=tags[p]||"";
+  if(p==="hr")renderHR();
+}
+
+// ── INFO SHORTCUTS ──
+function showInfo(key){
   goPage("chat");
-  const msg=L[lang].infoMsgs[key]||"";
-  appendAiMsg(msg);
-};
-
-window.onStarter=function(key){
-  goPage("chat");
-  const msg=L[lang].infoMsgs[key]||"";
-  appendAiMsg(msg);
-};
-
-function appendAiMsg(msg){
-  const area=document.getElementById("chatArea");
-  const ws=document.getElementById("welcomeEl");
+  var l=L();
+  var msg=key==="boglanish"?l.infoBoglanish:l.info[key];
+  if(!msg)return;
+  var area=document.getElementById("chatArea");
+  var ws=document.getElementById("welcomeEl");
   if(ws)ws.remove();
-  const row=document.createElement("div");
+  addAIMsg(msg);
+}
+
+// ── CHAT ──
+var chatHist=[];
+var chatBusy=false;
+
+function addAIMsg(txt){
+  var area=document.getElementById("chatArea");
+  var row=document.createElement("div");
   row.className="msg-row ai";
-  row.innerHTML=`<div class="msg-av" style="background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff">AI</div>
-    <div><div class="bubble">${esc(msg).replace(/
-/g,"<br>")}</div>
-    <div class="msg-time">${new Date().toLocaleTimeString("uz",{hour:"2-digit",minute:"2-digit"})}</div></div>`;
+  row.innerHTML='<div class="av ai">AI</div><div class="bubble">'+txt.replace(/\n/g,"<br/>")+'</div>';
   area.appendChild(row);
   area.scrollTop=99999;
 }
 
-// ═══ CHAT ═══
-window.onKey=function(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMsg();}};
-window.autoH=function(el){el.style.height="auto";el.style.height=Math.min(el.scrollHeight,160)+"px";};
+function renderStarters(){
+  var el=document.getElementById("starters-el");
+  if(!el)return;
+  var l=L();
+  el.innerHTML=l.starters.map(function(s){
+    return '<div class="sc" onclick="showInfo(\''+s.q+'\')"><div class="sc-i">'+s.i+'</div><div class="sc-t">'+s.t+'</div><div class="sc-s">'+s.s+'</div></div>';
+  }).join("");
+}
 
-window.sendMsg=async function(){
-  const inp=document.getElementById("msgInp");
-  const txt=(inp.value||"").trim();
+function autoH(t){t.style.height="auto";t.style.height=Math.min(t.scrollHeight,150)+"px";}
+function onKey(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMsg();}}
+
+function sendMsg(){
+  var inp=document.getElementById("msgInp");
+  var txt=(inp.value||"").trim();
   if(!txt||chatBusy)return;
   inp.value="";inp.style.height="auto";
   chatBusy=true;
   document.getElementById("sendBtn").disabled=true;
-
-  const area=document.getElementById("chatArea");
-  const ws=document.getElementById("welcomeEl");
+  var area=document.getElementById("chatArea");
+  var ws=document.getElementById("welcomeEl");
   if(ws)ws.remove();
-
-  // user
-  const uRow=document.createElement("div");
+  var uRow=document.createElement("div");
   uRow.className="msg-row user";
-  uRow.innerHTML=`<div class="msg-av" style="background:var(--bg3);border:1px solid var(--brd2);color:var(--tx2)">Siz</div>
-    <div class="bubble">${esc(txt)}</div>`;
+  uRow.innerHTML='<div class="av user">Siz</div><div class="bubble">'+esc(txt)+'</div>';
   area.appendChild(uRow);
-
-  // typing
-  const tRow=document.createElement("div");
-  tRow.className="typing-row";tRow.id="typingRow";
-  tRow.innerHTML=`<div class="msg-av" style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px">AI</div>
-    <div class="typing"><span></span><span></span><span></span></div>`;
+  var tRow=document.createElement("div");
+  tRow.className="typing-row";tRow.id="tRow";
+  tRow.innerHTML='<div class="av ai">AI</div><div class="typing"><span></span><span></span><span></span></div>';
   area.appendChild(tRow);
   area.scrollTop=99999;
-
-  try{
-    const hist=chatHist.slice(-6).map(h=>`Foydalanuvchi: ${h.u}
-Agent: ${h.a}`).join("
-
-");
-    const prompt=L[lang].system+(hist?"
-
-Oldingi suhbat:
-"+hist:"")+`
-
-Foydalanuvchi: ${txt}
-Agent:`;
-    const res=await fetch(GURL,{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.6,maxOutputTokens:700}})});
-    if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${res.status}`);}
-    const data=await res.json();
-    const reply=data.candidates?.[0]?.content?.parts?.[0]?.text||"Javob kelmadi.";
-    tRow.remove();
+  var hist=chatHist.slice(-6).map(function(h){return "Foydalanuvchi: "+h.u+"\nAgent: "+h.a;}).join("\n\n");
+  var prompt=L().system+(hist?"\n\nOldingi suhbat:\n"+hist:"")+"\n\nFoydalanuvchi: "+txt+"\nAgent:";
+  fetch(GURL,{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.6,maxOutputTokens:700}})})
+  .then(function(r){return r.json();})
+  .then(function(data){
+    var tr=document.getElementById("tRow");if(tr)tr.remove();
+    var reply=(data.candidates&&data.candidates[0]&&data.candidates[0].content&&data.candidates[0].content.parts&&data.candidates[0].content.parts[0]&&data.candidates[0].content.parts[0].text)||"Xatolik yuz berdi.";
     chatHist.push({u:txt,a:reply});
-    const aRow=document.createElement("div");
-    aRow.className="msg-row ai";
-    aRow.innerHTML=`<div class="msg-av" style="background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff">AI</div>
-      <div><div class="bubble">${esc(reply).replace(/
-/g,"<br>")}</div>
-      <div class="msg-time">${new Date().toLocaleTimeString("uz",{hour:"2-digit",minute:"2-digit"})}</div></div>`;
-    area.appendChild(aRow);
-    area.scrollTop=99999;
-  }catch(err){
-    tRow.remove();
-    const eRow=document.createElement("div");
-    eRow.className="msg-row ai";
-    eRow.innerHTML=`<div class="msg-av" style="background:var(--bg3);color:var(--red);width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">!</div>
-      <div class="bubble" style="color:var(--red)">⚠️ ${esc(err.message)}</div>`;
-    area.appendChild(eRow);
-    area.scrollTop=99999;
-  }
-  chatBusy=false;
-  document.getElementById("sendBtn").disabled=false;
-  inp.focus();
-};
+    if(chatHist.length>10)chatHist=chatHist.slice(-10);
+    addAIMsg(reply);
+  })
+  .catch(function(){
+    var tr=document.getElementById("tRow");if(tr)tr.remove();
+    addAIMsg("Texnik xatolik. Iltimos qayta urinib ko'ring.");
+  })
+  .finally(function(){
+    chatBusy=false;
+    document.getElementById("sendBtn").disabled=false;
+  });
+}
 
-// ═══ HR ═══
+// ── HR MODULE ──
 function renderHR(){
-  const el=document.getElementById("hrContent");
-  const c=L[lang];
-  const h=hrS;
-  if(h.mode==="select"){
-    el.innerHTML=`<div class="hr-card">
-      <div class="hr-title">${c.hrTitle}</div>
-      <div class="hr-sub">${c.hrSub}</div>
-      <div class="hr-tabs">
-        <button class="hr-tab on" onclick="hrMode('hodim')">${c.hrTabs[0]}</button>
-        <button class="hr-tab" onclick="hrMode('admin')">${c.hrTabs[1]}</button>
-      </div></div>`;
-    return;
-  }
-  if(h.mode==="hodim"){hrRenderHodim(el);return;}
-  if(h.mode==="admin"){hrRenderAdmin(el);return;}
-  if(h.mode==="results"){hrRenderResults(el);return;}
-}
-
-window.hrMode=function(m){
-  if(m==="admin"){hrS.mode="admin";renderHR();return;}
-  hrS.mode="hodim";hrS.step=1;hrS.nm="";hrS.em="";hrS.ph="";hrS.bd="";hrS.ad="";hrS.pos="";hrS.errs={};hrS.ans={};hrS.qi=0;hrS.result=null;
-  renderHR();
-};
-
-function hrRenderHodim(el){
-  const h=hrS,c=L[lang];
-  if(h.step===1){
-    const f=c.hrFields,p=c.hrPlaceholders,hi=c.hrHints,er=h.errs;
-    el.innerHTML=`<div class="hr-card">
-      <div class="hr-dots"><div class="hr-dot on"></div><div class="hr-dot"></div><div class="hr-dot"></div></div>
-      <div style="font-size:11px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">${c.hrStep1Lbl}</div>
-      <label class="flabel">${f[0]}</label>
-      <input class="finp${er.nm?" err":""}" id="hf1" type="text" placeholder="${p[0]}" value="${esc(h.nm)}"/>
-      ${er.nm?`<div class="ferr">⚠ ${er.nm}</div>`:(hi[0]?`<div class="fhint">${hi[0]}</div>`:"")}
-      <label class="flabel">${f[1]}</label>
-      <input class="finp${er.em?" err":""}" id="hf2" type="email" placeholder="${p[1]}" value="${esc(h.em)}"/>
-      ${er.em?`<div class="ferr">⚠ ${er.em}</div>`:(hi[1]?`<div class="fhint">${hi[1]}</div>`:"")}
-      <label class="flabel">${f[2]}</label>
-      <input class="finp${er.ph?" err":""}" id="hf3" type="tel" placeholder="${p[2]}" value="${esc(h.ph)}"/>
-      ${er.ph?`<div class="ferr">⚠ ${er.ph}</div>`:(hi[2]?`<div class="fhint">${hi[2]}</div>`:"")}
-      <label class="flabel">${f[3]}</label>
-      <input class="finp${er.bd?" err":""}" id="hf4" type="date" value="${esc(h.bd)}"/>
-      ${er.bd?`<div class="ferr">⚠ ${er.bd}</div>`:""}
-      <label class="flabel">${f[4]}</label>
-      <input class="finp${er.ad?" err":""}" id="hf5" type="text" placeholder="${p[4]}" value="${esc(h.ad)}"/>
-      ${er.ad?`<div class="ferr">⚠ ${er.ad}</div>`:""}
-      <button class="hbtn" onclick="hrNext1()">${c.nextBtn}</button>
-    </div>`;
-    return;
-  }
-  if(h.step===2){
-    const cards=Object.keys(POS).map(k=>`
-      <div class="kasb${h.pos===k?" on":""}" onclick="hrSel('${k}')">
-        <div class="kasb-ck">✓</div>
-        <div style="font-size:24px;margin-bottom:6px">${POS[k].i}</div>
-        <div style="font-size:12px;font-weight:600;color:var(--tx)">${POS[k].l[lang]}</div>
-      </div>`).join("");
-    el.innerHTML=`<div class="hr-card">
-      <div class="hr-dots"><div class="hr-dot done"></div><div class="hr-dot on"></div><div class="hr-dot"></div></div>
-      <div style="font-size:11px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">${c.kasbLbl}</div>
-      ${h.errs.pos?`<div class="ferr" style="margin-bottom:10px">⚠ ${h.errs.pos}</div>`:""}
-      <div class="kasb-grid">${cards}</div>
-      <div class="flex-row">
-        <button class="hbtn sec" style="width:auto;padding:10px 16px;margin-top:0" onclick="hrGoBack()">${c.backBtn}</button>
-        <button class="hbtn" onclick="hrNext2()">${c.startBtn}</button>
-      </div></div>`;
-    return;
-  }
-  if(h.step===3){
-    const qs=POS[h.pos].q;
-    const q=qs[h.qi];
-    if(!q){hrSubmit();return;}
-    const pct=Math.round((h.qi/qs.length)*100);
-    const opts=q.o[lang].map((o,i)=>`<button class="choice${h.ans[q.id]===String(i)?" on":""}" onclick="hrAns('${q.id}','${i}')">${esc(o)}</button>`).join("");
-    el.innerHTML=`<div class="hr-card">
-      <div class="hr-dots"><div class="hr-dot done"></div><div class="hr-dot done"></div><div class="hr-dot on"></div></div>
-      <div class="prog"><div class="prog-fill" style="width:${pct}%"></div></div>
-      <div style="font-size:11px;color:var(--tx3);font-weight:600;margin-bottom:10px">${c.qOf} ${h.qi+1} / ${qs.length}</div>
-      <div class="s-cat">${q.c[lang]}</div>
-      <div class="s-txt">${esc(q.t[lang])}</div>
-      <div class="choices">${opts}</div>
-      <div class="flex-row" style="margin-top:14px">
-        <button class="hbtn sec" style="width:auto;padding:10px 14px;margin-top:0" ${h.qi===0?"disabled":""} onclick="hrPrev()">${c.prevBtn}</button>
-        <button class="hbtn" onclick="hrNextQ()">${h.qi===qs.length-1?c.finishBtn:c.nextQBtn}</button>
-      </div></div>`;
-    return;
-  }
-  if(h.step===4){
-    if(!h.result){el.innerHTML=`<div class="hr-card" style="text-align:center;padding:40px;color:var(--tx2)">⏳</div>`;return;}
-    const r=h.result,c2=L[lang];
-    const col=r.sc>=85?"var(--green)":r.sc>=65?"var(--gold)":"var(--red)";
-    const ic=r.sc>=85?"🏆":r.sc>=65?"📊":"📋";
-    const msg=r.sc>=85?c2.scoreMsg.ok:r.sc>=65?c2.scoreMsg.mon:c2.scoreMsg.fail;
-    el.innerHTML=`<div class="hr-card" style="text-align:center">
-      <div style="font-size:48px;margin-bottom:8px">${ic}</div>
-      <div style="font-family:'Playfair Display',serif;font-size:60px;color:${col};line-height:1">${r.sc}%</div>
-      <div style="margin:10px 0">${badge(r.sc)}</div>
-      <p style="font-size:13px;color:var(--tx2);margin-top:12px;line-height:1.7">${msg}</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;text-align:left">
-        <div class="stat"><div class="stat-v" style="font-size:24px;color:${col}">${r.sc}%</div><div class="stat-l">BALL</div></div>
-        <div class="stat"><div style="margin-top:6px">${badge(r.sc)}</div><div class="stat-l" style="margin-top:8px">HOLAT</div></div>
-      </div>
-      <button class="hbtn" style="margin-top:14px" onclick="hrMode('hodim')">${c2.restartBtn}</button>
-    </div>`;
-  }
-}
-
-function hrRenderAdmin(el){
-  const c=L[lang];
-  if(!hrS.mgr){
-    el.innerHTML=`<div class="hr-card">
-      <div class="hr-title">${c.admTitle}</div>
-      <div class="hr-sub">${c.admSub}</div>
-      <input class="finp" id="amn" type="text" placeholder="${c.namePh}"/>
-      <input class="finp" id="amp" type="password" placeholder="${c.passPh}"/>
-      ${hrS.errs.mgr?`<div class="ferr">⚠ ${hrS.errs.mgr}</div>`:""}
-      <button class="hbtn" onclick="hrLogin()">${c.loginBtn}</button>
-      <button class="hbtn sec" onclick="hrS.mode='select';renderHR()">${c.backBtn}</button>
-    </div>`;
-    return;
-  }
-  hrRenderResults(el);
-}
-
-function hrRenderResults(el){
-  const c=L[lang],h=hrS;
-  const exams=h.exams;
-  const passed=exams.filter(e=>e.sc>=85).length;
-  const mon=exams.filter(e=>e.sc>=65&&e.sc<85).length;
-  const fail=exams.filter(e=>e.sc<65).length;
-  const srch=(h.srch||"").toLowerCase();
-  const list=exams.filter(e=>!srch||(e.nm||"").toLowerCase().includes(srch)||(e.position||"").toLowerCase().includes(srch));
-  const cards=list.length?list.map(e=>{
-    const p=POS[e.position];
-    const open=h.openId===e.id;
-    const col=e.sc>=85?"var(--green)":e.sc>=65?"var(--gold)":"var(--red)";
-    let qa="";
-    if(open){
-      const ans=e.answers||{};
-      const qs=p?p.q:[];
-      qa=qs.map((q,i)=>{
-        const idx=parseInt(ans[q.id]);
-        const at=(!isNaN(idx)&&idx>=0&&q.o[lang]?.[idx])?q.o[lang][idx]:c.noAns;
-        return `<div class="qa-it"><div class="qa-cat">${esc(q.c[lang]||q.c.uz||"")}</div>
-          <div class="qa-q">${i+1}. ${esc(q.t[lang]||q.t.uz||"")}</div>
-          <div class="qa-a">✓ ${esc(at)}</div></div>`;
-      }).join("");
+  var el=document.getElementById("hrPageContent");
+  if(!el)return;
+  el.innerHTML="";
+  var l=L();
+  if(hrS.tab==="admin"){
+    if(!hrS.mgr){
+      // Admin login — light card inside flex
+      el.innerHTML='<div class="lw">'+
+        '<div class="ll"><div class="ll-lg">Ottimo</div><p class="ll-tg">Rahbarlar uchun boshqaruv tizimi</p></div>'+
+        '<div class="lr"><div class="lbox">'+
+        '<div style="font-family:\'Playfair Display\',serif;font-size:22px;margin-bottom:4px">'+l.admTitle+'</div>'+
+        '<div style="font-size:13px;color:var(--mu);margin-bottom:18px">'+l.admSub+'</div>'+
+        '<div class="fl"><label>Ism Familiya</label><input class="inp" id="amn" type="text" placeholder="'+l.admNmPh+'"/></div>'+
+        '<div class="fl"><label>Parol</label><input class="inp" id="amp" type="password" placeholder="'+l.admPwPh+'"/></div>'+
+        (hrS.errs&&hrS.errs.mgr?'<div class="etx" style="margin-bottom:10px">⚠ '+hrS.errs.mgr+'</div>':'')+
+        '<button class="btn bp bfull blg" onclick="hrLogin()">'+l.admLoginBtn+'</button>'+
+        '<button class="btn bg2 bfull" style="margin-top:8px" onclick="hrSetTab(\'hodim\')">← Orqaga</button>'+
+        '</div></div></div>';
+      return;
     }
-    return `<div class="e-card">
-      <div class="e-head" onclick="hrOpen('${e.id}')">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
-          <div style="display:flex;align-items:center;gap:10px">
-            <div style="width:36px;height:36px;border-radius:50%;background:var(--acb);border:1px solid var(--acbr);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">${p?p.i:"👤"}</div>
-            <div>
-              <div style="font-size:14px;font-weight:600">${esc(e.nm||"")}</div>
-              <div style="font-size:11px;color:var(--tx3)">${p?p.l[lang]:e.position||"—"} · ${e.date||""}</div>
-              <div style="font-size:11px;color:var(--tx3)">📞 ${e.ph||"—"} · 📧 ${e.em||"—"}</div>
-            </div>
-          </div>
-          <div style="text-align:right">
-            <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:${col};line-height:1">${e.sc}%</div>
-            <div style="margin-top:4px">${badge(e.sc)}</div>
-          </div>
-        </div>
-        <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--brd);font-size:11px;color:#6ecf72;font-weight:600">
-          ${open?c.closeAns:c.viewAns}
-        </div>
-      </div>
-      ${open?`<div class="e-body">${qa||`<p style="color:var(--tx3);font-size:12px;padding:10px 0">${c.noAns}</p>`}</div>`:""}
-    </div>`;
-  }).join(""):`<div style="text-align:center;padding:32px;color:var(--tx3)">${c.noAns}</div>`;
-
-  el.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-    <div><div style="font-family:'Playfair Display',serif;font-size:20px">${c.resultsTitle}</div>
-    <div style="font-size:12px;color:var(--tx3);margin-top:2px">${esc(h.mgrName)}</div></div>
-    <button class="hbtn sec" style="width:auto;padding:7px 12px;font-size:12px" onclick="hrLogout()">${c.logoutBtn}</button>
-  </div>
-  <div class="stat-grid">
-    <div class="stat"><div class="stat-v" style="color:var(--green)">${passed}</div><div class="stat-l">${c.statLbls[0]}</div></div>
-    <div class="stat"><div class="stat-v" style="color:var(--gold)">${mon}</div><div class="stat-l">${c.statLbls[1]}</div></div>
-    <div class="stat"><div class="stat-v" style="color:var(--red)">${fail}</div><div class="stat-l">${c.statLbls[2]}</div></div>
-    <div class="stat"><div class="stat-v" style="color:var(--ac2)">${exams.length}</div><div class="stat-l">${c.statLbls[3]}</div></div>
-  </div>
-  <input class="search" placeholder="${c.searchPh}" value="${esc(h.srch)}" oninput="hrSearch(this.value)"/>
-  ${cards}`;
+    // Manager dashboard
+    renderMgrPanel(el);
+    return;
+  }
+  // Hodim tab
+  var tabsHTML='<div class="ltabs">'+
+    '<button class="ltab'+(hrS.tab==="hodim"?" on":"")+'\" onclick="hrSetTab(\'hodim\')">'+l.hrTab0+'</button>'+
+    '<button class="ltab'+(hrS.tab==="admin"?" on":"")+'\" onclick="hrSetTab(\'admin\')">'+l.hrTab1+'</button>'+
+    '</div>';
+  if(hrS.step===4&&hrS.result){
+    // Result screen
+    var r=hrS.result;
+    var c=r.sc>=85?"var(--ok)":r.sc>=65?"var(--wa)":"var(--er)";
+    var ic=r.sc>=85?"🏆":r.sc>=65?"📊":"📋";
+    var msg=r.sc>=85?l.scoreMsg.ok:r.sc>=65?l.scoreMsg.mon:l.scoreMsg.fail;
+    el.innerHTML='<div class="lw"><div class="lr" style="align-items:flex-start;padding-top:28px"><div class="lbox" style="max-width:420px">'+
+      tabsHTML+
+      '<div style="text-align:center;padding:16px 0">'+
+      '<div style="font-size:48px;margin-bottom:10px">'+ic+'</div>'+
+      '<div style="font-family:\'Playfair Display\',serif;font-size:60px;color:'+c+';line-height:1">'+r.sc+'%</div>'+
+      '<div style="margin:10px 0">'+badge(r.sc)+'</div>'+
+      '<p style="font-size:13px;color:var(--mu);margin-top:14px;line-height:1.7">'+msg+'</p>'+
+      '<button class="btn bp bfull blg" style="margin-top:20px" onclick="hrReset()">'+l.restartBtn+'</button>'+
+      '</div></div></div></div>';
+    return;
+  }
+  // Steps 1-3
+  var inner="";
+  if(hrS.step===1)inner=hrStep1();
+  else if(hrS.step===2)inner=hrStep2();
+  else if(hrS.step===3)inner=hrStep3();
+  el.innerHTML='<div class="lw">'+
+    '<div class="ll"><div class="ll-lg">Ottimo</div><p class="ll-tg">Sinov muddatida baholash tizimi</p></div>'+
+    '<div class="lr" style="align-items:flex-start;padding-top:28px"><div class="lbox" style="max-width:400px">'+
+    tabsHTML+inner+'</div></div></div>';
 }
 
-// HR ACTIONS
-window.hrSel=function(k){hrS.pos=k;hrS.errs.pos=null;renderHR();};
-window.hrAns=function(id,v){hrS.ans[id]=v;renderHR();};
-window.hrOpen=function(id){hrS.openId=hrS.openId===id?null:id;renderHR();};
-window.hrSearch=function(v){hrS.srch=v;renderHR();};
-window.hrPrev=function(){if(hrS.qi>0){hrS.qi--;renderHR();}};
-window.hrGoBack=function(){hrS.step=1;renderHR();};
+function hrStep1(){
+  var e=hrS.errs||{};
+  return '<div class="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>'+
+    '<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Shaxsiy ma\'lumotlar</div>'+
+    '<div class="fl"><label>Ism va familiya *</label>'+
+    '<input class="inp'+(e.nm?" err":"")+'\" id="f1" type="text" placeholder="To\'liq ismingiz" value="'+esc(hrS.nm)+'"/>'+
+    (e.nm?'<div class="etx">⚠ '+e.nm+'</div>':'')+'</div>'+
+    '<div class="fl"><label>Email *</label>'+
+    '<input class="inp'+(e.em?" err":"")+'\" id="f2" type="email" placeholder="email@gmail.com" value="'+esc(hrS.em)+'"/>'+
+    (e.em?'<div class="etx">⚠ '+e.em+'</div>':'<div class="hint">Format: ism@gmail.com</div>')+'</div>'+
+    '<div class="fl"><label>Telefon *</label>'+
+    '<input class="inp'+(e.ph?" err":"")+'\" id="f3" type="tel" placeholder="+998901234567" value="'+esc(hrS.ph)+'"/>'+
+    (e.ph?'<div class="etx">⚠ '+e.ph+'</div>':'<div class="hint">Masalan: +998901234567</div>')+'</div>'+
+    '<div class="fl"><label>Tug\'ilgan sana *</label>'+
+    '<input class="inp'+(e.bd?" err":"")+'\" id="f4" type="date" value="'+esc(hrS.bd)+'"/>'+
+    (e.bd?'<div class="etx">⚠ '+e.bd+'</div>':'')+'</div>'+
+    '<div class="fl"><label>Manzil *</label>'+
+    '<input class="inp'+(e.ad?" err":"")+'\" id="f5" type="text" placeholder="Toshkent, Chilonzor" value="'+esc(hrS.ad)+'"/>'+
+    (e.ad?'<div class="etx">⚠ '+e.ad+'</div>':'')+'</div>'+
+    '<button class="btn bp bfull blg" style="margin-top:6px" onclick="hrNext1()">Davom etish →</button>';
+}
 
-window.hrLogin=function(){
-  const c=L[lang];
-  const n=(document.getElementById("amn")||{}).value||"";
-  const p=(document.getElementById("amp")||{}).value||"";
-  if(!n.trim()){hrS.errs={mgr:c.admErrName};renderHR();return;}
-  if(p!==MGR_PASS){hrS.errs={mgr:c.admErrPass};renderHR();return;}
-  hrS.mgr=true;hrS.mgrName=n.trim();hrS.errs={};hrS.mode="results";
-  loadExams().then(()=>renderHR());
-};
-window.hrLogout=function(){hrS.mgr=false;hrS.mgrName="";hrS.mode="select";hrS.exams=[];renderHR();};
+function hrStep2(){
+  var l=L();
+  var cards="";
+  Object.keys(POS).forEach(function(k){
+    var p=POS[k];
+    cards+='<div class="pc'+(hrS.pos===k?" sel":"")+'\" onclick="hrSel(\''+k+'\')">'+
+      '<div class="ck">✓</div>'+
+      '<div style="font-size:26px;margin-bottom:6px">'+p.i+'</div>'+
+      '<div style="font-size:13px;font-weight:700">'+p.l+'</div>'+
+      '</div>';
+  });
+  return '<div class="dots"><div class="dot dn"></div><div class="dot on"></div><div class="dot"></div></div>'+
+    '<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Kasbingizni tanlang</div>'+
+    (hrS.errs&&hrS.errs.pos?'<div class="etx" style="margin-bottom:10px">⚠ Iltimos kasbni tanlang</div>':'')+
+    '<div class="pg">'+cards+'</div>'+
+    '<div style="display:flex;gap:8px">'+
+    '<button class="btn bg2" onclick="hrS.step=1;renderHR()">← Orqaga</button>'+
+    '<button class="btn bp" style="flex:1;justify-content:center" onclick="hrNext2()">Imtihonni boshlash →</button>'+
+    '</div>';
+}
 
-window.hrNext1=function(){
-  const c=L[lang].hrErrs;
-  hrS.nm=(document.getElementById("hf1")||{}).value?.trim()||"";
-  hrS.em=(document.getElementById("hf2")||{}).value?.trim()||"";
-  hrS.ph=(document.getElementById("hf3")||{}).value?.trim()||"";
-  hrS.bd=(document.getElementById("hf4")||{}).value?.trim()||"";
-  hrS.ad=(document.getElementById("hf5")||{}).value?.trim()||"";
-  const er={};
-  if(hrS.nm.length<3)er.nm=c.nm;
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(hrS.em))er.em=c.em;
-  if(!/^\+?[0-9]{9,13}$/.test(hrS.ph.replace(/[\s\-\(\)]/g,"")))er.ph=c.ph;
-  if(!hrS.bd)er.bd=c.bd;
-  if(hrS.ad.length<4)er.ad=c.ad;
+function hrStep3(){
+  var qs=POS[hrS.pos].q;
+  var q=qs[hrS.qi];
+  if(!q){hrSubmit();return'<div style="text-align:center;padding:32px"><div style="font-size:28px">⏳</div></div>';}
+  var pct=Math.round((hrS.qi/qs.length)*100);
+  var opts="";
+  for(var i=0;i<q.o.length;i++){
+    var sel=hrS.ans[q.id]===String(i);
+    opts+='<button class="ch'+(sel?" sel":"")+'\" onclick="hrAns(\''+q.id+'\',\''+i+'\')">'+esc(q.o[i])+'</button>';
+  }
+  return '<div class="dots"><div class="dot dn"></div><div class="dot dn"></div><div class="dot on"></div></div>'+
+    '<div class="pbar"><div class="pfill" style="width:'+pct+'%"></div></div>'+
+    '<div style="font-size:11px;color:var(--mu);font-weight:700;margin-bottom:12px">Savol '+(hrS.qi+1)+' / '+qs.length+'</div>'+
+    '<div class="qcat">'+esc(q.c)+'</div>'+
+    '<div class="qtxt">'+esc(q.t)+'</div>'+
+    '<div class="choices">'+opts+'</div>'+
+    '<div style="display:flex;gap:8px;margin-top:16px">'+
+    '<button class="btn bg2"'+(hrS.qi===0?" disabled":"")+' onclick="hrPrev()">← Oldingi</button>'+
+    '<button class="btn bp" style="flex:1;justify-content:center" onclick="hrNextQ()">'+
+    (hrS.qi===qs.length-1?"Yakunlash →":"Keyingi →")+'</button></div>';
+}
+
+function renderMgrPanel(el){
+  var l=L();
+  var h=hrS;
+  if(h.page==="results"){
+    renderResults(el);return;
+  }
+  // Home dashboard
+  var passed=h.exams.filter(function(e){return e.sc>=85;}).length;
+  var mon=h.exams.filter(function(e){return e.sc>=65&&e.sc<85;}).length;
+  var avg=h.exams.length?Math.round(h.exams.reduce(function(a,e){return a+e.sc;},0)/h.exams.length):0;
+  var rows="";
+  var recent=h.exams.slice(0,6);
+  for(var i=0;i<recent.length;i++){
+    var e=recent[i];
+    var p=POS[e.position];
+    var c2=e.sc>=85?"var(--ok)":e.sc>=65?"var(--wa)":"var(--er)";
+    rows+='<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--bor)">'+
+      '<div style="display:flex;align-items:center;gap:10px">'+
+      '<div style="width:34px;height:34px;border-radius:50%;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:15px">'+(p?p.i:"👤")+'</div>'+
+      '<div><div style="font-size:14px;font-weight:600">'+esc(e.nm||"")+'</div>'+
+      '<div style="font-size:12px;color:var(--mu)">'+(p?p.l:e.position||"")+(e.date?" · "+e.date:"")+'</div></div></div>'+
+      '<div style="display:flex;align-items:center;gap:8px">'+
+      '<span style="font-size:17px;font-weight:700;color:'+c2+'">'+e.sc+'%</span>'+badge(e.sc)+'</div></div>';
+  }
+  el.innerHTML=
+    '<div class="mgr-topbar">'+
+    '<div style="font-family:\'Playfair Display\',serif;font-size:18px;font-weight:700;color:var(--tx)">Ottimo HR</div>'+
+    '<nav class="mgr-nav" style="margin-left:16px">'+
+    '<button class="'+(h.page==="home"?"on":"")+'\" onclick="hrS.page=\'home\';renderHR()">Bosh sahifa</button>'+
+    '<button class="'+(h.page==="results"?"on":"")+'\" onclick="hrS.page=\'results\';loadExams().then(renderHR)">Natijalar</button>'+
+    '</nav>'+
+    '<div class="chip" style="margin-left:auto" onclick="hrLogout()">'+
+    '<div class="mgr-av">'+(h.mgrName[0]||"R").toUpperCase()+'</div>'+
+    '<span>'+esc(h.mgrName)+'</span>'+
+    '<span style="font-size:11px;color:var(--mu)">↗ Chiqish</span>'+
+    '</div></div>'+
+    '<div class="mgr-main">'+
+    '<h1 style="font-family:\'Playfair Display\',serif;font-size:26px;margin-bottom:4px">Bosh sahifa</h1>'+
+    '<p style="color:var(--mu);font-size:13px;margin-bottom:20px">Ottimo HR — Sinov muddati tizimi</p>'+
+    '<div class="g4" style="margin-bottom:18px">'+
+    '<div class="csm"><div class="sv" style="color:var(--ac)">'+h.exams.length+'</div><div class="sl">Jami topshirdi</div></div>'+
+    '<div class="csm"><div class="sv" style="color:var(--ok)">'+passed+'</div><div class="sl">Qabul qilindi</div></div>'+
+    '<div class="csm"><div class="sv" style="color:var(--wa)">'+mon+'</div><div class="sl">Monitoring</div></div>'+
+    '<div class="csm"><div class="sv" style="color:#2a5fa8">'+avg+'%</div><div class="sl">O\'rtacha ball</div></div>'+
+    '</div>'+
+    '<div class="card">'+
+    '<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">So\'nggi imtihonlar</div>'+
+    (recent.length?rows:'<p style="color:var(--mu);font-size:13px;text-align:center;padding:20px 0">Hali imtihon yo\'q</p>')+
+    '</div></div>';
+}
+
+function renderResults(el){
+  var h=hrS;
+  var srch=(h.srch||"").toLowerCase();
+  var list=h.exams.filter(function(e){
+    return !srch||(e.nm||"").toLowerCase().includes(srch)||(e.position||"").toLowerCase().includes(srch);
+  });
+  var passed=h.exams.filter(function(e){return e.sc>=85;}).length;
+  var mon2=h.exams.filter(function(e){return e.sc>=65&&e.sc<85;}).length;
+  var fail=h.exams.filter(function(e){return e.sc<65;}).length;
+  var cards="";
+  for(var i=0;i<list.length;i++){cards+=examCard(list[i]);}
+  el.innerHTML=
+    '<div class="mgr-topbar">'+
+    '<div style="font-family:\'Playfair Display\',serif;font-size:18px;font-weight:700">Ottimo HR</div>'+
+    '<nav class="mgr-nav" style="margin-left:16px">'+
+    '<button onclick="hrS.page=\'home\';renderHR()">Bosh sahifa</button>'+
+    '<button class="on">Natijalar</button>'+
+    '</nav>'+
+    '<div class="chip" style="margin-left:auto" onclick="hrLogout()">'+
+    '<div class="mgr-av">'+(h.mgrName[0]||"R").toUpperCase()+'</div>'+
+    '<span>'+esc(h.mgrName)+'</span>'+
+    '<span style="font-size:11px;color:var(--mu)">↗ Chiqish</span>'+
+    '</div></div>'+
+    '<div class="mgr-main">'+
+    '<h1 style="font-family:\'Playfair Display\',serif;font-size:26px;margin-bottom:18px">Natijalar</h1>'+
+    '<div class="g3" style="margin-bottom:16px">'+
+    '<div class="csm"><div class="sv" style="color:var(--ok)">'+passed+'</div><div class="sl">Qabul (≥85%)</div></div>'+
+    '<div class="csm"><div class="sv" style="color:var(--wa)">'+mon2+'</div><div class="sl">Monitoring</div></div>'+
+    '<div class="csm"><div class="sv" style="color:var(--er)">'+fail+'</div><div class="sl">Rad (&lt;65%)</div></div>'+
+    '</div>'+
+    '<input class="inp" placeholder="Qidirish…" value="'+esc(h.srch)+'" oninput="hrS.srch=this.value;renderHR()" style="max-width:300px;margin-bottom:14px"/>'+
+    (list.length?cards:'<div class="card" style="text-align:center;padding:40px"><p style="color:var(--mu)">Natija topilmadi</p></div>')+
+    '</div>';
+}
+
+function examCard(e){
+  var p=POS[e.position];
+  var open=hrS.openId===e.id;
+  var c=e.sc>=85?"var(--ok)":e.sc>=65?"var(--wa)":"var(--er)";
+  var qa="";
+  if(open){
+    var ans=e.answers||{};
+    var qs=p?p.q:[];
+    for(var i=0;i<qs.length;i++){
+      var q=qs[i];
+      var raw=ans[q.id];
+      var idx=(raw!==undefined&&raw!==null&&raw!=="")?parseInt(raw):-1;
+      var at=(idx>=0&&idx<q.o.length)?q.o[idx]:"Javob berilmagan";
+      qa+='<div class="qa-it">'+
+        '<div class="qa-cat">'+esc(q.c)+'</div>'+
+        '<div class="qa-q">'+(i+1)+". "+esc(q.t)+'</div>'+
+        '<div class="qa-a">✓ '+esc(at)+'</div>'+
+        '</div>';
+    }
+    if(!qa)qa='<p style="color:var(--mu);font-size:13px;text-align:center;padding:14px 0">Javoblar topilmadi</p>';
+  }
+  return '<div class="nc">'+
+    '<div class="nc-h" onclick="hrOpenCard(\''+e.id+'\')">'+
+    '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">'+
+    '<div style="display:flex;align-items:center;gap:10px">'+
+    '<div style="width:40px;height:40px;border-radius:50%;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">'+(p?p.i:"👤")+'</div>'+
+    '<div><div style="font-size:15px;font-weight:700">'+esc(e.nm||"")+'</div>'+
+    '<div style="font-size:12px;color:var(--mu);margin-top:2px">'+
+    '<span class="badge bgr" style="margin-right:5px">'+(p?p.l:e.position||"—")+'</span>'+(e.date||"")+'</div>'+
+    '<div style="font-size:11px;color:var(--mu);margin-top:2px">📞 '+(e.ph||"—")+" · 📧 "+(e.em||"—")+'</div></div></div>'+
+    '<div style="text-align:right;flex-shrink:0">'+
+    '<div style="font-family:\'Playfair Display\',serif;font-size:30px;font-weight:700;color:'+c+';line-height:1">'+e.sc+'%</div>'+
+    '<div style="margin-top:4px">'+badge(e.sc)+'</div></div></div>'+
+    '<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bor);display:flex;align-items:center;justify-content:space-between">'+
+    '<span style="font-size:12px;font-weight:700;color:var(--ac)">'+(open?"▲ Yopish":"👁 Savollar va javoblarni ko\'rish")+'</span>'+
+    '<span style="font-size:11px;color:var(--mu)">'+(p?p.q.length:0)+' ta savol</span>'+
+    '</div></div>'+
+    (open?'<div class="nc-b">'+qa+'</div>':'')+
+    '</div>';
+}
+
+// ── HR ACTIONS ──
+function hrSetTab(t){
+  hrS.tab=t;
+  hrS.errs={};
+  renderHR();
+}
+function hrSel(k){hrS.pos=k;hrS.errs={};renderHR();}
+function hrAns(id,v){hrS.ans[id]=v;renderHR();}
+function hrOpenCard(id){hrS.openId=hrS.openId===id?null:id;renderHR();}
+function hrPrev(){if(hrS.qi>0){hrS.qi--;renderHR();}}
+function hrReset(){hrS.step=1;hrS.nm="";hrS.em="";hrS.ph="";hrS.bd="";hrS.ad="";hrS.pos="";hrS.errs={};hrS.ans={};hrS.qi=0;hrS.result=null;renderHR();}
+
+function hrLogin(){
+  var l=L();
+  var n=(document.getElementById("amn")||{}).value||"";
+  var p=(document.getElementById("amp")||{}).value||"";
+  n=n.trim();
+  if(!n){hrS.errs={mgr:l.admErrNm};renderHR();return;}
+  if(p!==MGR_PASS){hrS.errs={mgr:l.admErrPw};renderHR();return;}
+  hrS.mgr=true;hrS.mgrName=n;hrS.errs={};hrS.page="home";
+  loadExams().then(function(){renderHR();});
+}
+
+function hrLogout(){
+  hrS.mgr=false;hrS.mgrName="";hrS.exams=[];hrS.tab="hodim";hrS.page="home";
+  renderHR();
+}
+
+function hrNext1(){
+  var nm=(document.getElementById("f1")||{}).value||"";
+  var em=(document.getElementById("f2")||{}).value||"";
+  var ph=(document.getElementById("f3")||{}).value||"";
+  var bd=(document.getElementById("f4")||{}).value||"";
+  var ad=(document.getElementById("f5")||{}).value||"";
+  nm=nm.trim();em=em.trim();ph=ph.trim();bd=bd.trim();ad=ad.trim();
+  hrS.nm=nm;hrS.em=em;hrS.ph=ph;hrS.bd=bd;hrS.ad=ad;
+  var er={};
+  if(nm.length<3)er.nm="Ism kamida 3 harfdan iborat bo'lsin";
+  if(!ve(em))er.em="To'g'ri email kiriting (masalan: ism@gmail.com)";
+  if(!vp(ph))er.ph="To'g'ri telefon kiriting (+998901234567)";
+  if(!bd)er.bd="Tug'ilgan sanani kiriting";
+  if(ad.length<4)er.ad="Manzilni kiriting";
   hrS.errs=er;
   if(Object.keys(er).length>0){renderHR();return;}
   hrS.step=2;renderHR();
-};
-window.hrNext2=function(){
-  if(!hrS.pos){hrS.errs={pos:"!"};renderHR();return;}
-  hrS.errs={};hrS.step=3;hrS.ans={};hrS.qi=0;renderHR();
-};
-window.hrNextQ=function(){
-  const qs=POS[hrS.pos].q;
-  if(hrS.qi>=qs.length-1){hrS.step=4;renderHR();hrSubmit();}
-  else{hrS.qi++;renderHR();}
-};
-window.hrSubmit=async function(){
-  const qs=POS[hrS.pos].q;
-  const sc=calcScore(hrS.ans,qs);
-  const data={nm:hrS.nm,em:hrS.em,ph:hrS.ph,bd:hrS.bd,ad:hrS.ad,position:hrS.pos,answers:hrS.ans,sc,date:new Date().toLocaleDateString("uz-UZ"),ts:Date.now()};
-  try{
-    await addDoc(collection(db,"exams"),data);
-    const pos=POS[hrS.pos];
-    let msg=`<b>🆕 Yangi imtihon</b>\n\n👤 ${hrS.nm}\n💼 ${pos?pos.l.uz:hrS.pos}\n📧 ${hrS.em}\n📞 ${hrS.ph}\n📊 ${sc}%\n✅ ${sc>=85?"Qabul":sc>=65?"Monitoring":"Rad"}`;
-    await tgSend(msg);
-    hrS.result=data;
-  }catch(e){hrS.result={sc};}
-  renderHR();
-};
-
-async function loadExams(){
-  try{const snap=await getDocs(query(collection(db,"exams"),orderBy("ts","desc")));hrS.exams=snap.docs.map(d=>{const x=d.data();x.id=d.id;return x;});}catch(e){console.warn(e);}
 }
 
+function hrNext2(){
+  if(!hrS.pos){hrS.errs={pos:true};renderHR();return;}
+  hrS.errs={};hrS.step=3;hrS.ans={};hrS.qi=0;renderHR();
+}
+
+function hrNextQ(){
+  var qs=POS[hrS.pos].q;
+  if(hrS.qi>=qs.length-1){hrS.step=4;renderHR();hrSubmit();}
+  else{hrS.qi++;renderHR();}
+}
+
+function hrSubmit(){
+  var qs=POS[hrS.pos].q;
+  var sc=calcScore(hrS.ans,qs);
+  var data={nm:hrS.nm,em:hrS.em,ph:hrS.ph,bd:hrS.bd,ad:hrS.ad,position:hrS.pos,answers:hrS.ans,sc:sc,date:new Date().toLocaleDateString("uz-UZ"),ts:Date.now()};
+  if(window._fbAdd){
+    window._fbAdd("exams",data).then(function(){
+      var pos=POS[hrS.pos];
+      var msg="<b>🆕 Yangi imtihon natijasi</b>\n\n"+
+        "👤 <b>Ism:</b> "+hrS.nm+"\n"+
+        "💼 <b>Kasb:</b> "+(pos?pos.l:hrS.pos)+"\n"+
+        "📧 <b>Email:</b> "+hrS.em+"\n"+
+        "📞 <b>Telefon:</b> "+hrS.ph+"\n"+
+        "📅 <b>Tug'ilgan sana:</b> "+hrS.bd+"\n"+
+        "📍 <b>Manzil:</b> "+hrS.ad+"\n"+
+        "📊 <b>Ball:</b> "+sc+"%\n"+
+        "✅ <b>Holat:</b> "+(sc>=85?"Qabul":sc>=65?"Monitoring":"Rad");
+      tgSend(msg);
+      hrS.result=data;renderHR();
+    }).catch(function(){hrS.result=data;renderHR();});
+  } else {hrS.result=data;renderHR();}
+}
+
+function loadExams(){
+  if(!window._fbGet){return Promise.resolve();}
+  return window._fbGet("exams").then(function(snap){
+    hrS.exams=snap.docs.map(function(d){var x=d.data();x.id=d.id;return x;});
+  }).catch(function(){});
+}
+
+// ── INIT ──
+renderStarters();
 renderHR();
+updateUI();
 </script>
 </body>
 </html>
