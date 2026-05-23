@@ -304,8 +304,7 @@ window._fbGet=(col)=>getDocs(query(collection(_db,col),orderBy("ts","desc")));
 
 <script>
 // ── CONSTANTS ──
-var GKEY="AIzaSyDCwFEq4bGl8YuiwrHdKP-xI_fkRGi7IRc";
-var GURL="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="+GKEY;
+var CLAUDE_URL="https://api.anthropic.com/v1/messages";
 var TG_BOT="8173395748:AAFCbwHLLTiEOu0L9mjD2_Yy-a-UZXLKghU";
 var TG_ID="206004279";
 var MGR_PASS="688466";
@@ -414,7 +413,7 @@ uz:{
   scoreMsg:{ok:"Tabriklaymiz! Natijalaringiz rahbarga yuborildi.",mon:"Yaxshi natija! Rahbar siz bilan bog'lanadi.",fail:"Natijalaringiz rahbarga yuborildi."},
   restartBtn:"Qayta boshlash",
   kasbNames:{menejer:"Menejer",barista:"Barista",sotuvchi:"Sotuvchi",tozalovchi:"Tozalovchi",hr:"HR"},
-  system:"Sen Ottimo Cafe uchun maxsus AI agentsan. FAQAT Ottimo Cafe haqidagi savollarga javob berasan.\n\nAgar savol Ottimo bilan bog'liq bo'lmasa, ALBATTA quyidagicha javob ber:\n'Ming bor uzur! Men faqat Ottimo Cafe haqida yordam bera olaman 🙏'\n\nHech qanday istisno yo'q. Ottimo haqida emas — uzur so'ra.\n\nOTTIMO MA'LUMOTLARI:\n📍 3 filial: Shifer ko'chasi 71 | Katartal 60A/1 | Buyuk Ipak Yo'li 31\n⏰ Smenalar: 07:30-16:30 va 16:00-24:00\n💼 Vakansiyalar: Barista, Kassir, Konditer-sotuvchi\n📋 Yosh: 20-35 | Rus tili shart | Probatsiya: 1 oy\n💰 Maosh: har 10 kunda | Har smenada bepul ovqat\n📞 Tel: +998 99 060 33 53 | @Ottimo_hr\n\nO'zbek tilida qisqa, do'stona javob ber 🌿"
+  system:"Sen Ottimo Cafe'ning aqlli AI agentisan. Har qanday savolga javob bera olasan — matematika, tarix, fan, tillar, tavsiyalar va boshqalar.\n\nOTTIMO haqida savol kelsa, quyidagi ma'lumotlardan foydalan:\n📍 3 filial: Shifer ko'chasi 71 | Katartal 60A/1 | Buyuk Ipak Yo'li 31\n⏰ Smenalar: 07:30-16:30 va 16:00-24:00\n💼 Vakansiyalar: Barista, Kassir, Konditer-sotuvchi\n📋 Yosh: 20-35 | Rus tili shart | Probatsiya: 1 oy\n💰 Maosh: har 10 kunda | Har smenada bepul ovqat\n📞 Tel: +998 99 060 33 53 | @Ottimo_hr\n\nHar doim do'stona, qisqa va foydali javob ber. O'zbek, rus yoki ingliz tilida so'rasa, o'sha tilda javob ber 🌿"
 },
 ru:{
   pTitle:{chat:"AI Агент",hr:"Приём на работу",tg:"Администратор"},
@@ -453,7 +452,7 @@ ru:{
   scoreMsg:{ok:"Поздравляем! Результаты отправлены руководителю.",mon:"Хороший результат! Руководитель свяжется с вами.",fail:"Результаты отправлены руководителю."},
   restartBtn:"Начать заново",
   kasbNames:{menejer:"Менеджер",barista:"Бариста",sotuvchi:"Продавец",tozalovchi:"Уборщик",hr:"HR"},
-  system:"Ты специальный AI агент для Ottimo Cafe. Отвечай ТОЛЬКО на вопросы об Ottimo Cafe.\n\nЕсли вопрос не связан с Ottimo, ОБЯЗАТЕЛЬНО отвечай:\n'Тысяча извинений! Я могу помочь только по вопросам Ottimo Cafe 🙏'\n\nОДАННЫЕ OTTIMO:\n📍 3 филиала: Шифернур 71 | Катартал 60А/1 | Buyuk Ipak Yoli 31\n⏰ Смены: 07:30-16:30 и 16:00-24:00\n💼 Вакансии: Бариста, Кассир, Кондитер\n📋 Возраст: 20-35 | Русский обязателен | Испытательный срок: 1 месяц\n💰 Зарплата: каждые 10 дней | Бесплатное питание\n📞 Тел: +998 99 060 33 53 | @Ottimo_hr\n\nОтвечай кратко по-русски 🌿"
+  system:"Ты умный AI ассистент Ottimo Cafe. Отвечай на любые вопросы — математика, история, наука, советы, переводы и всё остальное.\n\nЕсли вопрос об Ottimo, используй эти данные:\n📍 3 филиала: Шифернур 71 | Катартал 60А/1 | Buyuk Ipak Yoli 31\n⏰ Смены: 07:30-16:30 и 16:00-24:00\n💼 Вакансии: Бариста, Кассир, Кондитер\n📋 Возраст: 20-35 | Русский обязателен | Испытательный срок: 1 месяц\n💰 Зарплата: каждые 10 дней | Бесплатное питание\n📞 Тел: +998 99 060 33 53 | @Ottimo_hr\n\nОтвечай дружелюбно и кратко на том языке, на котором спрашивают 🌿"
 },
 en:{
   pTitle:{chat:"AI Agent",hr:"Job Application",tg:"Administrator"},
@@ -492,7 +491,7 @@ en:{
   scoreMsg:{ok:"Congratulations! Results sent to manager.",mon:"Good result! Manager will contact you.",fail:"Results sent to manager."},
   restartBtn:"Start over",
   kasbNames:{menejer:"Manager",barista:"Barista",sotuvchi:"Seller",tozalovchi:"Cleaner",hr:"HR"},
-  system:"You are a special AI agent for Ottimo Cafe. Answer ONLY questions about Ottimo Cafe.\n\nIf question is not related to Ottimo, ALWAYS respond:\n'A thousand apologies! I can only help with Ottimo Cafe questions 🙏'\n\nOTTIMO DATA:\n📍 3 branches: Shifernur 71 | Katartal 60A/1 | Buyuk Ipak Yoli 31\n⏰ Shifts: 07:30-16:30 and 16:00-24:00\n💼 Vacancies: Barista, Cashier, Pastry seller\n📋 Age: 20-35 | Russian required | Probation: 1 month\n💰 Salary: every 10 days | Free meals every shift\n📞 Phone: +998 99 060 33 53 | @Ottimo_hr\n\nReply briefly in English 🌿"
+  system:"You are a smart AI assistant for Ottimo Cafe. You can answer any question — math, science, history, advice, translations, and everything else.\n\nIf asked about Ottimo, use this info:\n📍 3 branches: Shifernur 71 | Katartal 60A/1 | Buyuk Ipak Yoli 31\n⏰ Shifts: 07:30-16:30 and 16:00-24:00\n💼 Vacancies: Barista, Cashier, Pastry seller\n📋 Age: 20-35 | Russian required | Probation: 1 month\n💰 Salary: every 10 days | Free meals every shift\n📞 Phone: +998 99 060 33 53 | @Ottimo_hr\n\nAlways reply in the language the user is writing in 🌿"
 }
 };
 
@@ -648,21 +647,21 @@ function sendMsg(){
   tRow.innerHTML='<div class="av ai">AI</div><div class="typing"><span></span><span></span><span></span></div>';
   area.appendChild(tRow);
   area.scrollTop=99999;
-  var hist=chatHist.slice(-6).map(function(h){return "Foydalanuvchi: "+h.u+"\nAgent: "+h.a;}).join("\n\n");
-  var prompt=L().system+(hist?"\n\nOldingi suhbat:\n"+hist:"")+"\n\nFoydalanuvchi: "+txt+"\nAgent:";
-  fetch(GURL,{method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.6,maxOutputTokens:700}})})
+  var hist=chatHist.slice(-6).map(function(h){return {role:"user",content:h.u},{role:"assistant",content:h.a};}).flat();
+  var msgs=hist.concat([{role:"user",content:txt}]);
+  fetch(CLAUDE_URL,{method:"POST",headers:{"Content-Type":"application/json","anthropic-version":"2023-06-01"},
+    body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:700,system:L().system,messages:msgs})})
   .then(function(r){return r.json();})
   .then(function(data){
     var tr=document.getElementById("tRow");if(tr)tr.remove();
-    var reply=(data.candidates&&data.candidates[0]&&data.candidates[0].content&&data.candidates[0].content.parts&&data.candidates[0].content.parts[0]&&data.candidates[0].content.parts[0].text)||"Xatolik yuz berdi.";
+    var reply=(data.content&&data.content[0]&&data.content[0].text)||"Xatolik yuz berdi.";
     chatHist.push({u:txt,a:reply});
     if(chatHist.length>10)chatHist=chatHist.slice(-10);
     addAIMsg(reply);
   })
   .catch(function(){
     var tr=document.getElementById("tRow");if(tr)tr.remove();
-    addAIMsg("Texnik xatolik. Iltimos qayta urinib ko'ring.");
+    addAIMsg("Texnik xatolik. Iltimos qayta urinib ko\'ring.");
   })
   .finally(function(){
     chatBusy=false;
