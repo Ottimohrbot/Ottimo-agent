@@ -305,7 +305,7 @@ window._fbGet=(col)=>getDocs(query(collection(_db,col),orderBy("ts","desc")));
 <script>
 // ── CONSTANTS ──
 var CLAUDE_URL="https://api.anthropic.com/v1/messages";
-var TG_BOT="8173395748:AAFCbwHLLTiEOu0L9mjD2_Yy-a-UZXLKghU";
+var TG_BOT="8997939343:AAF57N8HYI6bB1q8qjuBGYBtPyLLjcX0KJM";
 var TG_ID="206004279";
 var MGR_PASS="688466";
 
@@ -981,30 +981,68 @@ function hrNextQ(){
 function hrSubmit(){
   var qs=POS[hrS.pos].q;
   var sc=calcScore(hrS.ans,qs);
-  var data={nm:hrS.nm,em:hrS.em,ph:hrS.ph,bd:hrS.bd,ad:hrS.ad,position:hrS.pos,answers:hrS.ans,sc:sc,date:new Date().toLocaleDateString("uz-UZ"),ts:Date.now()};
+  var id="ex_"+Date.now();
+  var data={id:id,nm:hrS.nm,em:hrS.em,ph:hrS.ph,bd:hrS.bd,ad:hrS.ad,position:hrS.pos,answers:hrS.ans,sc:sc,date:new Date().toLocaleDateString("uz-UZ"),ts:Date.now()};
+  var pos=POS[hrS.pos];
+  // Save to localStorage
+  try{
+    var all=JSON.parse(localStorage.getItem("ottimo_exams")||"[]");
+    all.unshift(data);
+    localStorage.setItem("ottimo_exams",JSON.stringify(all));
+  }catch(e){}
+  // Build TG message with all Q&A
+  var qaLines="";
+  for(var i=0;i<qs.length;i++){
+    var q=qs[i];
+    var raw=hrS.ans[q.id];
+    var idx=(raw!==undefined&&raw!=="")? parseInt(raw):-1;
+    var ans=(idx>=0&&idx<q.o.length)?q.o[idx]:"Javob berilmagan";
+    qaLines+="\n"+(i+1)+". "+q.t+"\n   ✅ "+ans;
+  }
+  var holat=sc>=85?"🟢 Qabul":sc>=65?"🟡 Monitoring":"🔴 Rad etildi";
+  var msg="🆕 YANGI IMTIHON NATIJASI\n"+
+    "━━━━━━━━━━━━━━━━━━━━\n"+
+    "👤 Ism: "+hrS.nm+"\n"+
+    "💼 Kasb: "+(pos?pos.l:hrS.pos)+"\n"+
+    "📧 Email: "+hrS.em+"\n"+
+    "📞 Telefon: "+hrS.ph+"\n"+
+    "📅 Tug'ilgan sana: "+hrS.bd+"\n"+
+    "📍 Manzil: "+hrS.ad+"\n"+
+    "📊 Ball: "+sc+"%  "+holat+"\n"+
+    "━━━━━━━━━━━━━━━━━━━━\n"+
+    "📋 Savol va javoblar:"+qaLines;
+  tgSend(msg);
+  // Firebase ham saqla
   if(window._fbAdd){
-    window._fbAdd("exams",data).then(function(){
-      var pos=POS[hrS.pos];
-      var msg="<b>🆕 Yangi imtihon natijasi</b>\n\n"+
-        "👤 <b>Ism:</b> "+hrS.nm+"\n"+
-        "💼 <b>Kasb:</b> "+(pos?pos.l:hrS.pos)+"\n"+
-        "📧 <b>Email:</b> "+hrS.em+"\n"+
-        "📞 <b>Telefon:</b> "+hrS.ph+"\n"+
-        "📅 <b>Tug'ilgan sana:</b> "+hrS.bd+"\n"+
-        "📍 <b>Manzil:</b> "+hrS.ad+"\n"+
-        "📊 <b>Ball:</b> "+sc+"%\n"+
-        "✅ <b>Holat:</b> "+(sc>=85?"Qabul":sc>=65?"Monitoring":"Rad");
-      tgSend(msg);
-      hrS.result=data;renderHR();
-    }).catch(function(){hrS.result=data;renderHR();});
-  } else {hrS.result=data;renderHR();}
+    window._fbAdd("exams",data).catch(function(){});
+  }
+  hrS.result=data;
+  renderHR();
 }
 
 function loadExams(){
+  // localStorage dan o'qi
+  try{
+    var local=JSON.parse(localStorage.getItem("ottimo_exams")||"[]");
+    hrS.exams=local;
+  }catch(e){hrS.exams=[];}
+  // Firebase dan ham o'qi (agar ulangan bo'lsa)
   if(!window._fbGet){return Promise.resolve();}
   return window._fbGet("exams").then(function(snap){
-    hrS.exams=snap.docs.map(function(d){var x=d.data();x.id=d.id;return x;});
-  }).catch(function(){});
+    var fbData=snap.docs.map(function(d){var x=d.data();x.id=d.id;return x;});
+    // Merge: Firebase + local, id bo'yicha deduplicate
+    var merged=fbData.slice();
+    var ids=fbData.map(function(e){return e.id;});
+    try{
+      var local2=JSON.parse(localStorage.getItem("ottimo_exams")||"[]");
+      local2.forEach(function(e){if(ids.indexOf(e.id)<0)merged.push(e);});
+    }catch(ex){}
+    merged.sort(function(a,b){return (b.ts||0)-(a.ts||0);});
+    hrS.exams=merged;
+  }).catch(function(){
+    // Firebase ishlamasa, localdan foydalanish
+    try{hrS.exams=JSON.parse(localStorage.getItem("ottimo_exams")||"[]");}catch(e){}
+  });
 }
 
 // ── INIT ──
